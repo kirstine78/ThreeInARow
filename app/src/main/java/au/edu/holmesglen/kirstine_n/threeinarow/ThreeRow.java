@@ -141,10 +141,10 @@ public class ThreeRow
 
 
     /***************** fill out 4 positions randomly *******************/
-//    public void preOccupyPositions(String[][] someGrid, int positionAmounts)
+//    public void preOccupyPositions()
 //    {
 //        // generate 4 different positions on grid randomly
-//        for (int i = 0; i < positionAmounts; i++)
+//        for (int i = 0; i < POSITIONS_RANDOMLY_OCCUPIED; i++)
 //        {
 //            // flag
 //            boolean keepGeneratingRandomPosition = true;
@@ -154,17 +154,46 @@ public class ThreeRow
 //                int randomX = generateRandomInteger(COLUMNS);
 //                int randomY = generateRandomInteger(ROWS);
 //
-//                if (isPositionAvailable(someGrid, randomX, randomY))
+//                if (isPositionAvailable(randomX, randomY))
 //                {
 //                    // update flag
 //                    keepGeneratingRandomPosition = false;
 //
 //                    // update grid
-//                    updateGrid(randomX, randomY);
+//                    updateGrid(i, randomX, randomY);
 //                }
 //            }
 //        }
 //    }
+
+
+    public int[] preOccupyPosition(int someCounter)
+    {
+        // flag
+        boolean keepGeneratingRandomPosition = true;
+
+        int[] coordinateList = new int[2];
+
+        while (keepGeneratingRandomPosition)
+        {
+            int randomX = generateRandomInteger(COLUMNS);
+            int randomY = generateRandomInteger(ROWS);
+
+            if (isPositionAvailable(randomX, randomY))
+            {
+                coordinateList[0] = randomX;
+                coordinateList[1] = randomY;
+
+                // update flag
+                keepGeneratingRandomPosition = false;
+
+                // update grid
+                updateGrid(someCounter, randomX, randomY);
+            }
+        }
+
+        return coordinateList;
+    }
 
 
     /***************** generate random number *******************/
@@ -403,17 +432,16 @@ public class ThreeRow
 
     /**
      * checks if position x, y is free
-     * @param some2DArray
      * @param xPos
      * @param yPos
      * @return true if position is free, else false
      */
-    public static boolean isPositionAvailable(String[][] some2DArray, int xPos, int yPos)
+    public boolean isPositionAvailable(int xPos, int yPos)
     {
         boolean isFree = false;
 
         // check if position x, y has GRID_CHARACTER_DEFAULT
-        if (some2DArray[yPos][xPos].equals(GRID_CHARACTER_DEFAULT))
+        if (mBoard[yPos][xPos].equals(GRID_CHARACTER_DEFAULT))
         {
 //            System.out.println("Position is FREE");
 //            System.out.println();

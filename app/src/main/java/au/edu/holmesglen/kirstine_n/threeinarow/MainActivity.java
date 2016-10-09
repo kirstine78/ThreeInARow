@@ -15,6 +15,7 @@ import static au.edu.holmesglen.kirstine_n.threeinarow.ThreeRow.COLUMNS;
 import static au.edu.holmesglen.kirstine_n.threeinarow.ThreeRow.FULL_GRID;
 import static au.edu.holmesglen.kirstine_n.threeinarow.ThreeRow.GRID_CHARACTER_1;
 import static au.edu.holmesglen.kirstine_n.threeinarow.ThreeRow.GRID_CHARACTER_2;
+import static au.edu.holmesglen.kirstine_n.threeinarow.ThreeRow.POSITIONS_RANDOMLY_OCCUPIED;
 import static au.edu.holmesglen.kirstine_n.threeinarow.ThreeRow.ROWS;
 
 public class MainActivity extends AppCompatActivity {
@@ -92,9 +93,30 @@ public class MainActivity extends AppCompatActivity {
             }
         }
 
+        // fill out randomly selected fields
+        preOccupyPositions();
+
         // show msg to player
         mInfoTextView.setText(R.string.info_label);
     } // End of startNewGame
+
+
+
+    /***************** fill out 4 positions randomly *******************/
+    public void preOccupyPositions()
+    {
+        // generate 4 different positions on grid randomly
+        for (int i = 0; i < POSITIONS_RANDOMLY_OCCUPIED; i++)
+        {
+            int coordinateList[] = mGame.preOccupyPosition(mCounter);  // gamelogic
+
+            int x = coordinateList[0];
+            int y = coordinateList[1];
+
+            // ui logic
+            updateGrid(x, y);
+        }
+    }
 
 
 
