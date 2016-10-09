@@ -1,5 +1,6 @@
 package au.edu.holmesglen.kirstine_n.threeinarow;
 
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -125,10 +126,12 @@ public class MainActivity extends AppCompatActivity {
         mBoardButtons[x][y].setEnabled(false);
         mBoardButtons[x][y].setText(mGame.getCharacter(mCounter));
 
-//        if (player == TicTacToeGame.HUMAN_PLAYER)
-//            mBoardButtons[location].setTextColor(Color.rgb(0, 200, 0));
-//        else
-//            mBoardButtons[location].setTextColor(Color.rgb(200, 0, 0));
+        if (mCounter % 2 == 0) {
+            mBoardButtons[x][y].setTextColor(Color.rgb(0, 200, 0));
+        }
+        else {
+            mBoardButtons[x][y].setTextColor(Color.rgb(200, 0, 0));
+        }
 
         // increment the counter
         mCounter++;
