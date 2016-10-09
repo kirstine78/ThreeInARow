@@ -44,6 +44,9 @@ public class MainActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+        // instantiate mGame so the activity can access the ThreeRow game logic
+        mGame = new ThreeRow();
+
         mBoardButtons = new Button[ROWS][COLUMNS];
         mBoardButtons[0][0] = (Button) findViewById(R.id.button1);
         mBoardButtons[0][1] = (Button) findViewById(R.id.button2);
@@ -56,11 +59,11 @@ public class MainActivity extends AppCompatActivity {
         mBoardButtons[2][2] = (Button) findViewById(R.id.button9);
         mInfoTextView = (TextView) findViewById(R.id.information);
 
-        // instantiate mGame so the activity can access the ThreeRow game logic
-        mGame = new ThreeRow();
 
         // then start a game
         startNewGame();
+
+        mInfoTextView.setText(displayNextGridCharacter());
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -98,7 +101,7 @@ public class MainActivity extends AppCompatActivity {
         preOccupyPositions();
 
         // show msg to player
-        mInfoTextView.setText(R.string.info_label);
+        mInfoTextView.setText(displayNextGridCharacter());
     } // End of startNewGame
 
 
@@ -135,6 +138,14 @@ public class MainActivity extends AppCompatActivity {
 
         // increment the counter
         mCounter++;
+    }
+
+    private String displayNextGridCharacter() {
+        String str = "Choose position for: ";
+
+        str += mGame.getCharacter(mCounter);
+
+        return str;
     }
 
     @Override
@@ -185,6 +196,8 @@ public class MainActivity extends AppCompatActivity {
                 if (mBoardButtons[locationX][locationY].isEnabled())
                 {
                     updateGrid(locationX, locationY);
+
+                    mInfoTextView.setText(displayNextGridCharacter());
 
                     // check if 3 in a row
                     if (mGame.isThreeInARowVersion2D(GRID_CHARACTER_1) || mGame.isThreeInARowVersion2D(GRID_CHARACTER_2))
