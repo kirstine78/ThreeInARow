@@ -19,9 +19,9 @@ public class ThreeRow
     final static String GRID_CHARACTER_1        = "X";
     final static String GRID_CHARACTER_2        = "O";
 
-    // minimum should be grid of 3 x 3
-    final static int ROWS       = 3;
-    final static int COLUMNS    = 3;
+    // minimum should be grid of 4 x 4
+    final static int ROWS       = 4;
+    final static int COLUMNS    = 4;
     final static int FULL_GRID  = ROWS * COLUMNS;
 
     final static int POSITIONS_RANDOMLY_OCCUPIED = 4;

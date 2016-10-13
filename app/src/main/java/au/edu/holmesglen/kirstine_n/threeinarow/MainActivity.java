@@ -51,12 +51,19 @@ public class MainActivity extends AppCompatActivity {
         mBoardButtons[0][0] = (Button) findViewById(R.id.button1);
         mBoardButtons[0][1] = (Button) findViewById(R.id.button2);
         mBoardButtons[0][2] = (Button) findViewById(R.id.button3);
-        mBoardButtons[1][0] = (Button) findViewById(R.id.button4);
-        mBoardButtons[1][1] = (Button) findViewById(R.id.button5);
-        mBoardButtons[1][2] = (Button) findViewById(R.id.button6);
-        mBoardButtons[2][0] = (Button) findViewById(R.id.button7);
-        mBoardButtons[2][1] = (Button) findViewById(R.id.button8);
-        mBoardButtons[2][2] = (Button) findViewById(R.id.button9);
+        mBoardButtons[0][3] = (Button) findViewById(R.id.button4);
+        mBoardButtons[1][0] = (Button) findViewById(R.id.button5);
+        mBoardButtons[1][1] = (Button) findViewById(R.id.button6);
+        mBoardButtons[1][2] = (Button) findViewById(R.id.button7);
+        mBoardButtons[1][3] = (Button) findViewById(R.id.button8);
+        mBoardButtons[2][0] = (Button) findViewById(R.id.button9);
+        mBoardButtons[2][1] = (Button) findViewById(R.id.button10);
+        mBoardButtons[2][2] = (Button) findViewById(R.id.button11);
+        mBoardButtons[2][3] = (Button) findViewById(R.id.button12);
+        mBoardButtons[3][0] = (Button) findViewById(R.id.button13);
+        mBoardButtons[3][1] = (Button) findViewById(R.id.button14);
+        mBoardButtons[3][2] = (Button) findViewById(R.id.button15);
+        mBoardButtons[3][3] = (Button) findViewById(R.id.button16);
         mInfoTextView = (TextView) findViewById(R.id.information);
 
 
