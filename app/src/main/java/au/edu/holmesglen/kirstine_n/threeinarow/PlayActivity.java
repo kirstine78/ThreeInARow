@@ -1,5 +1,9 @@
 package au.edu.holmesglen.kirstine_n.threeinarow;
 
+/**
+ * Created by Kirstine Nielsen 100527988  on 9/10/2016.
+ */
+
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
@@ -73,18 +77,13 @@ public class PlayActivity extends AppCompatActivity {
                 // only process if game has not finished yet
                 if (!mGame.isTheGameOver())
                 {
-                    Log.v("Kirsti", "game is not over");
                     if (gridArray[position].getClickCount() < 1)
                     {
-                        Log.v("Kirsti", "positions full: " + mGame.getNoOfPositionsOccupied() + 1);
-
                         // convert position to x, y coordinates
                         int coordinateList[] = getXYCoordFrom1DArrayIndex(position, ROWS);
 
                         // game logic
                         mGame.updateGrid(coordinateList[0], coordinateList[1]);
-
-//                        updateGridUI(coordinateList[0], coordinateList[1]);
 
                         // ui
                         int colorImg =  mGame.getCurrentColor(coordinateList[0], coordinateList[1]);
@@ -114,7 +113,6 @@ public class PlayActivity extends AppCompatActivity {
                                 mInfoImageView.setVisibility(View.INVISIBLE);
                             }
                         }
-
                     }
                 }
             }  // end onItemClick

@@ -1,7 +1,7 @@
 package au.edu.holmesglen.kirstine_n.threeinarow;
 
 /**
- * Created by Student on 13/10/2016.
+ * Created by Kirstine Nielsen 100527988 on 13/10/2016.
  */
 
 public class Item {

@@ -1,7 +1,7 @@
 package au.edu.holmesglen.kirstine_n.threeinarow;
 
 /**
- * Created by Kirsti on 9/10/2016.
+ * Created by Kirstine Nielsen 100527988  on 9/10/2016.
  */
 
 import android.util.Log;
@@ -106,7 +106,7 @@ public class ThreeRow
         // generate pseudorandom. zero included, limit excluded
         randomNumber = randomGenerator.nextInt(limit);
 
-        System.out.println("random: " + randomNumber);
+//        System.out.println("random: " + randomNumber);
 
         return randomNumber;
     }
