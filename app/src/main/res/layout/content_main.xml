@@ -13,67 +13,14 @@
     tools:context="au.edu.holmesglen.kirstine_n.threeinarow.MainActivity"
     tools:showIn="@layout/activity_main"
     android:orientation="vertical"
-    android:gravity="center_horizontal"
     android:background="#9FA8DA" >
 
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:paddingBottom="8dp">
-
-        <TextView
-            android:id="@+id/game_difficulty"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentLeft="true"
-            android:text="@string/game_difficulty"
-            android:textSize="20dp"
-            android:textStyle="bold"
-            android:textColor="@android:color/white"/>
-
-        <TextView
-            android:id="@+id/game_timer"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"
-            android:text="@string/game_timer"
-            android:textSize="20dp"
-            android:textStyle="bold"
-            android:textColor="@android:color/white"/>
-
-    </RelativeLayout>
-
-    <GridView
-        android:id="@+id/gridview"
+    <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:numColumns="4"
-        android:verticalSpacing="1dp"
-        android:horizontalSpacing="1dp"
-        android:stretchMode="columnWidth"
-        android:gravity="fill">
-
-    </GridView>
-
-
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
-
-        <TextView
-            android:id="@+id/information"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="My three in a row Info label"
-            android:textSize="20dp"
-            android:textStyle="bold"
-            android:textColor="@android:color/white" />
-
-        <ImageView
-            android:id="@+id/imageNextColor"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
-    </LinearLayout>
+        android:text="@string/main_body"
+        android:textSize="20dp"
+        android:textStyle="bold"
+        android:textColor="@android:color/white"/>
 
 </LinearLayout>
