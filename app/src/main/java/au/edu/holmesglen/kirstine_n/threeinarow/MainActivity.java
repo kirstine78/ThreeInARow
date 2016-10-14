@@ -1,21 +1,15 @@
 package au.edu.holmesglen.kirstine_n.threeinarow;
 
-import android.graphics.Color;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Button;
+import android.widget.GridView;
 import android.widget.TextView;
 
 import static au.edu.holmesglen.kirstine_n.threeinarow.ThreeRow.COLUMNS;
-import static au.edu.holmesglen.kirstine_n.threeinarow.ThreeRow.FULL_GRID;
-import static au.edu.holmesglen.kirstine_n.threeinarow.ThreeRow.GRID_CHARACTER_1;
-import static au.edu.holmesglen.kirstine_n.threeinarow.ThreeRow.GRID_CHARACTER_2;
 import static au.edu.holmesglen.kirstine_n.threeinarow.ThreeRow.POSITIONS_RANDOMLY_OCCUPIED;
 import static au.edu.holmesglen.kirstine_n.threeinarow.ThreeRow.ROWS;
 
@@ -25,7 +19,14 @@ public class MainActivity extends AppCompatActivity {
     private ThreeRow mGame;
 
     // Buttons making up the board
-    private Button mBoardButtons[][];
+//    private Button mBoardButtons[][];
+
+    GridView gridview;
+
+    // 2d array to hold all Item objects. These will represent the ?x? grid
+    private Item[][] gridArray = new Item[ROWS][COLUMNS];
+
+    ImageAdapter imageAdapter;
 
     // Various text displayed
     private TextView mInfoTextView;
@@ -47,39 +48,56 @@ public class MainActivity extends AppCompatActivity {
         // instantiate mGame so the activity can access the ThreeRow game logic
         mGame = new ThreeRow();
 
-        mBoardButtons = new Button[ROWS][COLUMNS];
-        mBoardButtons[0][0] = (Button) findViewById(R.id.button1);
-        mBoardButtons[0][1] = (Button) findViewById(R.id.button2);
-        mBoardButtons[0][2] = (Button) findViewById(R.id.button3);
-        mBoardButtons[0][3] = (Button) findViewById(R.id.button4);
-        mBoardButtons[1][0] = (Button) findViewById(R.id.button5);
-        mBoardButtons[1][1] = (Button) findViewById(R.id.button6);
-        mBoardButtons[1][2] = (Button) findViewById(R.id.button7);
-        mBoardButtons[1][3] = (Button) findViewById(R.id.button8);
-        mBoardButtons[2][0] = (Button) findViewById(R.id.button9);
-        mBoardButtons[2][1] = (Button) findViewById(R.id.button10);
-        mBoardButtons[2][2] = (Button) findViewById(R.id.button11);
-        mBoardButtons[2][3] = (Button) findViewById(R.id.button12);
-        mBoardButtons[3][0] = (Button) findViewById(R.id.button13);
-        mBoardButtons[3][1] = (Button) findViewById(R.id.button14);
-        mBoardButtons[3][2] = (Button) findViewById(R.id.button15);
-        mBoardButtons[3][3] = (Button) findViewById(R.id.button16);
-        mInfoTextView = (TextView) findViewById(R.id.information);
+        // generate 4x4 array with all Items in the grid set to the grey image
+        for (int i = 0; i < ROWS; i++)
+        {
+            for (int j = 0; j < COLUMNS; j++)
+            {
+                // fill each position in grid
+                gridArray[i][j] = new Item(R.drawable.grey, "grey");
+            }
+        }
 
+        // instantiate the the gridview
+        gridview = (GridView) findViewById(R.id.gridview);
+
+        // use the ImageAdapter to pass the array to the GridView object
+        imageAdapter = new ImageAdapter(this, gridArray);
+        gridview.setAdapter(imageAdapter);
+
+//        mBoardButtons = new Button[ROWS][COLUMNS];
+//        mBoardButtons[0][0] = (Button) findViewById(R.id.button1);
+//        mBoardButtons[0][1] = (Button) findViewById(R.id.button2);
+//        mBoardButtons[0][2] = (Button) findViewById(R.id.button3);
+//        mBoardButtons[0][3] = (Button) findViewById(R.id.button4);
+//        mBoardButtons[1][0] = (Button) findViewById(R.id.button5);
+//        mBoardButtons[1][1] = (Button) findViewById(R.id.button6);
+//        mBoardButtons[1][2] = (Button) findViewById(R.id.button7);
+//        mBoardButtons[1][3] = (Button) findViewById(R.id.button8);
+//        mBoardButtons[2][0] = (Button) findViewById(R.id.button9);
+//        mBoardButtons[2][1] = (Button) findViewById(R.id.button10);
+//        mBoardButtons[2][2] = (Button) findViewById(R.id.button11);
+//        mBoardButtons[2][3] = (Button) findViewById(R.id.button12);
+//        mBoardButtons[3][0] = (Button) findViewById(R.id.button13);
+//        mBoardButtons[3][1] = (Button) findViewById(R.id.button14);
+//        mBoardButtons[3][2] = (Button) findViewById(R.id.button15);
+//        mBoardButtons[3][3] = (Button) findViewById(R.id.button16);
+
+        mInfoTextView = (TextView) findViewById(R.id.information);
 
         // then start a game
         startNewGame();
 
         mInfoTextView.setText(displayNextGridCharacter());
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });
+//        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+//        fab.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
+//                        .setAction("Action", null).show();
+//            }
+//        });
     }
 
 
@@ -91,16 +109,16 @@ public class MainActivity extends AppCompatActivity {
 
         mGame.clearBoard();
 
-        // Reset all buttons
+        // Reset all positions in the grid
         // loop through outer array;
         for(int i = 0; i < ROWS; i++)
         {
             // loop through inner array
             for(int j = 0; j < COLUMNS; j++)
             {
-                mBoardButtons[i][j].setText("");
-                mBoardButtons[i][j].setEnabled(true);
-                mBoardButtons[i][j].setOnClickListener(new ButtonClickListener(i, j));
+//                gridArray[i][j].setText("");
+//                mBoardButtons[i][j].setEnabled(true);
+//                mBoardButtons[i][j].setOnClickListener(new ButtonClickListener(i, j));
             }
         }
 
@@ -133,15 +151,15 @@ public class MainActivity extends AppCompatActivity {
 
     private void updateGrid(int x, int y) {
         mGame.updateGrid(mCounter, x, y);
-        mBoardButtons[x][y].setEnabled(false);
-        mBoardButtons[x][y].setText(mGame.getCharacter(mCounter));
-
-        if (mCounter % 2 == 0) {
-            mBoardButtons[x][y].setTextColor(Color.rgb(0, 200, 0));
-        }
-        else {
-            mBoardButtons[x][y].setTextColor(Color.rgb(200, 0, 0));
-        }
+//        mBoardButtons[x][y].setEnabled(false);
+//        mBoardButtons[x][y].setText(mGame.getCharacter(mCounter));
+//
+//        if (mCounter % 2 == 0) {
+//            mBoardButtons[x][y].setTextColor(Color.rgb(0, 200, 0));
+//        }
+//        else {
+//            mBoardButtons[x][y].setTextColor(Color.rgb(200, 0, 0));
+//        }
 
         // increment the counter
         mCounter++;
@@ -198,38 +216,38 @@ public class MainActivity extends AppCompatActivity {
         }
 
         public void onClick(View view) {
-            if (!mGameOver)
-            {
-                if (mBoardButtons[locationX][locationY].isEnabled())
-                {
-                    updateGrid(locationX, locationY);
-
-                    mInfoTextView.setText(displayNextGridCharacter());
-
-                    // check if 3 in a row
-                    if (mGame.isThreeInARowVersion2D(GRID_CHARACTER_1) || mGame.isThreeInARowVersion2D(GRID_CHARACTER_2))
-                    {
-                        // update flags
-                        mGameOver = true;
-                        mHasLost = true;
-
-                        // display appropriate msg to player
-                        mInfoTextView.setText(R.string.losing_msg);
-                    }
-
-                    // check if all fields in grid has been filled up
-                    if (mCounter == FULL_GRID &&
-                        mGame.isThreeInARowVersion2D(GRID_CHARACTER_1) == false &&
-                        mGame.isThreeInARowVersion2D(GRID_CHARACTER_2) == false)
-                    {
-                        // update flag mGameOver
-                        mGameOver = true;
-
-                        // display appropriate msg to player
-                        mInfoTextView.setText(R.string.winning_msg);
-                    }
-                }
-            }
+//            if (!mGameOver)
+//            {
+//                if (mBoardButtons[locationX][locationY].isEnabled())
+//                {
+//                    updateGrid(locationX, locationY);
+//
+//                    mInfoTextView.setText(displayNextGridCharacter());
+//
+//                    // check if 3 in a row
+//                    if (mGame.isThreeInARowVersion2D(GRID_CHARACTER_1) || mGame.isThreeInARowVersion2D(GRID_CHARACTER_2))
+//                    {
+//                        // update flags
+//                        mGameOver = true;
+//                        mHasLost = true;
+//
+//                        // display appropriate msg to player
+//                        mInfoTextView.setText(R.string.losing_msg);
+//                    }
+//
+//                    // check if all fields in grid has been filled up
+//                    if (mCounter == FULL_GRID &&
+//                        mGame.isThreeInARowVersion2D(GRID_CHARACTER_1) == false &&
+//                        mGame.isThreeInARowVersion2D(GRID_CHARACTER_2) == false)
+//                    {
+//                        // update flag mGameOver
+//                        mGameOver = true;
+//
+//                        // display appropriate msg to player
+//                        mInfoTextView.setText(R.string.winning_msg);
+//                    }
+//                }
+//            }
         }  // end onClick
 
     }  // end class ButtonClickListener

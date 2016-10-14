@@ -12,7 +12,7 @@ import android.widget.ImageView;
  */
 
 public class ImageAdapter extends BaseAdapter {
-    // this references the array passed through the constructor
+    // this references the 2D array passed through the constructor
     Item[][] gridArray;  // an array of arrays of the Item class - our Item class represents color images
     private Context mContext;  // the current state of an app or object or Activity
 
@@ -23,6 +23,7 @@ public class ImageAdapter extends BaseAdapter {
     }
 
     // return the size of the array
+    // TODO what do we want here???
     public int getCount() {
         return gridArray.length;
     }
@@ -52,7 +53,7 @@ public class ImageAdapter extends BaseAdapter {
             imageView = (ImageView) convertView;
         }
 
-        imageView.setImageResource(gridArray[position].getColor());
+//        imageView.setImageResource(gridArray[position].getColor());
         return imageView;
     }
 }
