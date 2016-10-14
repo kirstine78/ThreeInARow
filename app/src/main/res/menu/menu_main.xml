@@ -11,7 +11,7 @@
 
     <item
         android:id="@+id/help"
-        android:orderInCategory="10"
+        android:orderInCategory="25"
         android:title="@string/action_help"
         app:showAsAction="never" />
 
