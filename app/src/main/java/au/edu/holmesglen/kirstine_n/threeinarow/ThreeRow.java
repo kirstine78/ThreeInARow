@@ -16,8 +16,8 @@ public class ThreeRow
     final static int IN_A_ROW_SUCCESS = 3;
 
     final static String GRID_CHARACTER_DEFAULT  = "?";
-    final static String GRID_CHARACTER_1        = "X";
-    final static String GRID_CHARACTER_2        = "O";
+    final static String GRID_CHARACTER_1        = "Red";
+    final static String GRID_CHARACTER_2        = "White";
 
     // minimum should be grid of 4 x 4
     final static int ROWS       = 4;
@@ -28,6 +28,8 @@ public class ThreeRow
 
     // declare a 2D array
     private String[][] mBoard = getTwoDimensionalArray(ROWS, COLUMNS);
+
+//    int logicCounter = 0;
 
     public ThreeRow()
     {
