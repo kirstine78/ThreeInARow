@@ -76,6 +76,7 @@ public class MainActivity extends AppCompatActivity {
 
             // every time an Item is clicked this method is called
             public void onItemClick(AdapterView<?> parent, View v, int position, long id) {
+                // only process if game has not finished yet
                 if (!mGameOver)
                 {
                     if (gridArray[position].getClickCount() < 1)
@@ -98,34 +99,11 @@ public class MainActivity extends AppCompatActivity {
 
                         mInfoTextView.setText(displayNextColorHint());
 
-                        // check if 3 in a row
-                        if (mGame.isThreeInARowVersion2D(GRID_CHARACTER_1) || mGame.isThreeInARowVersion2D(GRID_CHARACTER_2))
-                        {
-                            // update flags
-                            mGameOver = true;
-//                            mHasLost = true;
+                        // check if 3 in a row first
+                        checkForThreeInARow();
 
-                            // display appropriate msg to player
-                            mInfoTextView.setText(R.string.losing_msg);
-
-                            // hide image of color hint
-                            mInfoImageView.setVisibility(View.INVISIBLE);
-                        }
-
-                        // check if all fields in grid has been filled up
-                        if (mCounter == FULL_GRID &&
-                            mGame.isThreeInARowVersion2D(GRID_CHARACTER_1) == false &&
-                            mGame.isThreeInARowVersion2D(GRID_CHARACTER_2) == false)
-                        {
-                            // update flag mGameOver
-                            mGameOver = true;
-
-                            // display appropriate msg to player
-                            mInfoTextView.setText(R.string.winning_msg);
-
-                            // hide image of color hint
-                            mInfoImageView.setVisibility(View.INVISIBLE);
-                        }
+                        // then check if all fields in grid has been filled up and not 3 in a row
+                        checkForCompleteGameWin();
                     }
                 }
             }  // end onItemClick
@@ -322,5 +300,40 @@ public class MainActivity extends AppCompatActivity {
             img.setImageResource(R.drawable.white);
         }
     }
+
+    public void checkForThreeInARow()
+    {
+        if (mGame.isThreeInARowVersion2D(GRID_CHARACTER_1) || mGame.isThreeInARowVersion2D(GRID_CHARACTER_2))
+        {
+            // update flags
+            mGameOver = true;
+//                            mHasLost = true;
+
+            // display appropriate msg to player
+            mInfoTextView.setText(R.string.losing_msg);
+
+            // hide image of color hint
+            mInfoImageView.setVisibility(View.INVISIBLE);
+        }
+    }
+
+    public void checkForCompleteGameWin()
+    {
+        if (mCounter == FULL_GRID &&
+                mGame.isThreeInARowVersion2D(GRID_CHARACTER_1) == false &&
+                mGame.isThreeInARowVersion2D(GRID_CHARACTER_2) == false)
+        {
+            // update flag mGameOver
+            mGameOver = true;
+
+            // display appropriate msg to player
+            mInfoTextView.setText(R.string.winning_msg);
+
+            // hide image of color hint
+            mInfoImageView.setVisibility(View.INVISIBLE);
+        }
+    }
+
+
 
 }  // end class MainActivity
