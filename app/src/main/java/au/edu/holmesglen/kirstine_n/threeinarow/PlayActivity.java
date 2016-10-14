@@ -16,9 +16,6 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import static au.edu.holmesglen.kirstine_n.threeinarow.ThreeRow.COLUMNS;
-import static au.edu.holmesglen.kirstine_n.threeinarow.ThreeRow.FULL_GRID;
-import static au.edu.holmesglen.kirstine_n.threeinarow.ThreeRow.GRID_CHARACTER_1;
-import static au.edu.holmesglen.kirstine_n.threeinarow.ThreeRow.GRID_CHARACTER_2;
 import static au.edu.holmesglen.kirstine_n.threeinarow.ThreeRow.POSITIONS_RANDOMLY_OCCUPIED;
 import static au.edu.holmesglen.kirstine_n.threeinarow.ThreeRow.ROWS;
 
@@ -27,22 +24,17 @@ public class PlayActivity extends AppCompatActivity {
     // represents the internal state of the game
     private ThreeRow mGame;
 
-    GridView gridview;
+    private GridView gridview;
 
     // array to hold all Item objects. These will represent the ?x? grid
-    Item[] gridArray = new Item[ROWS * COLUMNS];
+    private Item[] gridArray = new Item[ROWS * COLUMNS];
 
-    ImageAdapter imageAdapter;
+    private ImageAdapter imageAdapter;
 
     // Various text displayed
     private TextView mInfoTextView;
     private ImageView mInfoImageView;
 
-    // flag to keep track of game state
-    private boolean mGameOver = false;
-//    private boolean mHasLost = false;
-
-    private int mCounter = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -79,33 +71,50 @@ public class PlayActivity extends AppCompatActivity {
             // every time an Item is clicked this method is called
             public void onItemClick(AdapterView<?> parent, View v, int position, long id) {
                 // only process if game has not finished yet
-                if (!mGameOver)
+                if (!mGame.isTheGameOver())
                 {
+                    Log.v("Kirsti", "game is not over");
                     if (gridArray[position].getClickCount() < 1)
                     {
-                        Log.v("Kirsti", "click is less than one");
+                        Log.v("Kirsti", "positions full: " + mGame.getNoOfPositionsOccupied() + 1);
 
                         // convert position to x, y coordinates
                         int coordinateList[] = getXYCoordFrom1DArrayIndex(position, ROWS);
 
                         // game logic
-                        mGame.updateGrid(mCounter, coordinateList[0], coordinateList[1]);
+                        mGame.updateGrid(coordinateList[0], coordinateList[1]);
 
 //                        updateGridUI(coordinateList[0], coordinateList[1]);
 
                         // ui
-                        int colorImg =  gridArray[position].nextColor(mCounter);
+                        int colorImg =  mGame.getCurrentColor(coordinateList[0], coordinateList[1]);
                         ((ImageView) v).setImageResource(colorImg);
-
-                        mCounter++;
 
                         mInfoTextView.setText(displayNextColorHint());
 
                         // check if 3 in a row first
-                        checkForThreeInARow();
+                        if (mGame.checkForThreeInARow())
+                        {
+                            Log.v("Kirsti", "losing");
+                            // display appropriate msg to player
+                            mInfoTextView.setText(R.string.losing_msg);
 
-                        // then check if all fields in grid has been filled up and not 3 in a row
-                        checkForCompleteGameWin();
+                            // hide image of color hint
+                            mInfoImageView.setVisibility(View.INVISIBLE);
+                        }
+                        else
+                        {
+                            if (mGame.isGridFull())
+                            {
+                                Log.v("Kirsti", "winning");
+                                // display appropriate msg to player
+                                mInfoTextView.setText(R.string.winning_msg);
+
+                                // hide image of color hint
+                                mInfoImageView.setVisibility(View.INVISIBLE);
+                            }
+                        }
+
                     }
                 }
             }  // end onItemClick
@@ -125,19 +134,15 @@ public class PlayActivity extends AppCompatActivity {
     private void startNewGame()
     {
         Log.v("Kirsti", "into startNewGame");
-        // reset flags and counter
-        mGameOver = false;
-        mCounter = 0;
-        Log.v("Kirsti", "mCounter: " + mCounter);
 
         mGame.clearBoard();
 
         // instantiate the the gridview
-        gridview = (GridView) findViewById(R.id.gridview);
-
-        // use the ImageAdapter to pass the array to the GridView object
-        imageAdapter = new ImageAdapter(this, gridArray);
-        gridview.setAdapter(imageAdapter);
+//        gridview = (GridView) findViewById(R.id.gridview);
+//
+//        // use the ImageAdapter to pass the array to the GridView object
+//        imageAdapter = new ImageAdapter(this, gridArray);
+//        gridview.setAdapter(imageAdapter);
 
 
         // Reset all positions in the grid
@@ -146,7 +151,6 @@ public class PlayActivity extends AppCompatActivity {
         {
             gridArray[i].resetClickCount();
             gridArray[i].setColor(R.drawable.grey);
-            Log.v("Kirsti", "click count: " + gridArray[i].getClickCount());
         }
 
         // fill out randomly selected fields
@@ -162,57 +166,36 @@ public class PlayActivity extends AppCompatActivity {
 
 
     /***************** fill out 4 positions randomly *******************/
-    public void preOccupyPositions()
+    private void preOccupyPositions()
     {
         Log.v("Kirsti", "into preOccupyPositions");
         // generate 4 different positions on grid randomly
         for (int i = 0; i < POSITIONS_RANDOMLY_OCCUPIED; i++)
         {
             // game logic
-            int coordinateList[] = mGame.preOccupyPosition(mCounter);
+            int coordinateList[] = mGame.preOccupyPosition();
 
             int x = coordinateList[0];
             int y = coordinateList[1];
 
-            // game logic
-            mGame.updateGrid(mCounter, x, y);
-
             // UI
-            updateGridUI(x, y);
+            updateGridUI(x, y, mGame.getCurrentColor(x, y));
         }
     }
 
 
-    private void updateGridUI(int x, int y)
+    private void updateGridUI(int x, int y, int colorImg)
     {
         Log.v("Kirsti", "inside updateGridUI x, y: " + x + ", " + y);
-        Log.v("Kirsti", "inside updateGridUI mCounter: " + mCounter);
 
         // ui
-        int colorImg;
-
         int aPosition = get1DArrayIndexFromXYCoord(x, y, ROWS);
-
-        // pick correct color
-        if (mCounter % 2 == 0) {
-            Log.v("Kirsti", "mCounter even");
-
-            colorImg = R.drawable.red;
-        }
-        else {
-            Log.v("Kirsti", "mCounter odd");
-
-            colorImg = R.drawable.white;
-        }
 
         // set item to correct color
         gridArray[aPosition].setColor(colorImg);
 
         // increment click count for specific Item
         gridArray[aPosition].incrementClick();
-
-        // increment the counter
-        mCounter++;
     }
 
 
@@ -273,7 +256,7 @@ public class PlayActivity extends AppCompatActivity {
      * @param dimension  the width of grid (same as height since always square)
      * @return  index in array
      */
-    public int get1DArrayIndexFromXYCoord(int xCoord, int yCoord, int dimension) {
+    private int get1DArrayIndexFromXYCoord(int xCoord, int yCoord, int dimension) {
 
         int indexOneDimensionArray = xCoord + (yCoord * dimension);
 
@@ -281,11 +264,10 @@ public class PlayActivity extends AppCompatActivity {
     }
 
 
-    public int[] getXYCoordFrom1DArrayIndex(int position, int dimension) {
+    private int[] getXYCoordFrom1DArrayIndex(int position, int dimension) {
 
         int xCoordinate = position % dimension;
         int yCoordinate = position / dimension;  //integer division
-
 
         int[] coordinateList = new int[2];
         coordinateList[0] = xCoordinate;
@@ -294,13 +276,12 @@ public class PlayActivity extends AppCompatActivity {
         return coordinateList;
     }
 
-    public void setImage()
+
+    private void setImage()
     {
         ImageView img = (ImageView) findViewById(R.id.imageNextColor);
 
-        img.setImageResource(R.drawable.blue);
-
-        if (mCounter % 2 == 0)
+        if (mGame.getNextColor().equals(ThreeRow.GRID_CHARACTER_1))
         {
             img.setImageResource(R.drawable.red);
         }
@@ -310,37 +291,5 @@ public class PlayActivity extends AppCompatActivity {
         }
     }
 
-    public void checkForThreeInARow()
-    {
-        if (mGame.isThreeInARowVersion2D(GRID_CHARACTER_1) || mGame.isThreeInARowVersion2D(GRID_CHARACTER_2))
-        {
-            // update flags
-            mGameOver = true;
-//                            mHasLost = true;
-
-            // display appropriate msg to player
-            mInfoTextView.setText(R.string.losing_msg);
-
-            // hide image of color hint
-            mInfoImageView.setVisibility(View.INVISIBLE);
-        }
-    }
-
-    public void checkForCompleteGameWin()
-    {
-        if (mCounter == FULL_GRID &&
-                mGame.isThreeInARowVersion2D(GRID_CHARACTER_1) == false &&
-                mGame.isThreeInARowVersion2D(GRID_CHARACTER_2) == false)
-        {
-            // update flag mGameOver
-            mGameOver = true;
-
-            // display appropriate msg to player
-            mInfoTextView.setText(R.string.winning_msg);
-
-            // hide image of color hint
-            mInfoImageView.setVisibility(View.INVISIBLE);
-        }
-    }
 
 }

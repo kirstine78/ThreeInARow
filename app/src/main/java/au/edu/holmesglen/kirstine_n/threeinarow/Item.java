@@ -1,7 +1,5 @@
 package au.edu.holmesglen.kirstine_n.threeinarow;
 
-import android.util.Log;
-
 /**
  * Created by Student on 13/10/2016.
  */
@@ -35,22 +33,22 @@ public class Item {
     }
 
 
-    public int nextColor(int counter){
-        Log.v("Kirsti", "inside nextColor. Number click: " + click);
-
-        // if click value has reached 2 then color change should not happen
-        if (click < 1)
-        {
-            if (counter % 2 == 0) {
-                colorImg = R.drawable.red;
-            }
-            else {
-                colorImg = R.drawable.white;
-            }
-        }
-
-        click++;
-
-        return colorImg;
-    }
+//    public int nextColor(int counter){
+//        Log.v("Kirsti", "inside nextColor. Number click: " + click);
+//
+//        // if click value has reached 2 then color change should not happen
+//        if (click < 1)
+//        {
+//            if (counter % 2 == 0) {
+//                colorImg = R.drawable.red;
+//            }
+//            else {
+//                colorImg = R.drawable.white;
+//            }
+//        }
+//
+//        click++;
+//
+//        return colorImg;
+//    }
 }
