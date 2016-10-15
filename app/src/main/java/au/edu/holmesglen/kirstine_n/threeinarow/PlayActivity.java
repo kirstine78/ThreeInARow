@@ -115,6 +115,9 @@ public class PlayActivity extends AppCompatActivity {
                                 mInfoImageView.setVisibility(View.INVISIBLE);
                             }
                         }
+
+                        // increment click count for Item
+                        gridArray[position].incrementClick();
                     }
                 }
             }  // end onItemClick
