@@ -22,6 +22,8 @@ public class ThreeRow
     final static String GRID_CHARACTER_2        = "White";
 
     // minimum should be grid of 4 x 4
+
+    // since business rule is a square grid you could change it to only have DIMENSION = 4
     final static int ROWS       = 4;
     final static int COLUMNS    = 4;
     final static int FULL_GRID  = ROWS * COLUMNS;
@@ -31,23 +33,34 @@ public class ThreeRow
     // declare a 2D array  String[rows][columns]
     private String[][] mBoard = getTwoDimensionalArray(ROWS, COLUMNS);
 
+    // flags
     private int noOfPositionsOccupied = 0;
-
     private boolean mGameOver = false;
 
-    // constructor
+    /**
+     * constructor
+     */
     public ThreeRow()
     {
         // get a 2D array
         mBoard = getTwoDimensionalArray(ROWS, COLUMNS);
     }
 
+
+    /**
+     * how many fields on board are filled with colours
+     * @return
+     */
     public int getNoOfPositionsOccupied()
     {
         return noOfPositionsOccupied;
     }
 
-    /** Clear the board of all X's and O's by setting all spots to GRID_CHARACTER_DEFAULT. */
+
+    /**
+     * Clear the board of all GRID_CHARACTER_1's and GRID_CHARACTER_2's by setting all spots to GRID_CHARACTER_DEFAULT.
+     * reset flags
+     */
     public void clearBoard()
     {
         // reset
@@ -66,7 +79,10 @@ public class ThreeRow
     }
 
 
-    /***************** fill out 4 positions randomly *******************/
+    /**
+     * fill out a positions randomly with either GRID_CHARACTER_1 or GRID_CHARACTER_2
+     * @return array containing x, y coordinate for the random position
+     */
     public int[] preOccupyPosition()
     {
         // flag
@@ -96,7 +112,11 @@ public class ThreeRow
     }
 
 
-    /***************** generate random number *******************/
+    /**
+     * generate random number, integer from zero included to limit excluded
+     * @param limit upper limit for random number (excluded)
+     * @return the random number
+     */
     private static int generateRandomInteger(int limit)
     {
         int randomNumber;
@@ -106,62 +126,14 @@ public class ThreeRow
         // generate pseudorandom. zero included, limit excluded
         randomNumber = randomGenerator.nextInt(limit);
 
-//        System.out.println("random: " + randomNumber);
-
         return randomNumber;
     }
 
 
     /**
-     * ***************** 1D array *******************
-     * Build an array of strings
-     * @param length
-     * @return Array of strings
-     */
-    private String[] getArray(int length)
-    {
-        String[] anArray = new String[length];
-
-        // populate array
-        for (int i = 0; i < length; i++)
-        {
-            anArray[i] = GRID_CHARACTER_DEFAULT;
-        }
-
-        return anArray;
-    }
-
-
-    /**
-     * Checks if there is 3 in a row of a specific character that is passed as argument
-     * @param someArray the array being searched through
-     * @param someCharacter the character we search if there is 3 in a row of
-     * @return true if there is 3 in a row of the character passed in, else false
-     */
-    private boolean isThreeInARowHorizontally(String[] someArray, String someCharacter)
-    {
-        int arrayLength = someArray.length;
-
-        // boolean to return
-        boolean isInARowPresent = false;
-
-        // loop through array; make sure you only check until and including third last element
-        for(int i = 0; i <= arrayLength - IN_A_ROW_SUCCESS; i++)
-        {
-            if (someArray[i].equals(someCharacter) && someArray[i + 1].equals(someCharacter) && someArray[i + 2].equals(someCharacter))
-            {
-                isInARowPresent = true;
-                return isInARowPresent;
-            }
-        }
-        return isInARowPresent;
-    }
-
-
-    /**
-     * **************** 2D array ********************
-     * @param rows
-     * @param columns
+     * Build a 2D array of strings
+     * @param rows  how many inner arrays
+     * @param columns  length of inner arrays
      * @return grid, array of arrays
      */
     private String[][] getTwoDimensionalArray(int rows, int columns)
@@ -183,9 +155,28 @@ public class ThreeRow
 
 
     /**
-     *
+     * Build a 1D array of strings
+     * @param length  length of array
+     * @return Array of strings (GRID_CHARACTER_DEFAULT)
+     */
+    private String[] getArray(int length)
+    {
+        String[] anArray = new String[length];
+
+        // populate array
+        for (int i = 0; i < length; i++)
+        {
+            anArray[i] = GRID_CHARACTER_DEFAULT;
+        }
+
+        return anArray;
+    }
+
+
+    /**
+     * check if there is "three in a row" either horizontally or vertically in a grid
      * @param someCharacter to find three in a row of
-     * @return true if there is three in a row vertically or horizontally
+     * @return true if there is three in a row vertically or horizontally, else false
      */
     private boolean isThreeInARowVersion2D(String someCharacter)
     {
@@ -204,10 +195,36 @@ public class ThreeRow
 
 
     /**
-     *
+     * Checks if there is "3 in a row" of a specific String horizontally in a grid
+     * @param someArray the array being searched through
+     * @param aString the string we search if there is 3 in a row of
+     * @return true if there is "3 in a row" horizontally, else false
+     */
+    private boolean isThreeInARowHorizontally(String[] someArray, String aString)
+    {
+        int arrayLength = someArray.length;
+
+        // boolean to return
+        boolean isInARowPresent = false;
+
+        // loop through array; make sure you only check until and including third last element
+        for(int i = 0; i <= arrayLength - IN_A_ROW_SUCCESS; i++)
+        {
+            if (someArray[i].equals(aString) && someArray[i + 1].equals(aString) && someArray[i + 2].equals(aString))
+            {
+                isInARowPresent = true;
+                return isInARowPresent;
+            }
+        }
+        return isInARowPresent;
+    }
+
+
+    /**
+     * Checks if there is "3 in a row" of a specific String vertically in a grid
      * @param some2DArray a grid
-     * @param someCharacter a character you want to see if there is three in a row of
-     * @return true if three in a row was found in a row in a grid
+     * @param someCharacter a string you want to see if there is three in a row of
+     * @return true if "three in a row" vertically, else false
      */
     private boolean isThreeInARowVertically(String[][] some2DArray, String someCharacter)
     {
@@ -234,10 +251,11 @@ public class ThreeRow
         return isInARowPresent;
     }
 
+
     /**
-     * Update grid on certain x, y position to a certain character
-     * @param columNumber
-     * @param rowNumber
+     * Update grid on certain x, y position to a certain GRID_CHARACTER
+     * @param columNumber  x coordinate
+     * @param rowNumber   y coordinate
      */
     public void updateGrid(int columNumber, int rowNumber)
     {
@@ -253,6 +271,12 @@ public class ThreeRow
     }
 
 
+    /**
+     * get color on board position
+     * @param columNumber  x coordinate in grid
+     * @param rowNumber  y coordinate in grid
+     * @return  color represented as int
+     */
     public int getCurrentColor(int columNumber, int rowNumber)
     {
         if (mBoard[rowNumber][columNumber].equals(GRID_CHARACTER_1))
@@ -267,9 +291,9 @@ public class ThreeRow
 
 
     /**
-     * checks if position x, y is free
-     * @param columNumber
-     * @param rowNumber
+     * checks if position on board is free
+     * @param columNumber  x coordinate in grid
+     * @param rowNumber   y coordinate in grid
      * @return true if position is free, else false
      */
     private boolean isPositionAvailable(int columNumber, int rowNumber)
@@ -286,6 +310,10 @@ public class ThreeRow
     }
 
 
+    /**
+     * get the next color
+     * @return next color as string
+     */
     public String getNextColor()
     {
         // decide which character
@@ -302,6 +330,10 @@ public class ThreeRow
     }
 
 
+    /**
+     * check if there is "three in a row"
+     * @return true if there is "three in row" either horizontally or vertically, else false
+     */
     public boolean checkForThreeInARow()
     {
         if (isThreeInARowVersion2D(GRID_CHARACTER_1) || isThreeInARowVersion2D(GRID_CHARACTER_2))
@@ -314,6 +346,10 @@ public class ThreeRow
     }
 
 
+    /**
+     * check if grid is filled up with colours
+     * @return true if grid is full, else false
+     */
     public boolean isGridFull()
     {
         // update flags
@@ -323,14 +359,19 @@ public class ThreeRow
     }
 
 
+    /**
+     * check if game is over
+     * @return true if game is over, else false
+     */
     public boolean isTheGameOver()
     {
         return mGameOver;
     }
 
+
     /**
-     *
-     * @param someTwoDimensionalArray which shall be a non-ragged array and minimum 3 x 3
+     * display grid
+     * @param someTwoDimensionalArray which shall be a non-ragged array and minimum 4 x 4
      * @return grid values represented as a string
      */
     private String displayTwoDimensionalArray(String[][] someTwoDimensionalArray)
