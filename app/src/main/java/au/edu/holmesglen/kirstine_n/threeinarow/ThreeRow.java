@@ -4,6 +4,7 @@ package au.edu.holmesglen.kirstine_n.threeinarow;
  * Created by Kirstine Nielsen 100527988  on 9/10/2016.
  */
 
+import android.graphics.Point;
 import android.util.Log;
 
 import java.util.Random;
@@ -83,12 +84,12 @@ public class ThreeRow
      * fill out a positions randomly with either GRID_CHARACTER_1 or GRID_CHARACTER_2
      * @return array containing x, y coordinate for the random position
      */
-    public int[] preOccupyPosition()
+    public Point preOccupyPosition()
     {
         // flag
         boolean keepGeneratingRandomPosition = true;
 
-        int[] coordinateList = new int[2];
+        Point point = new Point();
 
         while (keepGeneratingRandomPosition)
         {
@@ -97,8 +98,7 @@ public class ThreeRow
 
             if (isPositionAvailable(randomX, randomY))
             {
-                coordinateList[0] = randomX;
-                coordinateList[1] = randomY;
+                point = new Point(randomX, randomY);
 
                 // update flag
                 keepGeneratingRandomPosition = false;
@@ -108,7 +108,7 @@ public class ThreeRow
             }
         }
 
-        return coordinateList;
+        return point;
     }
 
 

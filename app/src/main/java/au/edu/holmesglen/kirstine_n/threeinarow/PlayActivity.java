@@ -5,6 +5,7 @@ package au.edu.holmesglen.kirstine_n.threeinarow;
  */
 
 import android.content.Intent;
+import android.graphics.Point;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -81,13 +82,13 @@ public class PlayActivity extends AppCompatActivity {
                     if (gridArray[position].getClickCount() < 1)
                     {
                         // convert position to x, y coordinates
-                        int coordinateList[] = getXYCoordFrom1DArrayIndex(position, ROWS);
+                        Point point = getXYCoordFrom1DArrayIndex(position, ROWS);
 
                         // game logic
-                        mGame.updateGrid(coordinateList[0], coordinateList[1]);
+                        mGame.updateGrid(point.x, point.y);
 
                         // ui
-                        int colorImg =  mGame.getCurrentColor(coordinateList[0], coordinateList[1]);
+                        int colorImg =  mGame.getCurrentColor(point.x, point.y);
                         ((ImageView) v).setImageResource(colorImg);
 
                         mInfoTextView.setText(displayNextColorHint());
@@ -129,6 +130,7 @@ public class PlayActivity extends AppCompatActivity {
         });
     }  // end onCreate
 
+
     // Set up the game board.
     private void startNewGame()
     {
@@ -164,14 +166,11 @@ public class PlayActivity extends AppCompatActivity {
         // generate 4 different positions on grid randomly
         for (int i = 0; i < POSITIONS_RANDOMLY_OCCUPIED; i++)
         {
-            // game logic
-            int coordinateList[] = mGame.preOccupyPosition();
-
-            int x = coordinateList[0];
-            int y = coordinateList[1];
+            // game logic (point x,y)
+            Point point = mGame.preOccupyPosition();
 
             // UI
-            updateGridUI(x, y, mGame.getCurrentColor(x, y));
+            updateGridUI(point.x, point.y, mGame.getCurrentColor(point.x, point.y));
         }
     }
 
@@ -213,7 +212,6 @@ public class PlayActivity extends AppCompatActivity {
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_play_screen, menu);
-//        menu.add("New Game");
         return true;
     }
 
@@ -250,6 +248,7 @@ public class PlayActivity extends AppCompatActivity {
         return false;  // nothing happened  no menu items has been selected
     }  // end onOptionsItemSelected
 
+
     /**
      * get position in grid represented as index in a one dimensional array
      * @param xCoord  position x in grid
@@ -266,21 +265,19 @@ public class PlayActivity extends AppCompatActivity {
 
 
     /**
-     * get index in a one dimensional array represented as position in grid
+     * get Point object representing converted from an index in a one dimensional array
      * @param position index in an array
      * @param dimension the width of grid (same as height since always square)
-     * @return array of integers representing x and y coordinates in a grid
+     * @return Point object (with x, y coordinates)
      */
-    private int[] getXYCoordFrom1DArrayIndex(int position, int dimension) {
+    private Point getXYCoordFrom1DArrayIndex(int position, int dimension) {
 
         int xCoordinate = position % dimension;
         int yCoordinate = position / dimension;  //integer division
 
-        int[] coordinateList = new int[2];
-        coordinateList[0] = xCoordinate;
-        coordinateList[1] = yCoordinate;
+        Point point = new Point(xCoordinate, yCoordinate);
 
-        return coordinateList;
+        return point;
     }
 
 
