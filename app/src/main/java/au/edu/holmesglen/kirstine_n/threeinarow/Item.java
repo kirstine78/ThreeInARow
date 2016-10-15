@@ -8,6 +8,11 @@ public class Item {
     private int colorImg;
     private int click = 0;
 
+    /**
+     * Constructor
+     * @param colImg
+     * @param title
+     */
     public Item(int colImg, String title) {
         this.setColor(colImg);
     }
@@ -20,35 +25,26 @@ public class Item {
         colorImg = rDC;
     }
 
+    /**
+     * will increment the amount of time clicked on Item
+     */
     public void incrementClick() {
         click++;
     }
 
+    /**
+     * To get the amount of time an Item has been clicked
+     * @return amount of time clicked
+     */
     public int getClickCount() {
         return click;
     }
 
+    /**
+     * will reset the amount of time clicked on Item to zero
+     */
     public void resetClickCount() {
         click = 0;
     }
 
-
-//    public int nextColor(int counter){
-//        Log.v("Kirsti", "inside nextColor. Number click: " + click);
-//
-//        // if click value has reached 2 then color change should not happen
-//        if (click < 1)
-//        {
-//            if (counter % 2 == 0) {
-//                colorImg = R.drawable.red;
-//            }
-//            else {
-//                colorImg = R.drawable.white;
-//            }
-//        }
-//
-//        click++;
-//
-//        return colorImg;
-//    }
 }

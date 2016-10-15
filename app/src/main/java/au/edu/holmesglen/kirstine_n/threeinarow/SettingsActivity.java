@@ -1,5 +1,9 @@
 package au.edu.holmesglen.kirstine_n.threeinarow;
 
+/**
+ * Created by Kirstine Nielsen 100527988 on 13/10/2016.
+ */
+
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -21,6 +25,7 @@ public class SettingsActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+        // build spinner
         final Spinner spinnerDifficulty = (Spinner) findViewById(R.id.spinner_difficulty);
 
         ArrayAdapter<CharSequence> adapterDifficulty = ArrayAdapter.createFromResource(
@@ -29,6 +34,7 @@ public class SettingsActivity extends AppCompatActivity {
 
         spinnerDifficulty.setAdapter(adapterDifficulty);
 
+        // build spinner
         final Spinner spinnerGridSize = (Spinner) findViewById(R.id.spinner_grid_size);
 
         ArrayAdapter<CharSequence> adapterGridSize = ArrayAdapter.createFromResource(
@@ -37,6 +43,7 @@ public class SettingsActivity extends AppCompatActivity {
 
         spinnerGridSize.setAdapter(adapterGridSize);
 
+        // build spinner
         final Spinner spinnerColor1 = (Spinner) findViewById(R.id.spinner_color1);
 
         ArrayAdapter<CharSequence> adapterColor1 = ArrayAdapter.createFromResource(
@@ -45,6 +52,7 @@ public class SettingsActivity extends AppCompatActivity {
 
         spinnerColor1.setAdapter(adapterColor1);
 
+        // build spinner
         final Spinner spinnerColor2 = (Spinner) findViewById(R.id.spinner_color2);
 
         ArrayAdapter<CharSequence> adapterColor2 = ArrayAdapter.createFromResource(
@@ -53,8 +61,10 @@ public class SettingsActivity extends AppCompatActivity {
 
         spinnerColor2.setAdapter(adapterColor2);
 
+        // prepare button for save settings
         final Button b = (Button) findViewById(R.id.button);
 
+        // register a listener to button
         b.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -72,20 +82,20 @@ public class SettingsActivity extends AppCompatActivity {
 //        });
     }  // end onCreate
 
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_settings_screen, menu);
-//        menu.add("New Game");
         return true;
     }
 
+
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
+        // Handle action bar item clicks here.
 
+        // declare an intent, the activity to start
         Intent intent;
 
         switch (item.getItemId())  // which menu item has been selected

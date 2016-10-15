@@ -1,5 +1,9 @@
 package au.edu.holmesglen.kirstine_n.threeinarow;
 
+/**
+ * Created by Kirstine Nielsen 100527988  on 9/10/2016.
+ */
+
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
@@ -39,10 +43,9 @@ public class HelpActivity extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
+        // Handle action bar item clicks here.
 
+        // declare an intent, the activity to start
         Intent intent;
 
         switch (item.getItemId())  // which menu item has been selected

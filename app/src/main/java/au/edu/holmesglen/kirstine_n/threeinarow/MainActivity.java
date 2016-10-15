@@ -1,5 +1,9 @@
 package au.edu.holmesglen.kirstine_n.threeinarow;
 
+/**
+ * Created by Kirstine Nielsen 100527988 on 13/10/2016.
+ */
+
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -15,7 +19,6 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-
 
 //        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
 //        fab.setOnClickListener(new View.OnClickListener() {
@@ -33,16 +36,14 @@ public class MainActivity extends AppCompatActivity {
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_main, menu);
-//        menu.add("New Game");
         return true;
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
+        // Handle action bar item clicks here.
 
+        // declare an intent, the activity to start
         Intent intent;
 
         switch (item.getItemId())  // which menu item has been selected
@@ -66,6 +67,5 @@ public class MainActivity extends AppCompatActivity {
         }
         return false;  // nothing happened  no menu items has been selected
     }  // end onOptionsItemSelected
-
 
 }  // end class MainActivity

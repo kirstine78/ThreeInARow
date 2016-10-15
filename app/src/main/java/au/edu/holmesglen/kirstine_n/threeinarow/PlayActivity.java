@@ -28,9 +28,10 @@ public class PlayActivity extends AppCompatActivity {
     // represents the internal state of the game
     private ThreeRow mGame;
 
+    // where items will be displayed. represent the ?x? grid
     private GridView gridview;
 
-    // array to hold all Item objects. These will represent the ?x? grid
+    // array to hold all Item objects. these are our images
     private Item[] gridArray = new Item[ROWS * COLUMNS];
 
     private ImageAdapter imageAdapter;
@@ -56,7 +57,7 @@ public class PlayActivity extends AppCompatActivity {
             gridArray[i] = new Item(R.drawable.grey, "grey");
         }
 
-        // instantiate the the gridview
+        // instantiate the gridview
         gridview = (GridView) findViewById(R.id.gridview);
 
         // use the ImageAdapter to pass the array to the GridView object
@@ -135,26 +136,17 @@ public class PlayActivity extends AppCompatActivity {
 
         mGame.clearBoard();
 
-        // instantiate the the gridview
-//        gridview = (GridView) findViewById(R.id.gridview);
-//
-//        // use the ImageAdapter to pass the array to the GridView object
-//        imageAdapter = new ImageAdapter(this, gridArray);
-//        gridview.setAdapter(imageAdapter);
-
-
-        // Reset all positions in the grid
-        // loop through array;
+        // loop through array and reset all positions in the grid to grey image;
         for(int i = 0; i < ROWS * COLUMNS; i++)
         {
             gridArray[i].resetClickCount();
             gridArray[i].setColor(R.drawable.grey);
         }
 
-        // fill out randomly selected fields
+        // fill out randomly selected fields/positions
         preOccupyPositions();
 
-        // show msg to player
+        // show hint msg to player
         mInfoTextView.setText(displayNextColorHint());
 
         // show image hint
@@ -162,8 +154,10 @@ public class PlayActivity extends AppCompatActivity {
     } // End of startNewGame
 
 
-
-    /***************** fill out 4 positions randomly *******************/
+    /**
+     * will randomly select 4 positions to fill out.
+     * 2 positions of each colour
+     */
     private void preOccupyPositions()
     {
         Log.v("Kirsti", "into preOccupyPositions");
@@ -182,6 +176,12 @@ public class PlayActivity extends AppCompatActivity {
     }
 
 
+    /**
+     * will set position on grid to a specific colour
+     * @param x coordinate for x axis
+     * @param y coordinate for y axis
+     * @param colorImg the colour to set to
+     */
     private void updateGridUI(int x, int y, int colorImg)
     {
         Log.v("Kirsti", "inside updateGridUI x, y: " + x + ", " + y);
@@ -197,6 +197,10 @@ public class PlayActivity extends AppCompatActivity {
     }
 
 
+    /**
+     * get next color hint
+     * @return  info about next move
+     */
     private String displayNextColorHint() {
         String str = "Next  ";
 
@@ -215,10 +219,9 @@ public class PlayActivity extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
+        // Handle action bar item clicks here.
 
+        // declare an intent, the activity to start
         Intent intent;
 
         switch (item.getItemId())  // which menu item has been selected
@@ -252,7 +255,7 @@ public class PlayActivity extends AppCompatActivity {
      * @param xCoord  position x in grid
      * @param yCoord  position y in grid
      * @param dimension  the width of grid (same as height since always square)
-     * @return  index in array
+     * @return  index number in an array
      */
     private int get1DArrayIndexFromXYCoord(int xCoord, int yCoord, int dimension) {
 
@@ -262,6 +265,12 @@ public class PlayActivity extends AppCompatActivity {
     }
 
 
+    /**
+     * get index in a one dimensional array represented as position in grid
+     * @param position index in an array
+     * @param dimension the width of grid (same as height since always square)
+     * @return array of integers representing x and y coordinates in a grid
+     */
     private int[] getXYCoordFrom1DArrayIndex(int position, int dimension) {
 
         int xCoordinate = position % dimension;
@@ -275,6 +284,9 @@ public class PlayActivity extends AppCompatActivity {
     }
 
 
+    /**
+     * set hint for next colour to the upcoming color
+     */
     private void setImage()
     {
         ImageView img = (ImageView) findViewById(R.id.imageNextColor);
