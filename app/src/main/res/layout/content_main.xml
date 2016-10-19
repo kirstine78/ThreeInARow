@@ -13,7 +13,7 @@
     tools:context="au.edu.holmesglen.kirstine_n.threeinarow.MainActivity"
     tools:showIn="@layout/activity_main"
     android:orientation="vertical"
-    android:background="#9FA8DA" >
+    android:background="#304FFE" >
 
     <TextView
         android:id="@+id/header"

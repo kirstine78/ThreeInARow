@@ -24,7 +24,9 @@ import static au.edu.holmesglen.kirstine_n.threeinarow.ThreeRow.COLUMNS;
 import static au.edu.holmesglen.kirstine_n.threeinarow.ThreeRow.POSITIONS_RANDOMLY_OCCUPIED;
 import static au.edu.holmesglen.kirstine_n.threeinarow.ThreeRow.ROWS;
 
-
+/**
+ * Class representing the Play game screen
+ */
 public class PlayActivity extends AppCompatActivity {
     // represents the internal state of the game
     private ThreeRow mGame;

@@ -14,7 +14,7 @@
     tools:showIn="@layout/activity_play"
     android:orientation="vertical"
     android:gravity="center_horizontal"
-    android:background="#9FA8DA">
+    android:background="#304FFE">
 
     <RelativeLayout
         android:layout_width="match_parent"

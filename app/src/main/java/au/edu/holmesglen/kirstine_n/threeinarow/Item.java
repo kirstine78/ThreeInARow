@@ -4,6 +4,10 @@ package au.edu.holmesglen.kirstine_n.threeinarow;
  * Created by Kirstine Nielsen 100527988 on 13/10/2016.
  */
 
+
+/**
+ * Item class which represents an image
+ */
 public class Item {
     private int colorImg;
     private int click = 0;

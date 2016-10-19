@@ -12,6 +12,7 @@ import java.util.Random;
 /**
  *
  * @author Kirsti
+ * Class holds the game logic
  */
 public class ThreeRow
 {
