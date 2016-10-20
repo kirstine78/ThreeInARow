@@ -1,4 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!--
+Student name:    Kirstine B. Nielsen
+Student id:      100527988
+Date:            13/10/2016
+Project:         Three in a row
+Version:         1.0 - Prototype
+-->
+
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
