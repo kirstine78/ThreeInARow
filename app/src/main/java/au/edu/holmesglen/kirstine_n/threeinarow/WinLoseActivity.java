@@ -1,7 +1,11 @@
 package au.edu.holmesglen.kirstine_n.threeinarow;
 
 /**
- * Created by Kirstine Nielsen 100527988 on 13/10/2016.
+ * Student name:    Kirstine B. Nielsen
+ * Student id:      100527988
+ * Date:            13/10/2016
+ * Project:         Three in a row
+ * Version:         1.0 - Prototype
  */
 
 import android.content.Intent;

@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">Three in a Row</string>
     <string name="main_header">Welcome</string>
-    <string name="main_explain">Fill out a board with colours.</string>
+    <string name="main_explain">Fill out a board with 2 colours.</string>
 
     <string name="main_rule">To win a game, the board must be full without having three in a row of any of your two colours (horizontally or vertically).</string>
 
