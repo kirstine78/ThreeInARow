@@ -40,7 +40,7 @@ public class ThreeRow
     private String[][] mBoard = getTwoDimensionalArray(ROWS, COLUMNS);
 
     // flags
-    private int noOfPositionsOccupied = 0;
+    private int mNoOfPositionsOccupied = 0;
     private boolean mGameOver = false;
 
     /**
@@ -59,7 +59,7 @@ public class ThreeRow
      */
     public int getNoOfPositionsOccupied()
     {
-        return noOfPositionsOccupied;
+        return mNoOfPositionsOccupied;
     }
 
 
@@ -70,7 +70,7 @@ public class ThreeRow
     public void clearBoard()
     {
         // reset
-        noOfPositionsOccupied = 0;
+        mNoOfPositionsOccupied = 0;
         mGameOver = false;
 
         // loop through outer array;
@@ -272,7 +272,7 @@ public class ThreeRow
         }
 
         // increment
-        noOfPositionsOccupied++;
+        mNoOfPositionsOccupied++;
     }
 
 
@@ -322,7 +322,7 @@ public class ThreeRow
     public String getNextColor()
     {
         // decide which character
-        if (noOfPositionsOccupied % 2 == 0)  // even
+        if (mNoOfPositionsOccupied % 2 == 0)  // even
         {
             Log.v("Kirsti", "next color: " + GRID_CHARACTER_1);
             return GRID_CHARACTER_1;
@@ -358,7 +358,7 @@ public class ThreeRow
     public boolean isGridFull()
     {
         // update flags
-        mGameOver = noOfPositionsOccupied == FULL_GRID;
+        mGameOver = mNoOfPositionsOccupied == FULL_GRID;
 
         return mGameOver;
     }
