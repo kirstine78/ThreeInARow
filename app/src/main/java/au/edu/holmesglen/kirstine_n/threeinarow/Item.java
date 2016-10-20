@@ -13,8 +13,8 @@ package au.edu.holmesglen.kirstine_n.threeinarow;
  * Item class which represents an image
  */
 public class Item {
-    private int colorImg;
-    private int click = 0;
+    private int mColorImg;
+    private int mClick = 0;
 
     /**
      * Constructor
@@ -26,18 +26,18 @@ public class Item {
     }
 
     public int getColor() {
-        return colorImg;
+        return mColorImg;
     }
 
     public void setColor(int rDC) {
-        colorImg = rDC;
+        mColorImg = rDC;
     }
 
     /**
      * will increment the amount of time clicked on Item
      */
     public void incrementClick() {
-        click++;
+        mClick++;
     }
 
     /**
@@ -45,14 +45,14 @@ public class Item {
      * @return amount of time clicked
      */
     public int getClickCount() {
-        return click;
+        return mClick;
     }
 
     /**
      * will reset the amount of time clicked on Item to zero
      */
     public void resetClickCount() {
-        click = 0;
+        mClick = 0;
     }
 
 }

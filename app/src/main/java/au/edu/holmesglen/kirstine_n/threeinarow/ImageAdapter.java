@@ -18,7 +18,7 @@ import android.widget.ImageView;
 
 public class ImageAdapter extends BaseAdapter {
     // this references the 2D array passed through the constructor
-    Item[] gridArray;  // an array of the Item class - our Item class represents color images
+    private Item[] mGridArray;  // an array of the Item class - our Item class represents color images
     private Context mContext;  // the current state of an app or object or Activity
 
 
@@ -28,13 +28,13 @@ public class ImageAdapter extends BaseAdapter {
      * @param gridArray
      */
     public ImageAdapter(Context context, Item[] gridArray) {
-        mContext = context;
-        this.gridArray = gridArray;
+        this.mContext = context;
+        this.mGridArray = gridArray;
     }
 
     // return the size of the array
     public int getCount() {
-        return gridArray.length;
+        return mGridArray.length;
     }
 
     // return the current Item (color) in a grid on GridView
@@ -63,7 +63,7 @@ public class ImageAdapter extends BaseAdapter {
             imageView = (ImageView) convertView;
         }
 
-        imageView.setImageResource(gridArray[position].getColor());
+        imageView.setImageResource(mGridArray[position].getColor());
         return imageView;
     }
 }

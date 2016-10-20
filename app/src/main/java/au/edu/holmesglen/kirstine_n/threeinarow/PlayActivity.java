@@ -34,12 +34,12 @@ public class PlayActivity extends AppCompatActivity {
     private ThreeRow mGame;
 
     // where items will be displayed. represent the ?x? grid
-    private GridView gridview;
+    private GridView mGridview;
 
     // array to hold all Item objects. these are our images
-    private Item[] gridArray = new Item[ROWS * COLUMNS];
+    private Item[] mGridArray = new Item[ROWS * COLUMNS];
 
-    private ImageAdapter imageAdapter;
+    private ImageAdapter mImageAdapter;
 
     // Various text displayed
     private TextView mInfoTextView;
@@ -56,18 +56,18 @@ public class PlayActivity extends AppCompatActivity {
         // instantiate mGame so the activity can access the ThreeRow game logic
         mGame = new ThreeRow();
 
-        // generate array with all Items in the gridArray set to the grey image
+        // generate array with all Items in the mGridArray set to the grey image
         for (int i = 0; i < 16; i++)
         {
-            gridArray[i] = new Item(R.drawable.grey, "grey");
+            mGridArray[i] = new Item(R.drawable.grey, "grey");
         }
 
-        // instantiate the gridview
-        gridview = (GridView) findViewById(R.id.gridview);
+        // instantiate the mGridview
+        mGridview = (GridView) findViewById(R.id.gridview);
 
         // use the ImageAdapter to pass the array to the GridView object
-        imageAdapter = new ImageAdapter(this, gridArray);
-        gridview.setAdapter(imageAdapter);
+        mImageAdapter = new ImageAdapter(this, mGridArray);
+        mGridview.setAdapter(mImageAdapter);
 
         mInfoTextView = (TextView) findViewById(R.id.information);
         mInfoImageView = (ImageView) findViewById(R.id.imageNextColor);
@@ -75,15 +75,15 @@ public class PlayActivity extends AppCompatActivity {
         // then start a game
         startNewGame();
 
-        // give gridview an item click listener
-        gridview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        // give mGridview an item click listener
+        mGridview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 
             // every time an Item is clicked this method is called
             public void onItemClick(AdapterView<?> parent, View v, int position, long id) {
                 // only process if game has not finished yet
                 if (!mGame.isTheGameOver())
                 {
-                    if (gridArray[position].getClickCount() < 1)
+                    if (mGridArray[position].getClickCount() < 1)
                     {
                         // convert position to x, y coordinates
                         Point point = getXYCoordFrom1DArrayIndex(position, ROWS);
@@ -121,7 +121,7 @@ public class PlayActivity extends AppCompatActivity {
                         }
 
                         // increment click count for Item
-                        gridArray[position].incrementClick();
+                        mGridArray[position].incrementClick();
                     }
                 }
             }  // end onItemClick
@@ -148,8 +148,8 @@ public class PlayActivity extends AppCompatActivity {
         // loop through array and reset all positions in the grid to grey image;
         for(int i = 0; i < ROWS * COLUMNS; i++)
         {
-            gridArray[i].resetClickCount();
-            gridArray[i].setColor(R.drawable.grey);
+            mGridArray[i].resetClickCount();
+            mGridArray[i].setColor(R.drawable.grey);
         }
 
         // fill out randomly selected fields/positions
@@ -196,10 +196,10 @@ public class PlayActivity extends AppCompatActivity {
         int aPosition = get1DArrayIndexFromXYCoord(x, y, ROWS);
 
         // set item to correct color
-        gridArray[aPosition].setColor(colorImg);
+        mGridArray[aPosition].setColor(colorImg);
 
         // increment click count for specific Item
-        gridArray[aPosition].incrementClick();
+        mGridArray[aPosition].incrementClick();
     }
 
 
