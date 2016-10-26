@@ -18,10 +18,12 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.Button;
 import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import static au.edu.holmesglen.kirstine_n.threeinarow.MainActivity.LOGGING_TAG;
 import static au.edu.holmesglen.kirstine_n.threeinarow.ThreeRow.COLUMNS;
 import static au.edu.holmesglen.kirstine_n.threeinarow.ThreeRow.POSITIONS_RANDOMLY_OCCUPIED;
 import static au.edu.holmesglen.kirstine_n.threeinarow.ThreeRow.ROWS;
@@ -48,6 +50,8 @@ public class PlayActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        Log.v(LOGGING_TAG, "PlayActivity, in onCreate");
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_play);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
@@ -100,7 +104,7 @@ public class PlayActivity extends AppCompatActivity {
                         // check if 3 in a row first
                         if (mGame.checkForThreeInARow())
                         {
-                            Log.v("Kirsti", "losing");
+                            Log.v(LOGGING_TAG, "losing");
                             // display appropriate msg to player
                             mInfoTextView.setText(R.string.losing_msg);
 
@@ -111,7 +115,7 @@ public class PlayActivity extends AppCompatActivity {
                         {
                             if (mGame.isGridFull())
                             {
-                                Log.v("Kirsti", "winning");
+                                Log.v(LOGGING_TAG, "winning");
                                 // display appropriate msg to player
                                 mInfoTextView.setText(R.string.winning_msg);
 
@@ -127,6 +131,22 @@ public class PlayActivity extends AppCompatActivity {
             }  // end onItemClick
         });  // end setOnItemClickListener
 
+        // btn to start new game
+        final Button btnStartNewGame = (Button) findViewById(R.id.btn_home_screen_start_game);
+
+        btnStartNewGame.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Log.v(LOGGING_TAG, "PlayActivity, in onClick btnStartNewGame");
+
+                // declare an intent, the activity to start
+                Intent intent;
+
+                intent = new Intent(PlayActivity.this, PlayActivity.class);
+                startActivity(intent);
+            }
+        });
+
 //        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
 //        fab.setOnClickListener(new View.OnClickListener() {
 //            @Override
@@ -141,7 +161,7 @@ public class PlayActivity extends AppCompatActivity {
     // Set up the game board.
     private void startNewGame()
     {
-        Log.v("Kirsti", "into startNewGame");
+        Log.v(LOGGING_TAG, "PlayActivity, in startNewGame");
 
         mGame.clearBoard();
 

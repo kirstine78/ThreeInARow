@@ -12,20 +12,42 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
 
 /**
  * Home screen activity
  */
 public class MainActivity extends AppCompatActivity {
 
+    public static final String LOGGING_TAG = "KIRSTI ";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        Log.v(LOGGING_TAG, "MainActivity, in onCreate");
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
+        final Button btnStartGame = (Button) findViewById(R.id.btn_home_screen_start_game);
+
+        btnStartGame.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Log.v(LOGGING_TAG, "MainActivity, in onClick btnStartGame");
+                // declare an intent, the activity to start
+                Intent intent;
+
+                // start game
+                intent = new Intent(getApplicationContext(), PlayActivity.class);
+                startActivity(intent);
+            }
+        });
 
 //        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
 //        fab.setOnClickListener(new View.OnClickListener() {
@@ -74,5 +96,10 @@ public class MainActivity extends AppCompatActivity {
         }
         return false;  // nothing happened  no menu items has been selected
     }  // end onOptionsItemSelected
+
+//    public void startGame(View view) {
+//        Intent intent = new Intent(MainActivity.this, PlayActivity.class);
+//        startActivity(intent);
+//    }
 
 }  // end class MainActivity

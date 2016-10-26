@@ -12,10 +12,13 @@
     <string name="action_new_game">Start New Game</string>
     <string name="action_help">Help</string>
     <string name="action_win_lose">Win - Lose record</string>
+    <string name="btn_text_start_new_game_home_screen">Start Game</string>
 
     <string name="title_activity_play">Play Game</string>
     <string name="info_label">Choose a field on the grid</string>
     <string name="losing_msg">Sorry, you lost!</string>
+    <string name="btn_text_start_new_game_play_screen">Start new Game</string>
+
     <string name="winning_msg">You won!</string>
     <string name="game_difficulty">Difficulty: easy</string>
     <string name="game_timer">Time: 3.00</string>

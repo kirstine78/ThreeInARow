@@ -21,7 +21,7 @@ Version:         1.0 - Prototype
     tools:context="au.edu.holmesglen.kirstine_n.threeinarow.MainActivity"
     tools:showIn="@layout/activity_main"
     android:orientation="vertical"
-    android:background="#304FFE" >
+    android:background="@color/colorAccent" >
 
     <TextView
         android:id="@+id/header"
@@ -101,6 +101,13 @@ Version:         1.0 - Prototype
             android:textSize="20dp"
             android:textColor="@android:color/white"/>
     </RelativeLayout>
+
+    <Button
+        android:id="@+id/btn_home_screen_start_game"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="@string/btn_text_start_new_game_home_screen"/>
 
 
 </LinearLayout>

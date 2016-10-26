@@ -22,7 +22,7 @@ Version:         1.0 - Prototype
     tools:showIn="@layout/activity_play"
     android:orientation="vertical"
     android:gravity="center_horizontal"
-    android:background="#304FFE">
+    android:background="@color/colorAccent">
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -83,5 +83,12 @@ Version:         1.0 - Prototype
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
     </LinearLayout>
+
+    <Button
+        android:id="@+id/btn_home_screen_start_game"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="@string/btn_text_start_new_game_play_screen"/>
 
 </LinearLayout>
