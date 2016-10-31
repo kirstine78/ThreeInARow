@@ -48,6 +48,8 @@ public class SettingsActivity extends AppCompatActivity {
     // decl reference to SharedPreferences class
     private SharedPreferences sharedPreferences;
 
+    private Spinner spinnerTheme;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -86,7 +88,8 @@ public class SettingsActivity extends AppCompatActivity {
 
 
         // build spinner Theme
-        final Spinner spinnerTheme = (Spinner) findViewById(R.id.spinner_theme);
+//        final Spinner spinnerTheme = (Spinner) findViewById(R.id.spinner_theme);
+        spinnerTheme = (Spinner) findViewById(R.id.spinner_theme);
 
         ArrayAdapter<CharSequence> adapterTheme = ArrayAdapter.createFromResource(
                 this, R.array.theme, android.R.layout.simple_spinner_item);
@@ -132,6 +135,7 @@ public class SettingsActivity extends AppCompatActivity {
         btnSaveSettings.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 // make sure that exactly two colors are chosen
                 int amountChkBoxChecked = 0;
                 int desiredColorsAmountChosen = 2;
@@ -149,9 +153,10 @@ public class SettingsActivity extends AppCompatActivity {
                 // check how many colors chosen
                 if (amountChkBoxChecked == desiredColorsAmountChosen) {
 
-                    // do the THEME
-                    String textSpinnerTheme = (String)spinnerTheme.getSelectedItem();
+                    // do the THEME spinner
+//                    String textSpinnerTheme = (String)spinnerTheme.getSelectedItem();
 
+                    int spinnerThemeSelectedItem = spinnerTheme.getSelectedItemPosition();
 
                     int index = 0;  // will never be other than 0 and 1
 
@@ -181,7 +186,7 @@ public class SettingsActivity extends AppCompatActivity {
                     Log.v(LOGGING_TAG, "GridSize: " + textSpinnerGridSize);
 
                     // save the settings
-                    saveSettings(textSpinnerTheme, textSpinnerDifficulty, textSpinnerGridSize, colorIndexList[0], colorIndexList[1]);
+                    saveSettings(spinnerThemeSelectedItem, textSpinnerDifficulty, textSpinnerGridSize, colorIndexList[0], colorIndexList[1]);
                 } else {
                     // not ok amount, so don't proceed with any saving
                     Toast.makeText(SettingsActivity.this, "Please choose exactly two colors", Toast.LENGTH_SHORT).show();
@@ -269,13 +274,13 @@ public class SettingsActivity extends AppCompatActivity {
      * @param itemNumberColor1
      * @param itemNumberColor2
      */
-    public void saveSettings(String textSpinnerTheme, String textSpinnerDifficulty, String textSpinnerGridSize,
+    public void saveSettings(int spinnerThemeSelectedItem, String textSpinnerDifficulty, String textSpinnerGridSize,
                                int itemNumberColor1, int itemNumberColor2) {
 
         Log.v(LOGGING_TAG, "SettingsActivity in saveSettings");
         SharedPreferences.Editor editor = sharedPreferences.edit();
 
-        updateTheme(editor, textSpinnerTheme);
+        updateTheme(editor, spinnerThemeSelectedItem);
 //        updateDifficulty(editor, textSpinnerDifficulty);
 //        updateGridSize(editor, textSpinnerGridSize);
         updateColor1(editor, itemNumberColor1);
@@ -286,18 +291,19 @@ public class SettingsActivity extends AppCompatActivity {
 
     /**
      * saves the theme to local storage
-     * @param textSpinnerTheme
+     * @param editor
+     * @param spinnerThemeSelectedItem
      */
-    public void updateTheme(SharedPreferences.Editor editor, String textSpinnerTheme) {
+    public void updateTheme(SharedPreferences.Editor editor, int spinnerThemeSelectedItem) {
         // TODO update the theme in shared preferences
         Log.v(LOGGING_TAG, "SettingsActivity in updateTheme");
 
         // format is: editor.putString("key", "value");
         // in our example the key/value is:
-        editor.putString(THEME, textSpinnerTheme);
+        editor.putInt(THEME, spinnerThemeSelectedItem);
         editor.commit();
 
-        Log.v(LOGGING_TAG, "Theme is saved: " + textSpinnerTheme);
+        Log.v(LOGGING_TAG, "Theme is saved: " + spinnerThemeSelectedItem);
     }
 
 
@@ -372,17 +378,17 @@ public class SettingsActivity extends AppCompatActivity {
     }
 
 
-    public String getSavedValueTheme() {
+    public int getSavedValueTheme() {
         // To retrieve an already saved shared preference we use the contains() method
         // to check that the key value is stored in the sharedpreferences collection
 
-        String savedTheme = "";
+        int savedTheme = 0;
 
         if (sharedPreferences.contains(THEME)) {
-            savedTheme = sharedPreferences.getString(THEME, "");
+            savedTheme = sharedPreferences.getInt(THEME, 0);
         } else {
             SharedPreferences.Editor editor = sharedPreferences.edit();
-            updateTheme(editor, "Blue");
+            updateTheme(editor, 0);
         }
 
         return savedTheme;
@@ -406,12 +412,10 @@ public class SettingsActivity extends AppCompatActivity {
         } else {
             SharedPreferences.Editor editor = sharedPreferences.edit();
 
-//            int default1 = 0;
-
             // set i to the default color
             i = DEFAULT_RED;
+
             updateColor1(editor, DEFAULT_RED);
-//            checkBoxList[default1].setChecked(true);
         }
 
         return i;
@@ -434,22 +438,23 @@ public class SettingsActivity extends AppCompatActivity {
             i = sharedPreferences.getInt(COLOR_2, DEFAULT_WHITE);
         } else {
             SharedPreferences.Editor editor = sharedPreferences.edit();
-//            int default2 = 1;
 
             // set i to the default color
             i = DEFAULT_WHITE;
+
             updateColor2(editor, DEFAULT_WHITE);
-//            checkBoxList[default2].setChecked(true);
         }
 
         return i;
     }
 
 
-    public void displaySavedValueTheme(String theme) {
+    public void displaySavedValueTheme(int theme) {
         // set the spinner to this theme
         Log.v(LOGGING_TAG, "SettingsActivity in displaySavedValueTheme: " + theme);
 
+        // set correct spinner item to be the selected one (based on value in storage)
+        spinnerTheme.setSelection(theme);
     }
 
     /**
