@@ -5,7 +5,7 @@ package au.edu.holmesglen.kirstine_n.threeinarow;
  * Student id:      100527988
  * Date:            13/10/2016
  * Project:         Three in a row
- * Version:         1.0 - Prototype
+ * Version:         1.1
  */
 
 import android.graphics.Point;
@@ -26,6 +26,10 @@ public class ThreeRow
     final static String GRID_CHARACTER_DEFAULT  = "?";
     final static String GRID_CHARACTER_1        = "Red";
     final static String GRID_CHARACTER_2        = "White";
+
+    final static int[] COLOR_LIST = {R.drawable.red, R.drawable.white, R.drawable.blue, R.drawable.green, R.drawable.pink, R.drawable.purple};
+    public int[] mPlayColorList = new int[2];
+
 
     // minimum should be grid of 4 x 4
 
@@ -50,6 +54,10 @@ public class ThreeRow
     {
         // get a 2D array
         mBoard = getTwoDimensionalArray(ROWS, COLUMNS);
+
+        // set to default colors red and white
+        mPlayColorList[0] = COLOR_LIST[0];
+        mPlayColorList[1] = COLOR_LIST[1];
     }
 
 
@@ -286,11 +294,13 @@ public class ThreeRow
     {
         if (mBoard[rowNumber][columNumber].equals(GRID_CHARACTER_1))
         {
-            return R.drawable.red;
+            return mPlayColorList[0];
+//            return R.drawable.red;
         }
         else
         {
-            return R.drawable.white;
+            return mPlayColorList[1];
+//            return R.drawable.white;
         }
     }
 
@@ -400,5 +410,11 @@ public class ThreeRow
         }
 
         return str;
+    }
+
+    public void setPlayColorList(int colorChoice1, int colorChoice2) {
+        // TODO save to shared preferences
+        mPlayColorList[0] = COLOR_LIST[colorChoice1];
+        mPlayColorList[1] = COLOR_LIST[colorChoice2];
     }
 }

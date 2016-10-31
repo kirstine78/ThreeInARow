@@ -20,7 +20,7 @@ Version:         1.0 - Prototype
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context="au.edu.holmesglen.kirstine_n.threeinarow.SettingsActivity"
     tools:showIn="@layout/activity_settings"
-    android:background="#304FFE"
+    android:background="@color/colorAccent"
     android:orientation="vertical">
 
     <TextView
