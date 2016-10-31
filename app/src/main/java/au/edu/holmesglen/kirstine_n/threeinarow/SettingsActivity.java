@@ -27,6 +27,10 @@ import android.widget.Toast;
 
 import static au.edu.holmesglen.kirstine_n.threeinarow.MainActivity.LOGGING_TAG;
 
+/**
+ * SettingsActivity is used for storing preferences in phones local storage
+ * You can save difficulty of game, grid size, colors etc.
+ */
 public class SettingsActivity extends AppCompatActivity {
 
     // decl constants
@@ -242,6 +246,13 @@ public class SettingsActivity extends AppCompatActivity {
     }  // end onOptionsItemSelected
 
 
+    /**
+     * save the settings chosen
+     * @param textSpinnerDifficulty
+     * @param textSpinnerGridSize
+     * @param itemNumberColor1
+     * @param itemNumberColor2
+     */
     public void saveSettings(String textSpinnerDifficulty, String textSpinnerGridSize,
                                int itemNumberColor1, int itemNumberColor2) {
 
@@ -256,18 +267,31 @@ public class SettingsActivity extends AppCompatActivity {
     }
 
 
+    /**
+     * saves the difficulty level to local storage
+     * @param textSpinnerDifficulty
+     */
     public void updateDifficulty(String textSpinnerDifficulty) {
         // TODO update the difficulty in shared preferences
         Log.v(LOGGING_TAG, "SettingsActivity in updateDifficulty");
     }
 
 
+    /**
+     * saves the difficulty grid size to local storage
+     * @param textSpinnerGridSize
+     */
     public void updateGridSize(String textSpinnerGridSize) {
         // TODO update the gridsize in shared preferences
         Log.v(LOGGING_TAG, "SettingsActivity in updateGridSize");
     }
 
 
+    /**
+     * saves color 1 to local storage
+     * @param editor
+     * @param color1
+     */
     public void updateColor1(SharedPreferences.Editor editor, int color1) {
         // TODO update the color 1 in shared preferences
         Log.v(LOGGING_TAG, "SettingsActivity in updateColor1");
@@ -281,6 +305,11 @@ public class SettingsActivity extends AppCompatActivity {
     }
 
 
+    /**
+     * saves color 2 to local storage
+     * @param editor
+     * @param color2
+     */
     public void updateColor2(SharedPreferences.Editor editor, int color2) {
         // TODO update the color 2 in shared preferences
         Log.v(LOGGING_TAG, "SettingsActivity in updateColor2");
@@ -294,8 +323,10 @@ public class SettingsActivity extends AppCompatActivity {
     }
 
 
-
-    // custom method to set Spinners To The Saved Values
+    /**
+     * display saved values so spinners, check boxes etc are display correct values (values from
+     * the storage)
+     */
     public void displaySavedValues() {
         // TODO put code here
         Log.v(LOGGING_TAG, "SettingsActivity in displaySavedValues");
@@ -305,6 +336,11 @@ public class SettingsActivity extends AppCompatActivity {
     }
 
 
+    /**
+     * fetch saved color 1 from local storage
+     * @return an integer representing the index to be used in checkBoxList to set the specific check
+     * box to be checked.
+     */
     public int getSavedValueColor1() {
         // To retrieve an already saved shared preference we use the contains() method
         // to check that the key value is stored in the sharedpreferences collection
@@ -324,6 +360,11 @@ public class SettingsActivity extends AppCompatActivity {
     }
 
 
+    /**
+     * fetch saved color 2 from local storage
+     * @returnan integer representing the index to be used in checkBoxList to set the specific check
+     * box to be checked.
+     */
     public int getSavedValueColor2() {
         // To retrieve an already saved shared preference we use the contains() method
         // to check that the key value is stored in the sharedpreferences collection
@@ -343,14 +384,21 @@ public class SettingsActivity extends AppCompatActivity {
     }
 
 
+    /**
+     * set the correct checkbox for a color 1 to be checked
+     * @param checkbox
+     */
     public void displaySavedValueColor1(int checkbox) {
         checkBoxList[checkbox].setChecked(true);
     }
 
 
+    /**
+     * set the correct checkbox for a color 2 to be checked
+     * @param checkbox
+     */
     public void displaySavedValueColor2(int checkbox) {
         checkBoxList[checkbox].setChecked(true);
     }
-
 
 }  // end class SettingsActivity
