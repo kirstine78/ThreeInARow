@@ -353,5 +353,5 @@ public class PlayActivity extends AppCompatActivity {
             img.setImageResource(imageResource);
         }
     }
-    
+
 }  // end class

@@ -13,10 +13,12 @@ import android.util.Log;
 
 import java.util.Random;
 
+
 /**
- *
- * @author Kirsti
- * Class holds the game logic
+ * Class holds the game logic.
+ * The class represents a game with all rules implemented.
+ * The class builds a game board and the grid
+ * The class keeps track of game status, color to display, etc
  */
 public class ThreeRow
 {
@@ -27,12 +29,12 @@ public class ThreeRow
     final static String GRID_CHARACTER_1        = "1";
     final static String GRID_CHARACTER_2        = "2";
 
+    // list of images with different colors
     final static int[] COLOR_LIST = {R.drawable.red, R.drawable.white, R.drawable.blue,
                                     R.drawable.green, R.drawable.pink, R.drawable.purple,
                                     R.drawable.brown, R.drawable.orange, R.drawable.turquoise,
                                     R.drawable.yellow};
 
-//    final static int[] COLOR_LIST = {R.drawable.red, R.drawable.white, R.drawable.blue};
     public int[] mPlayColorList = new int[2];  // hold two elements from COLOR_LIST
 
     // minimum should be grid of 4 x 4
@@ -52,7 +54,7 @@ public class ThreeRow
 
 
     /**
-     * constructor
+     * constructor for ThreeRow
      */
     public ThreeRow()
     {
