@@ -38,6 +38,28 @@ Version:         1.1
         android:layout_height="wrap_content">
 
         <TextView
+            android:id="@+id/theme_textview"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:text="@string/settings_theme"
+            android:textSize="16dp"
+            android:textColor="@android:color/white"/>
+
+        <Spinner
+            android:id="@+id/spinner_theme"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:spinnerMode="dropdown"
+            android:textColor="@android:color/white" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
             android:id="@+id/difficulty_textview"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

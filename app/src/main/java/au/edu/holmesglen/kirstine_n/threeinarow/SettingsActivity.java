@@ -84,7 +84,18 @@ public class SettingsActivity extends AppCompatActivity {
 
 
 
-        // build spinner
+        // build spinner Theme
+        final Spinner spinnerTheme = (Spinner) findViewById(R.id.spinner_theme);
+
+        ArrayAdapter<CharSequence> adapterTheme = ArrayAdapter.createFromResource(
+                this, R.array.theme, android.R.layout.simple_spinner_item);
+        adapterTheme.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+
+        spinnerTheme.setAdapter(adapterTheme);
+
+
+
+        // build spinner Difficulty
         final Spinner spinnerDifficulty = (Spinner) findViewById(R.id.spinner_difficulty);
 
         ArrayAdapter<CharSequence> adapterDifficulty = ArrayAdapter.createFromResource(
