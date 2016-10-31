@@ -280,7 +280,7 @@ public class SettingsActivity extends AppCompatActivity {
 //        updateGridSize(editor, textSpinnerGridSize);
         updateColor1(editor, itemNumberColor1);
         updateColor2(editor, itemNumberColor2);
-        Toast.makeText(this, "Colors are saved", Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, "Settings are saved", Toast.LENGTH_SHORT).show();
     }
 
 
@@ -365,8 +365,27 @@ public class SettingsActivity extends AppCompatActivity {
         // TODO put code here
         Log.v(LOGGING_TAG, "SettingsActivity in displaySavedValues");
 
+        displaySavedValueTheme(getSavedValueTheme());
+
         displaySavedValueColor1(getSavedValueColor1());
         displaySavedValueColor2(getSavedValueColor2());
+    }
+
+
+    public String getSavedValueTheme() {
+        // To retrieve an already saved shared preference we use the contains() method
+        // to check that the key value is stored in the sharedpreferences collection
+
+        String savedTheme = "";
+
+        if (sharedPreferences.contains(THEME)) {
+            savedTheme = sharedPreferences.getString(THEME, "");
+        } else {
+            SharedPreferences.Editor editor = sharedPreferences.edit();
+            updateTheme(editor, "Blue");
+        }
+
+        return savedTheme;
     }
 
 
@@ -417,6 +436,12 @@ public class SettingsActivity extends AppCompatActivity {
         return i;
     }
 
+
+    public void displaySavedValueTheme(String theme) {
+        // set the spinner to this theme
+        Log.v(LOGGING_TAG, "SettingsActivity in displaySavedValueTheme: " + theme);
+
+    }
 
     /**
      * set the correct checkbox for a color 1 to be checked
