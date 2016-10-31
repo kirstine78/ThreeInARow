@@ -352,11 +352,14 @@ public class PlayActivity extends AppCompatActivity {
 
         if (mGame.getNextColor().equals(ThreeRow.GRID_CHARACTER_1))
         {
-            img.setImageResource(R.drawable.red);
+            int imageResource = mGame.mPlayColorList[0];
+            img.setImageResource(imageResource);
         }
         else
         {
-            img.setImageResource(R.drawable.white);
+            int imageResource = mGame.mPlayColorList[1];
+            img.setImageResource(imageResource);
+//            img.setImageResource(R.drawable.white);
         }
     }
 

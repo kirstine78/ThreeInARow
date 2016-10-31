@@ -24,8 +24,10 @@ public class ThreeRow
     final static int IN_A_ROW_SUCCESS = 3;
 
     final static String GRID_CHARACTER_DEFAULT  = "?";
-    final static String GRID_CHARACTER_1        = "Red";
-    final static String GRID_CHARACTER_2        = "White";
+//    final static String GRID_CHARACTER_1        = "Red";
+//    final static String GRID_CHARACTER_2        = "White";
+    final static String GRID_CHARACTER_1        = "1";
+    final static String GRID_CHARACTER_2        = "2";
 
 //    final static int[] COLOR_LIST = {R.drawable.red, R.drawable.white, R.drawable.blue, R.drawable.green, R.drawable.pink, R.drawable.purple};
     final static int[] COLOR_LIST = {R.drawable.red, R.drawable.white, R.drawable.blue};
