@@ -40,6 +40,7 @@
     <string name="settings_grid_size">Grid size</string>
     <string name="settings_color1">Color 1</string>
     <string name="settings_color2">Color 2</string>
+    <string name="settings_colors">Choose two colors</string>
 
     <string name="settings_btn">Save settings</string>
 

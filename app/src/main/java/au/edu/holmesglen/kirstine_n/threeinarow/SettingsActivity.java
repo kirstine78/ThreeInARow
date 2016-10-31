@@ -19,15 +19,11 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.Spinner;
 import android.widget.Toast;
-
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
 
 import static au.edu.holmesglen.kirstine_n.threeinarow.MainActivity.LOGGING_TAG;
 
@@ -39,8 +35,8 @@ public class SettingsActivity extends AppCompatActivity {
     public static final String COLOR_2 = "color2Key";
 
     public String[] colorList = {"Red", "White", "Blue"};
-
-    public String selCol1;
+    public CheckBox[] checkBoxList = new CheckBox[colorList.length];
+    public int[] colorIndexList = new int[2];
 
     // decl ref to SharedPreferences class
     SharedPreferences sharedPreferences;
@@ -78,38 +74,46 @@ public class SettingsActivity extends AppCompatActivity {
 
 
 
-        // build spinner color 1
-        final Spinner spinnerColor1 = (Spinner) findViewById(R.id.spinner_color1);
-        List<String> color1Values = new ArrayList<String>(Arrays.asList(colorList));
+//        // build spinner color 1
+//        final Spinner spinnerColor1 = (Spinner) findViewById(R.id.spinner_color1);
+//        List<String> color1Values = new ArrayList<String>(Arrays.asList(colorList));
+//
+//        ArrayAdapter<String> adapterColor1 = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, color1Values);
+////        ArrayAdapter<CharSequence> adapterColor1 = ArrayAdapter.createFromResource(
+////                this, R.array.colour_1_arr, android.R.layout.simple_spinner_item);
+//        adapterColor1.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+//
+//        spinnerColor1.setAdapter(adapterColor1);
+//
+//
+//
+//        // build spinner color 2
+//        final Spinner spinnerColor2 = (Spinner) findViewById(R.id.spinner_color2);
+//        List<String> color2Values = new ArrayList<String>(Arrays.asList(colorList));
+//
+//        ArrayAdapter<String> adapterColor2 = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, color1Values);
+////        ArrayAdapter<CharSequence> adapterColor2 = ArrayAdapter.createFromResource(
+////                this, R.array.colour_2_arr, android.R.layout.simple_spinner_item);
+//        adapterColor2.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+//
+//        spinnerColor2.setAdapter(adapterColor2);
 
-        ArrayAdapter<String> adapterColor1 = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, color1Values);
-//        ArrayAdapter<CharSequence> adapterColor1 = ArrayAdapter.createFromResource(
-//                this, R.array.colour_1_arr, android.R.layout.simple_spinner_item);
-        adapterColor1.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-
-        spinnerColor1.setAdapter(adapterColor1);
 
 
+        final CheckBox checkBoxRed = (CheckBox) findViewById(R.id.chkRed);
+        final CheckBox checkBoxWhite = (CheckBox) findViewById(R.id.chkWhite);
+        final CheckBox checkBoxBlue = (CheckBox) findViewById(R.id.chkBlue);
 
-        // build spinner color 2
-        final Spinner spinnerColor2 = (Spinner) findViewById(R.id.spinner_color2);
-        List<String> color2Values = new ArrayList<String>(Arrays.asList(colorList));
-
-        ArrayAdapter<String> adapterColor2 = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, color1Values);
-//        ArrayAdapter<CharSequence> adapterColor2 = ArrayAdapter.createFromResource(
-//                this, R.array.colour_2_arr, android.R.layout.simple_spinner_item);
-        adapterColor2.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-
-        spinnerColor2.setAdapter(adapterColor2);
-
-
-
+        checkBoxList[0] = checkBoxRed;
+        checkBoxList[1] = checkBoxWhite;
+        checkBoxList[2] = checkBoxBlue;
 
         // set up preferences collection
         sharedPreferences = getSharedPreferences(MY_PREFERENCES, Context.MODE_PRIVATE);
 
         // set settings to what was saved
-        setSpinnersToTheSavedValues();
+        getSavedValues();
+
 
 
 
@@ -120,59 +124,104 @@ public class SettingsActivity extends AppCompatActivity {
         btnSaveSettings.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // get difficulty chosen
-                String textSpinnerDifficulty = spinnerDifficulty.getSelectedItem().toString();
-                Log.v(LOGGING_TAG, "Difficulty: " + textSpinnerDifficulty);
+                // make sure that exactly two colors are chosen
+                int amountChkBoxChecked = 0;
+                int desiredColorsAmountChosen = 2;
 
-                // get grid size chosen
-                String textSpinnerGridSize = spinnerGridSize.getSelectedItem().toString();
-                Log.v(LOGGING_TAG, "GridSize: " + textSpinnerGridSize);
+                for (int i = 0; i < colorList.length; i++)
+                {
+                    if (checkBoxList[i].isChecked()) {
+                        Log.v(LOGGING_TAG, "chk checked: " + i);
+                        amountChkBoxChecked++;
+                    }
+                }
 
-                // get colors chosen
-                String textSpinnerColor1 = spinnerColor1.getSelectedItem().toString();
-                String textSpinnerColor2 = spinnerColor2.getSelectedItem().toString();
-                int indexSpinnerColor1 = spinnerColor1.getSelectedItemPosition();
-                int indexSpinnerColor2 = spinnerColor2.getSelectedItemPosition();
 
-                Log.v(LOGGING_TAG, "spinner one item no: " + indexSpinnerColor1);
-                Log.v(LOGGING_TAG, "Col1: " + textSpinnerColor1);
-                Log.v(LOGGING_TAG, "Col2: " + textSpinnerColor2);
+                Log.v(LOGGING_TAG, "amount checked: " + amountChkBoxChecked);
+                // check how many colors chosen
+                if (amountChkBoxChecked == desiredColorsAmountChosen) {
+                    // get which colors
+//                    getCheckBoxList();
+
+                    int index = 0;
+
+                    // we know only two are checked
+                    for (int i = 0; i < colorList.length; i++)
+                    {
+                        if (checkBoxList[i].isChecked()) {
+                            Log.v(LOGGING_TAG, "chk checked: " + i);
+                            // add to list
+                            colorIndexList[index] = i;
+                            index++;
+                        }
+                    }
+
+                    Log.v(LOGGING_TAG, "colorIndexList 0: " + colorIndexList[0] );
+                    Log.v(LOGGING_TAG, "colorIndexList 1: " + colorIndexList[1] );
+
+                    // 2 colors are chosen
+
+                    // get difficulty chosen
+                    String textSpinnerDifficulty = spinnerDifficulty.getSelectedItem().toString();
+                    Log.v(LOGGING_TAG, "Difficulty: " + textSpinnerDifficulty);
+
+                    // get grid size chosen
+                    String textSpinnerGridSize = spinnerGridSize.getSelectedItem().toString();
+                    Log.v(LOGGING_TAG, "GridSize: " + textSpinnerGridSize);
+
+                    // get colors chosen
+//                String textSpinnerColor1 = spinnerColor1.getSelectedItem().toString();
+//                String textSpinnerColor2 = spinnerColor2.getSelectedItem().toString();
+//                int indexSpinnerColor1 = spinnerColor1.getSelectedItemPosition();
+//                int indexSpinnerColor2 = spinnerColor2.getSelectedItemPosition();
+
+//                Log.v(LOGGING_TAG, "spinner one item no: " + indexSpinnerColor1);
+//                Log.v(LOGGING_TAG, "Col1: " + textSpinnerColor1);
+//                Log.v(LOGGING_TAG, "Col2: " + textSpinnerColor2);
 
                 // save the settings
-                saveSettings(textSpinnerDifficulty, textSpinnerGridSize, indexSpinnerColor1, textSpinnerColor2);
+                saveSettings(textSpinnerDifficulty, textSpinnerGridSize, colorIndexList[0], colorIndexList[1]);
+                }
+                else {
+                    // not ok amount
+                    Toast.makeText(SettingsActivity.this, "Please choose exactly two colors", Toast.LENGTH_SHORT).show();
+                }
+
+
+
             }
         });
 
         // decide what to do on item selected in spinner for color 1
-        spinnerColor1.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener()
-        {
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id)
-            {
-                String selectedItem = parent.getItemAtPosition(position).toString();
-
-                // check which item is selected
-                if(selectedItem.equals("Red"))
-                {
-                    // do your stuff
-                    Log.v(LOGGING_TAG, "Color 1 Red chosen");
-                    selCol1 = "Red";
-                }
-                if(selectedItem.equals("White"))
-                {
-                    // do your stuff
-                    Log.v(LOGGING_TAG, "Color 1 White chosen");
-                }
-                if(selectedItem.equals("Blue"))
-                {
-                    // do your stuff
-                    Log.v(LOGGING_TAG, "Color 1 White chosen");
-                }
-            } // to close the onItemSelected
-            public void onNothingSelected(AdapterView<?> parent)
-            {
-
-            }
-        });
+//        spinnerColor1.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener()
+//        {
+//            public void onItemSelected(AdapterView<?> parent, View view, int position, long id)
+//            {
+//                String selectedItem = parent.getItemAtPosition(position).toString();
+//
+//                // check which item is selected
+//                if(selectedItem.equals("Red"))
+//                {
+//                    // do your stuff
+//                    Log.v(LOGGING_TAG, "Color 1 Red chosen");
+//                    selCol1 = "Red";
+//                }
+//                if(selectedItem.equals("White"))
+//                {
+//                    // do your stuff
+//                    Log.v(LOGGING_TAG, "Color 1 White chosen");
+//                }
+//                if(selectedItem.equals("Blue"))
+//                {
+//                    // do your stuff
+//                    Log.v(LOGGING_TAG, "Color 1 White chosen");
+//                }
+//            } // to close the onItemSelected
+//            public void onNothingSelected(AdapterView<?> parent)
+//            {
+//
+//            }
+//        });
 
     }  // end onCreate
 
@@ -215,10 +264,8 @@ public class SettingsActivity extends AppCompatActivity {
     }  // end onOptionsItemSelected
 
 
-    public void saveSettings(String textSpinnerDifficulty,
-                               String textSpinnerGridSize,
-                               int itemNumberColor1,
-                               String textSpinnerColor2) {
+    public void saveSettings(String textSpinnerDifficulty, String textSpinnerGridSize,
+                               int itemNumberColor1, int itemNumberColor2) {
 
         Log.v(LOGGING_TAG, "SettingsActivity in saveSettings");
 
@@ -226,24 +273,28 @@ public class SettingsActivity extends AppCompatActivity {
 
 //        updateDifficulty(textSpinnerDifficulty);
 //        updateGridSize(textSpinnerGridSize);
-        updateColor1(editor, itemNumberColor1);
+        updateColors(editor, itemNumberColor1, itemNumberColor2);
 //        updateColor2(textSpinnerColor2);
     }
 
 
     // custom method to set Spinners To The Saved Values
-    public void setSpinnersToTheSavedValues() {
+    public void getSavedValues() {
         // TODO put code here
-        Log.v(LOGGING_TAG, "SettingsActivity in setSpinnersToTheSavedValues");
+        Log.v(LOGGING_TAG, "SettingsActivity in getSavedValues");
 
         // To retrieve an already saved shared preference we use the contains() method
         // to check that the key value is stored in the sharedpreferences collection
         if (sharedPreferences.contains(COLOR_1)) {
-            Log.v(LOGGING_TAG, "SettingsActivity in setSpinnersToTheSavedValues contains");
-            // set spinner color 1
-//            spinnerObject.setSelection(INDEX_OF_CATEGORY2);
-//            name.setText(sharedPreferences.getString(COLOR_1, ""));
-            Toast.makeText(this, "from saving Color1: " + sharedPreferences.getInt(COLOR_1, 0), Toast.LENGTH_SHORT).show();
+            int i = sharedPreferences.getInt(COLOR_1, 0);
+            checkBoxList[i].setChecked(true);
+            Log.v(LOGGING_TAG, "From saving Color1: " + sharedPreferences.getInt(COLOR_1, 0));
+        }
+
+        if (sharedPreferences.contains(COLOR_2)) {
+            int i = sharedPreferences.getInt(COLOR_2, 1);
+            checkBoxList[i].setChecked(true);
+            Log.v(LOGGING_TAG, "From saving Color2: " + sharedPreferences.getInt(COLOR_2, 1));
         }
     }
 
@@ -264,17 +315,17 @@ public class SettingsActivity extends AppCompatActivity {
     }
 
 
-    public void updateColor1(SharedPreferences.Editor editor, int selectedColItem) {
+    public void updateColors(SharedPreferences.Editor editor, int color1, int color2) {
         // TODO update the color 1 in shared preferences
         Log.v(LOGGING_TAG, "SettingsActivity in updateColor1");
 
         // format is: editor.putString("key", "value");
         // in our example the key/value is:
-//        editor.putString(COLOR_1, colorList[selectedColItem]);
-        editor.putInt(COLOR_1, selectedColItem);
+        editor.putInt(COLOR_1, color1);
+        editor.putInt(COLOR_2, color2);
 
         editor.commit();
-        Toast.makeText(this, "Color is saved", Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, "Colors are saved", Toast.LENGTH_SHORT).show();
     }
 
 
