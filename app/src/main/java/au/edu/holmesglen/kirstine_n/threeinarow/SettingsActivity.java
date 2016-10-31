@@ -11,7 +11,6 @@ package au.edu.holmesglen.kirstine_n.threeinarow;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.content.res.Resources;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -34,9 +33,9 @@ public class SettingsActivity extends AppCompatActivity {
     public static final String COLOR_1 = "color1Key";
     public static final String COLOR_2 = "color2Key";
 
-    public String[] colorList = {"Red", "White", "Blue"};
+    public static String[] colorList = {"Red", "White", "Blue"};
     public CheckBox[] checkBoxList = new CheckBox[colorList.length];
-    public int[] colorIndexList = new int[2];
+    public static int[] colorIndexList = new int[2];
 
     // decl ref to SharedPreferences class
     SharedPreferences sharedPreferences;
@@ -140,14 +139,13 @@ public class SettingsActivity extends AppCompatActivity {
                 Log.v(LOGGING_TAG, "amount checked: " + amountChkBoxChecked);
                 // check how many colors chosen
                 if (amountChkBoxChecked == desiredColorsAmountChosen) {
-                    // get which colors
-//                    getCheckBoxList();
 
-                    int index = 0;
+                    int index = 0;  // will never be other than 0 and 1
 
-                    // we know only two are checked
+                    // we know only two color checkboxes are checked
                     for (int i = 0; i < colorList.length; i++)
                     {
+                        // if checked, then assign i to colorIndexList[index]
                         if (checkBoxList[i].isChecked()) {
                             Log.v(LOGGING_TAG, "chk checked: " + i);
                             // add to list
@@ -186,8 +184,6 @@ public class SettingsActivity extends AppCompatActivity {
                     // not ok amount
                     Toast.makeText(SettingsActivity.this, "Please choose exactly two colors", Toast.LENGTH_SHORT).show();
                 }
-
-
 
             }
         });
@@ -274,7 +270,6 @@ public class SettingsActivity extends AppCompatActivity {
 //        updateDifficulty(textSpinnerDifficulty);
 //        updateGridSize(textSpinnerGridSize);
         updateColors(editor, itemNumberColor1, itemNumberColor2);
-//        updateColor2(textSpinnerColor2);
     }
 
 
@@ -299,8 +294,6 @@ public class SettingsActivity extends AppCompatActivity {
     }
 
 
-
-
     public void updateDifficulty(String textSpinnerDifficulty) {
         // TODO update the difficulty in shared preferences
         Log.v(LOGGING_TAG, "SettingsActivity in updateDifficulty");
@@ -323,8 +316,8 @@ public class SettingsActivity extends AppCompatActivity {
         // in our example the key/value is:
         editor.putInt(COLOR_1, color1);
         editor.putInt(COLOR_2, color2);
-
         editor.commit();
+
         Toast.makeText(this, "Colors are saved", Toast.LENGTH_SHORT).show();
     }
 
@@ -335,33 +328,26 @@ public class SettingsActivity extends AppCompatActivity {
     }
 
 
-    public void filterColorSpinner(Spinner spinner, int colorArr, String colorToFilterOut) {
-
-        // we need the resource string array
-        Resources resources = getResources();
-        String[] colors = resources.getStringArray(R.array.colour_1_arr);
-
-
-        // now filter it
-        for (int i = 0; i < colors.length; i++) {
-
-        }
-
-
-
-        if (colorArr == 1) {
-
-
-
-            ArrayAdapter<CharSequence> adapterColor1 = ArrayAdapter.createFromResource(
-                    this, R.array.colour_1_arr, android.R.layout.simple_spinner_item);
-            adapterColor1.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-
-            spinner.setAdapter(adapterColor1);
-        }
-
-
-    }
+//    public void filterColorSpinner(Spinner spinner, int colorArr, String colorToFilterOut) {
+//
+//        // we need the resource string array
+//        Resources resources = getResources();
+//        String[] colors = resources.getStringArray(R.array.colour_1_arr);
+//
+//
+//        // now filter it
+//        for (int i = 0; i < colors.length; i++) {
+//
+//        }
+//
+//        if (colorArr == 1) {
+//            ArrayAdapter<CharSequence> adapterColor1 = ArrayAdapter.createFromResource(
+//                    this, R.array.colour_1_arr, android.R.layout.simple_spinner_item);
+//            adapterColor1.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+//
+//            spinner.setAdapter(adapterColor1);
+//        }
+//    }
 
 
 }  // end class SettingsActivity
