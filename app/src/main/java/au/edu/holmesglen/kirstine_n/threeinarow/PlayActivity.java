@@ -34,7 +34,12 @@ import static au.edu.holmesglen.kirstine_n.threeinarow.ThreeRow.POSITIONS_RANDOM
 import static au.edu.holmesglen.kirstine_n.threeinarow.ThreeRow.ROWS;
 
 /**
- * Class representing the Play game screen
+ * Class is responsible for the GUI for the Play game screen.
+ * The GUI consist of a gridview as the board which have Grey fields
+ * as default.
+ * User interacts with the board to place two different colors on the
+ * fields.
+ * The GUI will display next move to user.
  */
 public class PlayActivity extends AppCompatActivity {
     // represents the internal state of the game
@@ -51,9 +56,6 @@ public class PlayActivity extends AppCompatActivity {
     // Various text displayed
     private TextView mInfoTextView;
     private ImageView mInfoImageView;
-
-    // decl ref to SharedPreferences class
-//    private SharedPreferences sharedPreferences;
 
 
     @Override
@@ -151,6 +153,7 @@ public class PlayActivity extends AppCompatActivity {
         // btn to start new game
         final Button btnStartNewGame = (Button) findViewById(R.id.btn_home_screen_start_game);
 
+        // on btn click 'start new game'
         btnStartNewGame.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -175,7 +178,12 @@ public class PlayActivity extends AppCompatActivity {
     }  // end onCreate
 
 
-    // Set up the game board.
+    /**
+     * Set up the game board from scratch.
+     * Reset click counter.
+     * Reset fields to grey
+     * Make sure to randomly pick 4 new fields.
+     */
     private void startNewGame()
     {
         Log.v(LOGGING_TAG, "PlayActivity, in startNewGame");
@@ -258,6 +266,7 @@ public class PlayActivity extends AppCompatActivity {
         getMenuInflater().inflate(R.menu.menu_play_screen, menu);
         return true;
     }
+
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
@@ -344,6 +353,5 @@ public class PlayActivity extends AppCompatActivity {
             img.setImageResource(imageResource);
         }
     }
-
-
-}
+    
+}  // end class
