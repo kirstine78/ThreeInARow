@@ -78,69 +78,104 @@ Version:         1.0 - Prototype
             android:textColor="@android:color/white" />
     </RelativeLayout>
 
+    <TextView
+        android:id="@+id/chkColors"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/settings_colors"
+        android:textSize="16dp"
+        android:textColor="@android:color/white"/>
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
-        android:orientation="vertical">
+        android:orientation="horizontal">
 
-        <TextView
-            android:id="@+id/chkColors"
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:id="@+id/checkboxLinearLayoutContainerLeft"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:text="@string/settings_colors"
-            android:textSize="16dp"
-            android:textColor="@android:color/white"/>
+            android:layout_marginTop="24dp"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:background="@drawable/brown">
+        </LinearLayout>
 
-        <CheckBox
-            android:id="@+id/chkRed"
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:id="@+id/checkboxLinearLayoutContainerRight"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:text="Red"
-            android:textColor="@android:color/white" />
+            android:layout_marginTop="24dp"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:background="@drawable/green">
+        </LinearLayout>
 
-        <CheckBox
-            android:id="@+id/chkWhite"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="White"
-            android:textColor="@android:color/white" />
-
-        <CheckBox
-            android:id="@+id/chkBlue"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Blue"
-            android:textColor="@android:color/white" />
-
-        <CheckBox
-            android:id="@+id/chkGreen"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Green"
-            android:textColor="@android:color/white" />
-
-        <CheckBox
-            android:id="@+id/chkPink"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Pink"
-            android:textColor="@android:color/white" />
-
-        <CheckBox
-            android:id="@+id/chkPurple"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Purple"
-            android:textColor="@android:color/white" />
     </LinearLayout>
+
+    <!--<LinearLayout-->
+        <!--android:id="@+id/checkboxLinearLayoutContainerLeft"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_marginTop="24dp"-->
+        <!--android:orientation="vertical">-->
+
+        <!--&lt;!&ndash;<TextView&ndash;&gt;-->
+            <!--&lt;!&ndash;android:id="@+id/chkColors"&ndash;&gt;-->
+            <!--&lt;!&ndash;android:layout_width="wrap_content"&ndash;&gt;-->
+            <!--&lt;!&ndash;android:layout_height="wrap_content"&ndash;&gt;-->
+            <!--&lt;!&ndash;android:text="@string/settings_colors"&ndash;&gt;-->
+            <!--&lt;!&ndash;android:textSize="16dp"&ndash;&gt;-->
+            <!--&lt;!&ndash;android:textColor="@android:color/white"/>&ndash;&gt;-->
+
+        <!--&lt;!&ndash;<CheckBox&ndash;&gt;-->
+            <!--&lt;!&ndash;android:id="@+id/chkRed"&ndash;&gt;-->
+            <!--&lt;!&ndash;android:layout_width="wrap_content"&ndash;&gt;-->
+            <!--&lt;!&ndash;android:layout_height="wrap_content"&ndash;&gt;-->
+            <!--&lt;!&ndash;android:text="Red"&ndash;&gt;-->
+            <!--&lt;!&ndash;android:textColor="@android:color/white" />&ndash;&gt;-->
+
+        <!--&lt;!&ndash;<CheckBox&ndash;&gt;-->
+            <!--&lt;!&ndash;android:id="@+id/chkWhite"&ndash;&gt;-->
+            <!--&lt;!&ndash;android:layout_width="wrap_content"&ndash;&gt;-->
+            <!--&lt;!&ndash;android:layout_height="wrap_content"&ndash;&gt;-->
+            <!--&lt;!&ndash;android:text="White"&ndash;&gt;-->
+            <!--&lt;!&ndash;android:textColor="@android:color/white" />&ndash;&gt;-->
+
+        <!--&lt;!&ndash;<CheckBox&ndash;&gt;-->
+            <!--&lt;!&ndash;android:id="@+id/chkBlue"&ndash;&gt;-->
+            <!--&lt;!&ndash;android:layout_width="wrap_content"&ndash;&gt;-->
+            <!--&lt;!&ndash;android:layout_height="wrap_content"&ndash;&gt;-->
+            <!--&lt;!&ndash;android:text="Blue"&ndash;&gt;-->
+            <!--&lt;!&ndash;android:textColor="@android:color/white" />&ndash;&gt;-->
+
+        <!--&lt;!&ndash;<CheckBox&ndash;&gt;-->
+            <!--&lt;!&ndash;android:id="@+id/chkGreen"&ndash;&gt;-->
+            <!--&lt;!&ndash;android:layout_width="wrap_content"&ndash;&gt;-->
+            <!--&lt;!&ndash;android:layout_height="wrap_content"&ndash;&gt;-->
+            <!--&lt;!&ndash;android:text="Green"&ndash;&gt;-->
+            <!--&lt;!&ndash;android:textColor="@android:color/white" />&ndash;&gt;-->
+
+        <!--&lt;!&ndash;<CheckBox&ndash;&gt;-->
+            <!--&lt;!&ndash;android:id="@+id/chkPink"&ndash;&gt;-->
+            <!--&lt;!&ndash;android:layout_width="wrap_content"&ndash;&gt;-->
+            <!--&lt;!&ndash;android:layout_height="wrap_content"&ndash;&gt;-->
+            <!--&lt;!&ndash;android:text="Pink"&ndash;&gt;-->
+            <!--&lt;!&ndash;android:textColor="@android:color/white" />&ndash;&gt;-->
+
+        <!--&lt;!&ndash;<CheckBox&ndash;&gt;-->
+            <!--&lt;!&ndash;android:id="@+id/chkPurple"&ndash;&gt;-->
+            <!--&lt;!&ndash;android:layout_width="wrap_content"&ndash;&gt;-->
+            <!--&lt;!&ndash;android:layout_height="wrap_content"&ndash;&gt;-->
+            <!--&lt;!&ndash;android:text="Purple"&ndash;&gt;-->
+            <!--&lt;!&ndash;android:textColor="@android:color/white" />&ndash;&gt;-->
+    <!--</LinearLayout>-->
 
     <Button
         android:id="@+id/button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/settings_btn"
-        android:layout_below="@id/spinner_difficulty"
         android:layout_marginTop="23dp" />
 
 </LinearLayout>

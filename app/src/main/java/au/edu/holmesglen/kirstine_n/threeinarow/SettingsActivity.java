@@ -21,6 +21,7 @@ import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.CheckBox;
+import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.Toast;
 
@@ -36,6 +37,11 @@ public class SettingsActivity extends AppCompatActivity {
     public CheckBox[] checkBoxList = new CheckBox[ThreeRow.COLOR_LIST.length];
     public int[] colorIndexList = new int[2];
 
+    final static String[] COLOR_STRING_LIST = {"Red", "White", "blue",
+           "green","pink", "purple",
+            "brown", "orange", "turquoise",
+            "yellow"};
+
     // decl ref to SharedPreferences class
     SharedPreferences sharedPreferences;
 
@@ -48,8 +54,32 @@ public class SettingsActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
 
         Log.v(LOGGING_TAG, "SettingsActivity in onCreate");
-//        Log.v(LOGGING_TAG, "colorIndexList 0: " + colorIndexList[0] );
-//        Log.v(LOGGING_TAG, "colorIndexList 1: " + colorIndexList[1] );
+
+        LinearLayout llChkBoxContainerLeft = (LinearLayout)findViewById(R.id.checkboxLinearLayoutContainerLeft);
+        LinearLayout llChkBoxContainerRight = (LinearLayout)findViewById(R.id.checkboxLinearLayoutContainerRight);
+
+        // build the checkboxes dynamically
+        for(int i = 0; i < ThreeRow.COLOR_LIST.length; i++) {
+            CheckBox cb = new CheckBox(this);
+            cb.setText(COLOR_STRING_LIST[i]);
+            cb.setId(i + ThreeRow.COLOR_LIST.length);
+
+            // check which container to add to? left or right
+            if (i < ThreeRow.COLOR_LIST.length/2)
+            {
+                Log.v(LOGGING_TAG, "chk box i: " + i + " left");
+                llChkBoxContainerLeft.addView(cb);
+            }
+            else
+            {
+                Log.v(LOGGING_TAG, "chk box i: " + i + " right");
+                llChkBoxContainerRight.addView(cb);
+            }
+
+            // add check box to the list of check boxes
+            checkBoxList[i] = cb;
+        }
+
 
 
         // build spinner
@@ -73,21 +103,19 @@ public class SettingsActivity extends AppCompatActivity {
         spinnerGridSize.setAdapter(adapterGridSize);
 
 
-
-
-        final CheckBox checkBoxRed = (CheckBox) findViewById(R.id.chkRed);
-        final CheckBox checkBoxWhite = (CheckBox) findViewById(R.id.chkWhite);
-        final CheckBox checkBoxBlue = (CheckBox) findViewById(R.id.chkBlue);
-        final CheckBox checkBoxGreen = (CheckBox) findViewById(R.id.chkGreen);
-        final CheckBox checkBoxPink = (CheckBox) findViewById(R.id.chkPink);
-        final CheckBox checkBoxPurple = (CheckBox) findViewById(R.id.chkPurple);
-
-        checkBoxList[0] = checkBoxRed;
-        checkBoxList[1] = checkBoxWhite;
-        checkBoxList[2] = checkBoxBlue;
-        checkBoxList[3] = checkBoxGreen;
-        checkBoxList[4] = checkBoxPink;
-        checkBoxList[5] = checkBoxPurple;
+//        final CheckBox checkBoxRed = (CheckBox) findViewById(R.id.chkRed);
+//        final CheckBox checkBoxWhite = (CheckBox) findViewById(R.id.chkWhite);
+//        final CheckBox checkBoxBlue = (CheckBox) findViewById(R.id.chkBlue);
+//        final CheckBox checkBoxGreen = (CheckBox) findViewById(R.id.chkGreen);
+//        final CheckBox checkBoxPink = (CheckBox) findViewById(R.id.chkPink);
+//        final CheckBox checkBoxPurple = (CheckBox) findViewById(R.id.chkPurple);
+//
+//        checkBoxList[0] = checkBoxRed;
+//        checkBoxList[1] = checkBoxWhite;
+//        checkBoxList[2] = checkBoxBlue;
+//        checkBoxList[3] = checkBoxGreen;
+//        checkBoxList[4] = checkBoxPink;
+//        checkBoxList[5] = checkBoxPurple;
 
         // set up preferences collection
         sharedPreferences = getSharedPreferences(MY_PREFERENCES, Context.MODE_PRIVATE);
