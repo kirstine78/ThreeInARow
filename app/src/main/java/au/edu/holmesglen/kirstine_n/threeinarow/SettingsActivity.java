@@ -399,14 +399,19 @@ public class SettingsActivity extends AppCompatActivity {
         // to check that the key value is stored in the sharedpreferences collection
 
         int i = 0;
+        final int DEFAULT_RED = 0;
 
         if (sharedPreferences.contains(COLOR_1)) {
-            i = sharedPreferences.getInt(COLOR_1, 0);
+            i = sharedPreferences.getInt(COLOR_1, DEFAULT_RED);
         } else {
             SharedPreferences.Editor editor = sharedPreferences.edit();
-            int default1 = 0;
-            updateColor1(editor, i);
-            checkBoxList[default1].setChecked(true);
+
+//            int default1 = 0;
+
+            // set i to the default color
+            i = DEFAULT_RED;
+            updateColor1(editor, DEFAULT_RED);
+//            checkBoxList[default1].setChecked(true);
         }
 
         return i;
@@ -423,14 +428,18 @@ public class SettingsActivity extends AppCompatActivity {
         // to check that the key value is stored in the sharedpreferences collection
 
         int i = 0;
+        final int DEFAULT_WHITE = 1;
 
         if (sharedPreferences.contains(COLOR_2)) {
-            i = sharedPreferences.getInt(COLOR_2, 1);
+            i = sharedPreferences.getInt(COLOR_2, DEFAULT_WHITE);
         } else {
             SharedPreferences.Editor editor = sharedPreferences.edit();
-            int default2 = 1;
-            updateColor1(editor, default2);
-            checkBoxList[default2].setChecked(true);
+//            int default2 = 1;
+
+            // set i to the default color
+            i = DEFAULT_WHITE;
+            updateColor2(editor, DEFAULT_WHITE);
+//            checkBoxList[default2].setChecked(true);
         }
 
         return i;
