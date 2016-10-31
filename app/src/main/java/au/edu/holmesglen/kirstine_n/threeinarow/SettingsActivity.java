@@ -33,7 +33,6 @@ public class SettingsActivity extends AppCompatActivity {
     public static final String COLOR_1 = "color1Key";
     public static final String COLOR_2 = "color2Key";
 
-//    public static String[] colorList = {"Red", "White", "Blue"};
     public CheckBox[] checkBoxList = new CheckBox[ThreeRow.COLOR_LIST.length];
     public int[] colorIndexList = new int[2];
 
@@ -49,8 +48,8 @@ public class SettingsActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
 
         Log.v(LOGGING_TAG, "SettingsActivity in onCreate");
-        Log.v(LOGGING_TAG, "colorIndexList 0: " + colorIndexList[0] );
-        Log.v(LOGGING_TAG, "colorIndexList 1: " + colorIndexList[1] );
+//        Log.v(LOGGING_TAG, "colorIndexList 0: " + colorIndexList[0] );
+//        Log.v(LOGGING_TAG, "colorIndexList 1: " + colorIndexList[1] );
 
 
         // build spinner
@@ -72,32 +71,6 @@ public class SettingsActivity extends AppCompatActivity {
         adapterGridSize.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 
         spinnerGridSize.setAdapter(adapterGridSize);
-
-
-
-//        // build spinner color 1
-//        final Spinner spinnerColor1 = (Spinner) findViewById(R.id.spinner_color1);
-//        List<String> color1Values = new ArrayList<String>(Arrays.asList(colorList));
-//
-//        ArrayAdapter<String> adapterColor1 = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, color1Values);
-////        ArrayAdapter<CharSequence> adapterColor1 = ArrayAdapter.createFromResource(
-////                this, R.array.colour_1_arr, android.R.layout.simple_spinner_item);
-//        adapterColor1.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-//
-//        spinnerColor1.setAdapter(adapterColor1);
-//
-//
-//
-//        // build spinner color 2
-//        final Spinner spinnerColor2 = (Spinner) findViewById(R.id.spinner_color2);
-//        List<String> color2Values = new ArrayList<String>(Arrays.asList(colorList));
-//
-//        ArrayAdapter<String> adapterColor2 = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, color1Values);
-////        ArrayAdapter<CharSequence> adapterColor2 = ArrayAdapter.createFromResource(
-////                this, R.array.colour_2_arr, android.R.layout.simple_spinner_item);
-//        adapterColor2.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-//
-//        spinnerColor2.setAdapter(adapterColor2);
 
 
 
@@ -129,8 +102,7 @@ public class SettingsActivity extends AppCompatActivity {
                 int amountChkBoxChecked = 0;
                 int desiredColorsAmountChosen = 2;
 
-                for (int i = 0; i < ThreeRow.COLOR_LIST.length; i++)
-                {
+                for (int i = 0; i < ThreeRow.COLOR_LIST.length; i++) {
                     if (checkBoxList[i].isChecked()) {
                         Log.v(LOGGING_TAG, "chk checked: " + i);
                         amountChkBoxChecked++;
@@ -139,6 +111,7 @@ public class SettingsActivity extends AppCompatActivity {
 
 
                 Log.v(LOGGING_TAG, "amount checked: " + amountChkBoxChecked);
+
                 // check how many colors chosen
                 if (amountChkBoxChecked == desiredColorsAmountChosen) {
 
@@ -169,20 +142,9 @@ public class SettingsActivity extends AppCompatActivity {
                     String textSpinnerGridSize = spinnerGridSize.getSelectedItem().toString();
                     Log.v(LOGGING_TAG, "GridSize: " + textSpinnerGridSize);
 
-                    // get colors chosen
-//                String textSpinnerColor1 = spinnerColor1.getSelectedItem().toString();
-//                String textSpinnerColor2 = spinnerColor2.getSelectedItem().toString();
-//                int indexSpinnerColor1 = spinnerColor1.getSelectedItemPosition();
-//                int indexSpinnerColor2 = spinnerColor2.getSelectedItemPosition();
-
-//                Log.v(LOGGING_TAG, "spinner one item no: " + indexSpinnerColor1);
-//                Log.v(LOGGING_TAG, "Col1: " + textSpinnerColor1);
-//                Log.v(LOGGING_TAG, "Col2: " + textSpinnerColor2);
-
-                // save the settings
-                saveSettings(textSpinnerDifficulty, textSpinnerGridSize, colorIndexList[0], colorIndexList[1]);
-                }
-                else {
+                    // save the settings
+                    saveSettings(textSpinnerDifficulty, textSpinnerGridSize, colorIndexList[0], colorIndexList[1]);
+                } else {
                     // not ok amount
                     Toast.makeText(SettingsActivity.this, "Please choose exactly two colors", Toast.LENGTH_SHORT).show();
                 }
@@ -268,8 +230,6 @@ public class SettingsActivity extends AppCompatActivity {
         Log.v(LOGGING_TAG, "SettingsActivity in saveSettings");
         SharedPreferences.Editor editor = sharedPreferences.edit();
 
-
-
 //        updateDifficulty(textSpinnerDifficulty);
 //        updateGridSize(textSpinnerGridSize);
         updateColor1(editor, itemNumberColor1);
@@ -281,8 +241,6 @@ public class SettingsActivity extends AppCompatActivity {
     public void updateDifficulty(String textSpinnerDifficulty) {
         // TODO update the difficulty in shared preferences
         Log.v(LOGGING_TAG, "SettingsActivity in updateDifficulty");
-
-
     }
 
 
@@ -324,24 +282,6 @@ public class SettingsActivity extends AppCompatActivity {
         // TODO put code here
         Log.v(LOGGING_TAG, "SettingsActivity in displaySavedValues");
 
-        // To retrieve an already saved shared preference we use the contains() method
-        // to check that the key value is stored in the sharedpreferences collection
-//        if (sharedPreferences.contains(COLOR_1)) {
-//            int i = sharedPreferences.getInt(COLOR_1, 0);
-//            checkBoxList[i].setChecked(true);
-//            Log.v(LOGGING_TAG, "From saving Color1: " + sharedPreferences.getInt(COLOR_1, 0));
-//        }
-
-//        if (sharedPreferences.contains(COLOR_2)) {
-//            int i = sharedPreferences.getInt(COLOR_2, 1);
-//            checkBoxList[i].setChecked(true);
-//            Log.v(LOGGING_TAG, "From saving Color2: " + sharedPreferences.getInt(COLOR_2, 1));
-//        }
-
-
-//        getSavedValueColor1();
-//        getSavedValueColor2();
-
         displaySavedValueColor1(getSavedValueColor1());
         displaySavedValueColor2(getSavedValueColor2());
     }
@@ -352,14 +292,16 @@ public class SettingsActivity extends AppCompatActivity {
         // to check that the key value is stored in the sharedpreferences collection
 
         int i = 0;
+
         if (sharedPreferences.contains(COLOR_1)) {
             i = sharedPreferences.getInt(COLOR_1, 0);
-        }else {
+        } else {
             SharedPreferences.Editor editor = sharedPreferences.edit();
             int default1 = 0;
             updateColor1(editor, i);
             checkBoxList[default1].setChecked(true);
         }
+
         return i;
     }
 
@@ -369,6 +311,7 @@ public class SettingsActivity extends AppCompatActivity {
         // to check that the key value is stored in the sharedpreferences collection
 
         int i = 0;
+
         if (sharedPreferences.contains(COLOR_2)) {
             i = sharedPreferences.getInt(COLOR_2, 1);
         } else {
@@ -377,64 +320,19 @@ public class SettingsActivity extends AppCompatActivity {
             updateColor1(editor, default2);
             checkBoxList[default2].setChecked(true);
         }
+
         return i;
     }
 
 
     public void displaySavedValueColor1(int checkbox) {
-        // To retrieve an already saved shared preference we use the contains() method
-        // to check that the key value is stored in the sharedpreferences collection
         checkBoxList[checkbox].setChecked(true);
-//        if (sharedPreferences.contains(COLOR_1)) {
-//            int i = sharedPreferences.getInt(COLOR_1, 0);
-//            checkBoxList[i].setChecked(true);
-//            Log.v(LOGGING_TAG, "From saving Color1: " + sharedPreferences.getInt(COLOR_1, 0));
-//        } else {
-//            SharedPreferences.Editor editor = sharedPreferences.edit();
-//            int default1 = 0;
-//            updateColor1(editor, default1);
-//            checkBoxList[default1].setChecked(true);
-//        }
     }
 
 
     public void displaySavedValueColor2(int checkbox) {
-        // To retrieve an already saved shared preference we use the contains() method
-        // to check that the key value is stored in the sharedpreferences collection
         checkBoxList[checkbox].setChecked(true);
-
-//        if (sharedPreferences.contains(COLOR_2)) {
-//            int i = sharedPreferences.getInt(COLOR_2, 1);
-//            checkBoxList[i].setChecked(true);
-//            Log.v(LOGGING_TAG, "From saving Color2: " + sharedPreferences.getInt(COLOR_2, 1));
-//        } else {
-//            SharedPreferences.Editor editor = sharedPreferences.edit();
-//            int default2 = 1;
-//            updateColor1(editor, default2);
-//            checkBoxList[default2].setChecked(true);
-//        }
     }
-
-//    public void filterColorSpinner(Spinner spinner, int colorArr, String colorToFilterOut) {
-//
-//        // we need the resource string array
-//        Resources resources = getResources();
-//        String[] colors = resources.getStringArray(R.array.colour_1_arr);
-//
-//
-//        // now filter it
-//        for (int i = 0; i < colors.length; i++) {
-//
-//        }
-//
-//        if (colorArr == 1) {
-//            ArrayAdapter<CharSequence> adapterColor1 = ArrayAdapter.createFromResource(
-//                    this, R.array.colour_1_arr, android.R.layout.simple_spinner_item);
-//            adapterColor1.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-//
-//            spinner.setAdapter(adapterColor1);
-//        }
-//    }
 
 
 }  // end class SettingsActivity

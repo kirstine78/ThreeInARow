@@ -24,18 +24,14 @@ public class ThreeRow
     final static int IN_A_ROW_SUCCESS = 3;
 
     final static String GRID_CHARACTER_DEFAULT  = "?";
-//    final static String GRID_CHARACTER_1        = "Red";
-//    final static String GRID_CHARACTER_2        = "White";
     final static String GRID_CHARACTER_1        = "1";
     final static String GRID_CHARACTER_2        = "2";
 
 //    final static int[] COLOR_LIST = {R.drawable.red, R.drawable.white, R.drawable.blue, R.drawable.green, R.drawable.pink, R.drawable.purple};
     final static int[] COLOR_LIST = {R.drawable.red, R.drawable.white, R.drawable.blue};
-    public int[] mPlayColorList = new int[2];
-
+    public int[] mPlayColorList = new int[2];  // hold two elements from COLOR_LIST
 
     // minimum should be grid of 4 x 4
-
     // since business rule is a square grid you could change it to only have DIMENSION = 4
     final static int ROWS       = 4;
     final static int COLUMNS    = 4;
@@ -50,6 +46,7 @@ public class ThreeRow
     private int mNoOfPositionsOccupied = 0;
     private boolean mGameOver = false;
 
+
     /**
      * constructor
      */
@@ -58,6 +55,7 @@ public class ThreeRow
         // get a 2D array
         mBoard = getTwoDimensionalArray(ROWS, COLUMNS);
 
+        // set default which are red and white
         mPlayColorList[0] = COLOR_LIST[0];
         mPlayColorList[1] = COLOR_LIST[1];
     }
@@ -414,9 +412,4 @@ public class ThreeRow
         return str;
     }
 
-    public void setPlayColorList(int colorChoice1, int colorChoice2) {
-        // TODO save to shared preferences
-        mPlayColorList[0] = COLOR_LIST[colorChoice1];
-        mPlayColorList[1] = COLOR_LIST[colorChoice2];
-    }
 }

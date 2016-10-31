@@ -68,32 +68,14 @@ public class PlayActivity extends AppCompatActivity {
         // instantiate mGame so the activity can access the ThreeRow game logic
         mGame = new ThreeRow();
 
-
         // set up preferences collection
         sharedPreferences = getSharedPreferences(SettingsActivity.MY_PREFERENCES, Context.MODE_PRIVATE);
 
+        // is there are color choices saved in settings, then assign them to mPlayColorList
         if (sharedPreferences.contains(COLOR_1) && sharedPreferences.contains(COLOR_2)) {
             mGame.mPlayColorList[0] = COLOR_LIST[sharedPreferences.getInt(COLOR_1, 0)];
             mGame.mPlayColorList[1] = COLOR_LIST[sharedPreferences.getInt(COLOR_2, 1)];
-        }else {
-//            SharedPreferences.Editor editor = sharedPreferences.edit();
-//            int default1 = 0;
-//            updateColor1(editor, i);
-//            checkBoxList[default1].setChecked(true);
         }
-//         find out if there are values saved in settings
-//        if values saved
-//        {
-//        getSavedValueColor1();
-//
-//        }
-//        else set to default which is red/white
-//        {
-//         set to default colors red and white
-//            mPlayColorList[0] = COLOR_LIST[0];
-//            mPlayColorList[1] = COLOR_LIST[1];
-//        }
-
 
         // generate array with all Items in the mGridArray set to the grey image
         for (int i = 0; i < 16; i++)
@@ -350,6 +332,7 @@ public class PlayActivity extends AppCompatActivity {
     {
         ImageView img = (ImageView) findViewById(R.id.imageNextColor);
 
+        // check which color is the next to show
         if (mGame.getNextColor().equals(ThreeRow.GRID_CHARACTER_1))
         {
             int imageResource = mGame.mPlayColorList[0];
@@ -359,7 +342,6 @@ public class PlayActivity extends AppCompatActivity {
         {
             int imageResource = mGame.mPlayColorList[1];
             img.setImageResource(imageResource);
-//            img.setImageResource(R.drawable.white);
         }
     }
 
