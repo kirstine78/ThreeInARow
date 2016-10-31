@@ -55,10 +55,6 @@ public class SettingsActivity extends AppCompatActivity {
 
         Log.v(LOGGING_TAG, "SettingsActivity in onCreate");
 
-        // set up preferences collection
-        sharedPreferences = getSharedPreferences(MY_PREFERENCES, Context.MODE_PRIVATE);
-
-
 
         // build spinner
         final Spinner spinnerDifficulty = (Spinner) findViewById(R.id.spinner_difficulty);
@@ -69,6 +65,8 @@ public class SettingsActivity extends AppCompatActivity {
 
         spinnerDifficulty.setAdapter(adapterDifficulty);
 
+
+
         // build spinner grid size
         final Spinner spinnerGridSize = (Spinner) findViewById(R.id.spinner_grid_size);
 
@@ -78,26 +76,41 @@ public class SettingsActivity extends AppCompatActivity {
 
         spinnerGridSize.setAdapter(adapterGridSize);
 
+
+
         // build spinner color 1
         final Spinner spinnerColor1 = (Spinner) findViewById(R.id.spinner_color1);
         List<String> color1Values = new ArrayList<String>(Arrays.asList(colorList));
 
         ArrayAdapter<String> adapterColor1 = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, color1Values);
-
 //        ArrayAdapter<CharSequence> adapterColor1 = ArrayAdapter.createFromResource(
 //                this, R.array.colour_1_arr, android.R.layout.simple_spinner_item);
         adapterColor1.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 
         spinnerColor1.setAdapter(adapterColor1);
 
+
+
         // build spinner color 2
         final Spinner spinnerColor2 = (Spinner) findViewById(R.id.spinner_color2);
+        List<String> color2Values = new ArrayList<String>(Arrays.asList(colorList));
 
-        ArrayAdapter<CharSequence> adapterColor2 = ArrayAdapter.createFromResource(
-                this, R.array.colour_2_arr, android.R.layout.simple_spinner_item);
+        ArrayAdapter<String> adapterColor2 = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, color1Values);
+//        ArrayAdapter<CharSequence> adapterColor2 = ArrayAdapter.createFromResource(
+//                this, R.array.colour_2_arr, android.R.layout.simple_spinner_item);
         adapterColor2.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 
         spinnerColor2.setAdapter(adapterColor2);
+
+
+
+
+        // set up preferences collection
+        sharedPreferences = getSharedPreferences(MY_PREFERENCES, Context.MODE_PRIVATE);
+
+        // set settings to what was saved
+        setSpinnersToTheSavedValues();
+
 
 
         // prepare button for save settings
@@ -118,8 +131,8 @@ public class SettingsActivity extends AppCompatActivity {
                 // get colors chosen
                 String textSpinnerColor1 = spinnerColor1.getSelectedItem().toString();
                 String textSpinnerColor2 = spinnerColor2.getSelectedItem().toString();
-                int indexSpinnerColor1 = spinnerColor1.getSelectedItemPosition() - 1;  // minus one because of "Please choose" item
-                int indexSpinnerColor2 = spinnerColor2.getSelectedItemPosition() - 1;  // minus one because of "Please choose" item
+                int indexSpinnerColor1 = spinnerColor1.getSelectedItemPosition();
+                int indexSpinnerColor2 = spinnerColor2.getSelectedItemPosition();
 
                 Log.v(LOGGING_TAG, "spinner one item no: " + indexSpinnerColor1);
                 Log.v(LOGGING_TAG, "Col1: " + textSpinnerColor1);
@@ -217,6 +230,26 @@ public class SettingsActivity extends AppCompatActivity {
 //        updateColor2(textSpinnerColor2);
     }
 
+
+    // custom method to set Spinners To The Saved Values
+    public void setSpinnersToTheSavedValues() {
+        // TODO put code here
+        Log.v(LOGGING_TAG, "SettingsActivity in setSpinnersToTheSavedValues");
+
+        // To retrieve an already saved shared preference we use the contains() method
+        // to check that the key value is stored in the sharedpreferences collection
+        if (sharedPreferences.contains(COLOR_1)) {
+            Log.v(LOGGING_TAG, "SettingsActivity in setSpinnersToTheSavedValues contains");
+            // set spinner color 1
+//            spinnerObject.setSelection(INDEX_OF_CATEGORY2);
+//            name.setText(sharedPreferences.getString(COLOR_1, ""));
+            Toast.makeText(this, "from saving Color1: " + sharedPreferences.getInt(COLOR_1, 0), Toast.LENGTH_SHORT).show();
+        }
+    }
+
+
+
+
     public void updateDifficulty(String textSpinnerDifficulty) {
         // TODO update the difficulty in shared preferences
         Log.v(LOGGING_TAG, "SettingsActivity in updateDifficulty");
@@ -237,7 +270,8 @@ public class SettingsActivity extends AppCompatActivity {
 
         // format is: editor.putString("key", "value");
         // in our example the key/value is:
-        editor.putString(COLOR_1, colorList[selectedColItem]);
+//        editor.putString(COLOR_1, colorList[selectedColItem]);
+        editor.putInt(COLOR_1, selectedColItem);
 
         editor.commit();
         Toast.makeText(this, "Color is saved", Toast.LENGTH_SHORT).show();
