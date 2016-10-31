@@ -74,13 +74,20 @@ public class SettingsActivity extends AppCompatActivity {
 
 
 
+
         final CheckBox checkBoxRed = (CheckBox) findViewById(R.id.chkRed);
         final CheckBox checkBoxWhite = (CheckBox) findViewById(R.id.chkWhite);
         final CheckBox checkBoxBlue = (CheckBox) findViewById(R.id.chkBlue);
+        final CheckBox checkBoxGreen = (CheckBox) findViewById(R.id.chkGreen);
+        final CheckBox checkBoxPink = (CheckBox) findViewById(R.id.chkPink);
+        final CheckBox checkBoxPurple = (CheckBox) findViewById(R.id.chkPurple);
 
         checkBoxList[0] = checkBoxRed;
         checkBoxList[1] = checkBoxWhite;
         checkBoxList[2] = checkBoxBlue;
+        checkBoxList[3] = checkBoxGreen;
+        checkBoxList[4] = checkBoxPink;
+        checkBoxList[5] = checkBoxPurple;
 
         // set up preferences collection
         sharedPreferences = getSharedPreferences(MY_PREFERENCES, Context.MODE_PRIVATE);

@@ -126,7 +126,7 @@ public class PlayActivity extends AppCompatActivity {
                             mInfoTextView.setText(R.string.losing_msg);
 
                             // hide image of color hint
-                            mInfoImageView.setVisibility(View.INVISIBLE);
+                            mInfoImageView.setVisibility(View.GONE);
                         }
                         else
                         {
@@ -137,7 +137,7 @@ public class PlayActivity extends AppCompatActivity {
                                 mInfoTextView.setText(R.string.winning_msg);
 
                                 // hide image of color hint
-                                mInfoImageView.setVisibility(View.INVISIBLE);
+                                mInfoImageView.setVisibility(View.GONE);
                             }
                         }
 

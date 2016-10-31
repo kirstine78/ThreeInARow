@@ -73,7 +73,6 @@ Version:         1.0 - Prototype
             android:id="@+id/information"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="My three in a row Info label"
             android:textSize="20dp"
             android:textStyle="bold"
             android:textColor="@android:color/white" />

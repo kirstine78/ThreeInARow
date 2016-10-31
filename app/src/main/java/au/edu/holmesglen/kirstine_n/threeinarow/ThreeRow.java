@@ -27,8 +27,8 @@ public class ThreeRow
     final static String GRID_CHARACTER_1        = "1";
     final static String GRID_CHARACTER_2        = "2";
 
-//    final static int[] COLOR_LIST = {R.drawable.red, R.drawable.white, R.drawable.blue, R.drawable.green, R.drawable.pink, R.drawable.purple};
-    final static int[] COLOR_LIST = {R.drawable.red, R.drawable.white, R.drawable.blue};
+    final static int[] COLOR_LIST = {R.drawable.red, R.drawable.white, R.drawable.blue, R.drawable.green, R.drawable.pink, R.drawable.purple};
+//    final static int[] COLOR_LIST = {R.drawable.red, R.drawable.white, R.drawable.blue};
     public int[] mPlayColorList = new int[2];  // hold two elements from COLOR_LIST
 
     // minimum should be grid of 4 x 4

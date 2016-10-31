@@ -62,19 +62,19 @@
         <item>6 x 6</item>
     </string-array>
 
-    <string-array name="colour_1_arr">
-        <item>Please choose</item>
-        <item>Red</item>
-        <item>White</item>
-        <item>Blue</item>
-    </string-array>
+    <!--<string-array name="colour_1_arr">-->
+        <!--<item>Please choose</item>-->
+        <!--<item>Red</item>-->
+        <!--<item>White</item>-->
+        <!--<item>Blue</item>-->
+    <!--</string-array>-->
 
-    <string-array name="colour_2_arr">
-        <item>Please choose</item>
-        <item>Red</item>
-        <item>Red</item>
-        <item>White</item>
-        <item>Blue</item>
-    </string-array>
+    <!--<string-array name="colour_2_arr">-->
+        <!--<item>Please choose</item>-->
+        <!--<item>Red</item>-->
+        <!--<item>Red</item>-->
+        <!--<item>White</item>-->
+        <!--<item>Blue</item>-->
+    <!--</string-array>-->
 
 </resources>
