@@ -53,7 +53,7 @@ public class PlayActivity extends AppCompatActivity {
     private ImageView mInfoImageView;
 
     // decl ref to SharedPreferences class
-    SharedPreferences sharedPreferences;
+//    private SharedPreferences sharedPreferences;
 
 
     @Override
@@ -69,7 +69,7 @@ public class PlayActivity extends AppCompatActivity {
         mGame = new ThreeRow();
 
         // set up preferences collection
-        sharedPreferences = getSharedPreferences(SettingsActivity.MY_PREFERENCES, Context.MODE_PRIVATE);
+        SharedPreferences sharedPreferences = getSharedPreferences(SettingsActivity.MY_PREFERENCES, Context.MODE_PRIVATE);
 
         // is there are color choices saved in settings, then assign them to mPlayColorList
         if (sharedPreferences.contains(COLOR_1) && sharedPreferences.contains(COLOR_2)) {

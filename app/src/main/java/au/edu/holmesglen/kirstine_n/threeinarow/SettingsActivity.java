@@ -34,14 +34,14 @@ public class SettingsActivity extends AppCompatActivity {
     public static final String COLOR_1 = "color1Key";
     public static final String COLOR_2 = "color2Key";
 
-    public CheckBox[] checkBoxList = new CheckBox[ThreeRow.COLOR_LIST.length];
-    public int[] colorIndexList = new int[2];
+    private CheckBox[] checkBoxList = new CheckBox[ThreeRow.COLOR_LIST.length];
+    private int[] colorIndexList = new int[2];
 
-    final static String[] COLOR_STRING_LIST = {"Red", "White", "Blue", "Green","Pink", "Purple",
+    private final String[] COLOR_STRING_LIST = {"Red", "White", "Blue", "Green","Pink", "Purple",
                                                 "Brown", "Orange", "Turquoise", "Yellow"};
 
     // decl reference to SharedPreferences class
-    SharedPreferences sharedPreferences;
+    private SharedPreferences sharedPreferences;
 
 
     @Override

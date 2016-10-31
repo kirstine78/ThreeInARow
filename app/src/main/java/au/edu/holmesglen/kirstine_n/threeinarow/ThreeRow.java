@@ -69,10 +69,10 @@ public class ThreeRow
      * how many fields on board are filled with colours
      * @return
      */
-    public int getNoOfPositionsOccupied()
-    {
-        return mNoOfPositionsOccupied;
-    }
+//    public int getNoOfPositionsOccupied()
+//    {
+//        return mNoOfPositionsOccupied;
+//    }
 
 
     /**
