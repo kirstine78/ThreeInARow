@@ -37,6 +37,7 @@ public class SettingsActivity extends AppCompatActivity {
     public static final String MY_PREFERENCES = "MyPrefs";
     public static final String COLOR_1 = "color1Key";
     public static final String COLOR_2 = "color2Key";
+    public static final String THEME = "themeKey";
 
     private CheckBox[] checkBoxList = new CheckBox[ThreeRow.COLOR_LIST.length];
     private int[] colorIndexList = new int[2];
@@ -148,6 +149,10 @@ public class SettingsActivity extends AppCompatActivity {
                 // check how many colors chosen
                 if (amountChkBoxChecked == desiredColorsAmountChosen) {
 
+                    // do the THEME
+                    String textSpinnerTheme = (String)spinnerTheme.getSelectedItem();
+
+
                     int index = 0;  // will never be other than 0 and 1
 
                     // we know only two color checkboxes are checked
@@ -176,9 +181,9 @@ public class SettingsActivity extends AppCompatActivity {
                     Log.v(LOGGING_TAG, "GridSize: " + textSpinnerGridSize);
 
                     // save the settings
-                    saveSettings(textSpinnerDifficulty, textSpinnerGridSize, colorIndexList[0], colorIndexList[1]);
+                    saveSettings(textSpinnerTheme, textSpinnerDifficulty, textSpinnerGridSize, colorIndexList[0], colorIndexList[1]);
                 } else {
-                    // not ok amount
+                    // not ok amount, so don't proceed with any saving
                     Toast.makeText(SettingsActivity.this, "Please choose exactly two colors", Toast.LENGTH_SHORT).show();
                 }
 
@@ -264,14 +269,15 @@ public class SettingsActivity extends AppCompatActivity {
      * @param itemNumberColor1
      * @param itemNumberColor2
      */
-    public void saveSettings(String textSpinnerDifficulty, String textSpinnerGridSize,
+    public void saveSettings(String textSpinnerTheme, String textSpinnerDifficulty, String textSpinnerGridSize,
                                int itemNumberColor1, int itemNumberColor2) {
 
         Log.v(LOGGING_TAG, "SettingsActivity in saveSettings");
         SharedPreferences.Editor editor = sharedPreferences.edit();
 
-//        updateDifficulty(textSpinnerDifficulty);
-//        updateGridSize(textSpinnerGridSize);
+        updateTheme(editor, textSpinnerTheme);
+//        updateDifficulty(editor, textSpinnerDifficulty);
+//        updateGridSize(editor, textSpinnerGridSize);
         updateColor1(editor, itemNumberColor1);
         updateColor2(editor, itemNumberColor2);
         Toast.makeText(this, "Colors are saved", Toast.LENGTH_SHORT).show();
@@ -279,10 +285,27 @@ public class SettingsActivity extends AppCompatActivity {
 
 
     /**
+     * saves the theme to local storage
+     * @param textSpinnerTheme
+     */
+    public void updateTheme(SharedPreferences.Editor editor, String textSpinnerTheme) {
+        // TODO update the theme in shared preferences
+        Log.v(LOGGING_TAG, "SettingsActivity in updateTheme");
+
+        // format is: editor.putString("key", "value");
+        // in our example the key/value is:
+        editor.putString(THEME, textSpinnerTheme);
+        editor.commit();
+
+        Log.v(LOGGING_TAG, "Theme is saved: " + textSpinnerTheme);
+    }
+
+
+    /**
      * saves the difficulty level to local storage
      * @param textSpinnerDifficulty
      */
-    public void updateDifficulty(String textSpinnerDifficulty) {
+    public void updateDifficulty(SharedPreferences.Editor editor, String textSpinnerDifficulty) {
         // TODO update the difficulty in shared preferences
         Log.v(LOGGING_TAG, "SettingsActivity in updateDifficulty");
     }
@@ -292,7 +315,7 @@ public class SettingsActivity extends AppCompatActivity {
      * saves the difficulty grid size to local storage
      * @param textSpinnerGridSize
      */
-    public void updateGridSize(String textSpinnerGridSize) {
+    public void updateGridSize(SharedPreferences.Editor editor, String textSpinnerGridSize) {
         // TODO update the gridsize in shared preferences
         Log.v(LOGGING_TAG, "SettingsActivity in updateGridSize");
     }
