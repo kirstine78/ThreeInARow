@@ -37,12 +37,10 @@ public class SettingsActivity extends AppCompatActivity {
     public CheckBox[] checkBoxList = new CheckBox[ThreeRow.COLOR_LIST.length];
     public int[] colorIndexList = new int[2];
 
-    final static String[] COLOR_STRING_LIST = {"Red", "White", "blue",
-           "green","pink", "purple",
-            "brown", "orange", "turquoise",
-            "yellow"};
+    final static String[] COLOR_STRING_LIST = {"Red", "White", "Blue", "Green","Pink", "Purple",
+                                                "Brown", "Orange", "Turquoise", "Yellow"};
 
-    // decl ref to SharedPreferences class
+    // decl reference to SharedPreferences class
     SharedPreferences sharedPreferences;
 
 
@@ -64,7 +62,7 @@ public class SettingsActivity extends AppCompatActivity {
             cb.setText(COLOR_STRING_LIST[i]);
             cb.setId(i + ThreeRow.COLOR_LIST.length);
 
-            // check which container to add to? left or right
+            // check which container to add checkbox to? left or right
             if (i < ThreeRow.COLOR_LIST.length/2)
             {
                 Log.v(LOGGING_TAG, "chk box i: " + i + " left");
@@ -103,27 +101,12 @@ public class SettingsActivity extends AppCompatActivity {
         spinnerGridSize.setAdapter(adapterGridSize);
 
 
-//        final CheckBox checkBoxRed = (CheckBox) findViewById(R.id.chkRed);
-//        final CheckBox checkBoxWhite = (CheckBox) findViewById(R.id.chkWhite);
-//        final CheckBox checkBoxBlue = (CheckBox) findViewById(R.id.chkBlue);
-//        final CheckBox checkBoxGreen = (CheckBox) findViewById(R.id.chkGreen);
-//        final CheckBox checkBoxPink = (CheckBox) findViewById(R.id.chkPink);
-//        final CheckBox checkBoxPurple = (CheckBox) findViewById(R.id.chkPurple);
-//
-//        checkBoxList[0] = checkBoxRed;
-//        checkBoxList[1] = checkBoxWhite;
-//        checkBoxList[2] = checkBoxBlue;
-//        checkBoxList[3] = checkBoxGreen;
-//        checkBoxList[4] = checkBoxPink;
-//        checkBoxList[5] = checkBoxPurple;
 
         // set up preferences collection
         sharedPreferences = getSharedPreferences(MY_PREFERENCES, Context.MODE_PRIVATE);
 
         // set settings to what was saved
         displaySavedValues();
-
-
 
 
         // prepare button for save settings

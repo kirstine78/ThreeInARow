@@ -21,7 +21,7 @@ Version:         1.0 - Prototype
     tools:context="au.edu.holmesglen.kirstine_n.threeinarow.MainActivity"
     tools:showIn="@layout/activity_main"
     android:orientation="vertical"
-    android:background="@color/colorAccent" >
+    android:background="@color/colorBackground" >
 
     <TextView
         android:id="@+id/header"

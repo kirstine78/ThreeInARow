@@ -22,7 +22,7 @@ Version:         1.0 - Prototype
     tools:showIn="@layout/activity_play"
     android:orientation="vertical"
     android:gravity="center_horizontal"
-    android:background="@color/colorAccent">
+    android:background="@color/colorBackground">
 
     <RelativeLayout
         android:layout_width="match_parent"

@@ -20,7 +20,7 @@ Version:         1.0 - Prototype
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context="au.edu.holmesglen.kirstine_n.threeinarow.WinLoseActivity"
     tools:showIn="@layout/activity_win_lose"
-    android:background="@color/colorAccent">
+    android:background="@color/colorBackground">
 
     <TextView
         android:layout_width="wrap_content"
