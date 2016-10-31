@@ -27,7 +27,8 @@ public class ThreeRow
     final static String GRID_CHARACTER_1        = "Red";
     final static String GRID_CHARACTER_2        = "White";
 
-    final static int[] COLOR_LIST = {R.drawable.red, R.drawable.white, R.drawable.blue, R.drawable.green, R.drawable.pink, R.drawable.purple};
+//    final static int[] COLOR_LIST = {R.drawable.red, R.drawable.white, R.drawable.blue, R.drawable.green, R.drawable.pink, R.drawable.purple};
+    final static int[] COLOR_LIST = {R.drawable.red, R.drawable.white, R.drawable.blue};
     public int[] mPlayColorList = new int[2];
 
 
@@ -55,7 +56,6 @@ public class ThreeRow
         // get a 2D array
         mBoard = getTwoDimensionalArray(ROWS, COLUMNS);
 
-        // set to default colors red and white
         mPlayColorList[0] = COLOR_LIST[0];
         mPlayColorList[1] = COLOR_LIST[1];
     }

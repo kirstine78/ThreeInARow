@@ -33,9 +33,9 @@ public class SettingsActivity extends AppCompatActivity {
     public static final String COLOR_1 = "color1Key";
     public static final String COLOR_2 = "color2Key";
 
-    public static String[] colorList = {"Red", "White", "Blue"};
-    public CheckBox[] checkBoxList = new CheckBox[colorList.length];
-    public static int[] colorIndexList = new int[2];
+//    public static String[] colorList = {"Red", "White", "Blue"};
+    public CheckBox[] checkBoxList = new CheckBox[ThreeRow.COLOR_LIST.length];
+    public int[] colorIndexList = new int[2];
 
     // decl ref to SharedPreferences class
     SharedPreferences sharedPreferences;
@@ -49,6 +49,8 @@ public class SettingsActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
 
         Log.v(LOGGING_TAG, "SettingsActivity in onCreate");
+        Log.v(LOGGING_TAG, "colorIndexList 0: " + colorIndexList[0] );
+        Log.v(LOGGING_TAG, "colorIndexList 1: " + colorIndexList[1] );
 
 
         // build spinner
@@ -111,7 +113,7 @@ public class SettingsActivity extends AppCompatActivity {
         sharedPreferences = getSharedPreferences(MY_PREFERENCES, Context.MODE_PRIVATE);
 
         // set settings to what was saved
-        getSavedValues();
+        displaySavedValues();
 
 
 
@@ -127,7 +129,7 @@ public class SettingsActivity extends AppCompatActivity {
                 int amountChkBoxChecked = 0;
                 int desiredColorsAmountChosen = 2;
 
-                for (int i = 0; i < colorList.length; i++)
+                for (int i = 0; i < ThreeRow.COLOR_LIST.length; i++)
                 {
                     if (checkBoxList[i].isChecked()) {
                         Log.v(LOGGING_TAG, "chk checked: " + i);
@@ -143,7 +145,7 @@ public class SettingsActivity extends AppCompatActivity {
                     int index = 0;  // will never be other than 0 and 1
 
                     // we know only two color checkboxes are checked
-                    for (int i = 0; i < colorList.length; i++)
+                    for (int i = 0; i < ThreeRow.COLOR_LIST.length; i++)
                     {
                         // if checked, then assign i to colorIndexList[index]
                         if (checkBoxList[i].isChecked()) {
@@ -264,33 +266,15 @@ public class SettingsActivity extends AppCompatActivity {
                                int itemNumberColor1, int itemNumberColor2) {
 
         Log.v(LOGGING_TAG, "SettingsActivity in saveSettings");
-
         SharedPreferences.Editor editor = sharedPreferences.edit();
+
+
 
 //        updateDifficulty(textSpinnerDifficulty);
 //        updateGridSize(textSpinnerGridSize);
-        updateColors(editor, itemNumberColor1, itemNumberColor2);
-    }
-
-
-    // custom method to set Spinners To The Saved Values
-    public void getSavedValues() {
-        // TODO put code here
-        Log.v(LOGGING_TAG, "SettingsActivity in getSavedValues");
-
-        // To retrieve an already saved shared preference we use the contains() method
-        // to check that the key value is stored in the sharedpreferences collection
-        if (sharedPreferences.contains(COLOR_1)) {
-            int i = sharedPreferences.getInt(COLOR_1, 0);
-            checkBoxList[i].setChecked(true);
-            Log.v(LOGGING_TAG, "From saving Color1: " + sharedPreferences.getInt(COLOR_1, 0));
-        }
-
-        if (sharedPreferences.contains(COLOR_2)) {
-            int i = sharedPreferences.getInt(COLOR_2, 1);
-            checkBoxList[i].setChecked(true);
-            Log.v(LOGGING_TAG, "From saving Color2: " + sharedPreferences.getInt(COLOR_2, 1));
-        }
+        updateColor1(editor, itemNumberColor1);
+        updateColor2(editor, itemNumberColor2);
+        Toast.makeText(this, "Colors are saved", Toast.LENGTH_SHORT).show();
     }
 
 
@@ -308,25 +292,128 @@ public class SettingsActivity extends AppCompatActivity {
     }
 
 
-    public void updateColors(SharedPreferences.Editor editor, int color1, int color2) {
+    public void updateColor1(SharedPreferences.Editor editor, int color1) {
         // TODO update the color 1 in shared preferences
         Log.v(LOGGING_TAG, "SettingsActivity in updateColor1");
 
         // format is: editor.putString("key", "value");
         // in our example the key/value is:
         editor.putInt(COLOR_1, color1);
+        editor.commit();
+
+        Log.v(LOGGING_TAG, "Color1 is saved");
+    }
+
+
+    public void updateColor2(SharedPreferences.Editor editor, int color2) {
+        // TODO update the color 2 in shared preferences
+        Log.v(LOGGING_TAG, "SettingsActivity in updateColor2");
+
+        // format is: editor.putString("key", "value");
+        // in our example the key/value is:
         editor.putInt(COLOR_2, color2);
         editor.commit();
 
-        Toast.makeText(this, "Colors are saved", Toast.LENGTH_SHORT).show();
+        Log.v(LOGGING_TAG, "Color2 is saved");
     }
 
 
-    public void updateColor2(String textSpinnerColor2) {
-        // TODO update the color 2 in shared preferences
-        Log.v(LOGGING_TAG, "SettingsActivity in updateColor2");
+
+    // custom method to set Spinners To The Saved Values
+    public void displaySavedValues() {
+        // TODO put code here
+        Log.v(LOGGING_TAG, "SettingsActivity in displaySavedValues");
+
+        // To retrieve an already saved shared preference we use the contains() method
+        // to check that the key value is stored in the sharedpreferences collection
+//        if (sharedPreferences.contains(COLOR_1)) {
+//            int i = sharedPreferences.getInt(COLOR_1, 0);
+//            checkBoxList[i].setChecked(true);
+//            Log.v(LOGGING_TAG, "From saving Color1: " + sharedPreferences.getInt(COLOR_1, 0));
+//        }
+
+//        if (sharedPreferences.contains(COLOR_2)) {
+//            int i = sharedPreferences.getInt(COLOR_2, 1);
+//            checkBoxList[i].setChecked(true);
+//            Log.v(LOGGING_TAG, "From saving Color2: " + sharedPreferences.getInt(COLOR_2, 1));
+//        }
+
+
+//        getSavedValueColor1();
+//        getSavedValueColor2();
+
+        displaySavedValueColor1(getSavedValueColor1());
+        displaySavedValueColor2(getSavedValueColor2());
     }
 
+
+    public int getSavedValueColor1() {
+        // To retrieve an already saved shared preference we use the contains() method
+        // to check that the key value is stored in the sharedpreferences collection
+
+        int i = 0;
+        if (sharedPreferences.contains(COLOR_1)) {
+            i = sharedPreferences.getInt(COLOR_1, 0);
+        }else {
+            SharedPreferences.Editor editor = sharedPreferences.edit();
+            int default1 = 0;
+            updateColor1(editor, i);
+            checkBoxList[default1].setChecked(true);
+        }
+        return i;
+    }
+
+
+    public int getSavedValueColor2() {
+        // To retrieve an already saved shared preference we use the contains() method
+        // to check that the key value is stored in the sharedpreferences collection
+
+        int i = 0;
+        if (sharedPreferences.contains(COLOR_2)) {
+            i = sharedPreferences.getInt(COLOR_2, 1);
+        } else {
+            SharedPreferences.Editor editor = sharedPreferences.edit();
+            int default2 = 1;
+            updateColor1(editor, default2);
+            checkBoxList[default2].setChecked(true);
+        }
+        return i;
+    }
+
+
+    public void displaySavedValueColor1(int checkbox) {
+        // To retrieve an already saved shared preference we use the contains() method
+        // to check that the key value is stored in the sharedpreferences collection
+        checkBoxList[checkbox].setChecked(true);
+//        if (sharedPreferences.contains(COLOR_1)) {
+//            int i = sharedPreferences.getInt(COLOR_1, 0);
+//            checkBoxList[i].setChecked(true);
+//            Log.v(LOGGING_TAG, "From saving Color1: " + sharedPreferences.getInt(COLOR_1, 0));
+//        } else {
+//            SharedPreferences.Editor editor = sharedPreferences.edit();
+//            int default1 = 0;
+//            updateColor1(editor, default1);
+//            checkBoxList[default1].setChecked(true);
+//        }
+    }
+
+
+    public void displaySavedValueColor2(int checkbox) {
+        // To retrieve an already saved shared preference we use the contains() method
+        // to check that the key value is stored in the sharedpreferences collection
+        checkBoxList[checkbox].setChecked(true);
+
+//        if (sharedPreferences.contains(COLOR_2)) {
+//            int i = sharedPreferences.getInt(COLOR_2, 1);
+//            checkBoxList[i].setChecked(true);
+//            Log.v(LOGGING_TAG, "From saving Color2: " + sharedPreferences.getInt(COLOR_2, 1));
+//        } else {
+//            SharedPreferences.Editor editor = sharedPreferences.edit();
+//            int default2 = 1;
+//            updateColor1(editor, default2);
+//            checkBoxList[default2].setChecked(true);
+//        }
+    }
 
 //    public void filterColorSpinner(Spinner spinner, int colorArr, String colorToFilterOut) {
 //
