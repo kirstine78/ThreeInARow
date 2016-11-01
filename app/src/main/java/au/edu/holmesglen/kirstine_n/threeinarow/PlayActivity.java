@@ -24,9 +24,7 @@ import android.widget.TextView;
 
 import static au.edu.holmesglen.kirstine_n.threeinarow.MainActivity.LOGGING_TAG;
 import static au.edu.holmesglen.kirstine_n.threeinarow.ThreeRow.COLOR_LIST;
-import static au.edu.holmesglen.kirstine_n.threeinarow.ThreeRow.mColumns;
 import static au.edu.holmesglen.kirstine_n.threeinarow.ThreeRow.POSITIONS_RANDOMLY_OCCUPIED;
-import static au.edu.holmesglen.kirstine_n.threeinarow.ThreeRow.mRows;
 
 /**
  * Class is responsible for the GUI for the Play game screen.
@@ -44,7 +42,7 @@ public class PlayActivity extends CommonActivity {
     private GridView mGridview;
 
     // array to hold all Item objects. these are our images
-    private Item[] mGridArray = new Item[mRows * mColumns];
+    private Item[] mGridArray;
 
     private ImageAdapter mImageAdapter;
 
@@ -63,7 +61,7 @@ public class PlayActivity extends CommonActivity {
         setSupportActionBar(toolbar);
 
         // instantiate mGame so the activity can access the ThreeRow game logic
-        mGame = new ThreeRow();
+        mGame = new ThreeRow(getSavedValueGridSize());
 
         // get the colors saved in shared preferences
         // if no color is saved, then it will get the default value
@@ -71,9 +69,11 @@ public class PlayActivity extends CommonActivity {
         mGame.mPlayColorList[0] = COLOR_LIST[getSavedValueColor1()];
         mGame.mPlayColorList[1] = COLOR_LIST[getSavedValueColor2()];
 
+        // build GUI grid
+        mGridArray = new Item[ThreeRow.mRows * ThreeRow.mColumns];
 
         // generate array with all Items in the mGridArray set to the grey image
-        for (int i = 0; i < 16; i++)
+        for (int i = 0; i < ThreeRow.mRows * ThreeRow.mColumns; i++)
         {
             mGridArray[i] = new Item(R.drawable.grey, "grey");
         }
@@ -102,7 +102,7 @@ public class PlayActivity extends CommonActivity {
                     if (mGridArray[position].getClickCount() < 1)
                     {
                         // convert position to x, y coordinates
-                        Point point = getXYCoordFrom1DArrayIndex(position, mRows);
+                        Point point = getXYCoordFrom1DArrayIndex(position, ThreeRow.mRows);
 
                         // game logic
                         mGame.updateGrid(point.x, point.y);
@@ -184,7 +184,7 @@ public class PlayActivity extends CommonActivity {
         mGame.clearBoard();
 
         // loop through array and reset all positions in the grid to grey image;
-        for(int i = 0; i < mRows * mColumns; i++)
+        for(int i = 0; i < ThreeRow.mRows * ThreeRow.mColumns; i++)
         {
             mGridArray[i].resetClickCount();
             mGridArray[i].setColor(R.drawable.grey);
@@ -231,7 +231,7 @@ public class PlayActivity extends CommonActivity {
         Log.v("Kirsti", "inside updateGridUI x, y: " + x + ", " + y);
 
         // ui
-        int aPosition = get1DArrayIndexFromXYCoord(x, y, mRows);
+        int aPosition = get1DArrayIndexFromXYCoord(x, y, ThreeRow.mRows);
 
         // set item to correct color
         mGridArray[aPosition].setColor(colorImg);

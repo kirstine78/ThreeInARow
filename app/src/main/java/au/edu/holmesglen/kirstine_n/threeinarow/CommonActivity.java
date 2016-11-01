@@ -57,6 +57,7 @@ public class CommonActivity extends AppCompatActivity {
         if (sharedPreferences.contains(THEME)) {
             savedTheme = sharedPreferences.getInt(THEME, 0);
         } else {
+            // if no theme was saved, then save default theme
             updateThemeInSharedPreferences(0);
         }
 
@@ -74,7 +75,8 @@ public class CommonActivity extends AppCompatActivity {
         if (sharedPreferences.contains(GRID_SIZE)) {
             savedGridSize = sharedPreferences.getInt(GRID_SIZE, 4);
         } else {
-            updateThemeInSharedPreferences(4);
+            // if no grid size was saved, then save default grid size
+            updateGridSizeInSharedPreferences(4);
         }
 
         return savedGridSize;

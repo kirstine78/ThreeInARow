@@ -252,7 +252,6 @@ public class SettingsActivity extends CommonActivity {
         // TODO put code here
         Log.v(LOGGING_TAG, "SettingsActivity in displaySavedValues");
 
-
         displaySavedValueTheme(getSavedValueTheme());
         displaySavedValueGridSize(getSavedValueGridSize());
 

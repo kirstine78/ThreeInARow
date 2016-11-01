@@ -46,7 +46,8 @@ public class ThreeRow
     final static int POSITIONS_RANDOMLY_OCCUPIED = 4;
 
     // declare a 2D array  String[rows][columns]
-    private String[][] mBoard = getTwoDimensionalArray(mRows, mColumns);
+    private String[][] mBoard;
+//    private String[][] mBoard = getTwoDimensionalArray(mRows, mColumns);
 
     // flags
     private int mNoOfPositionsOccupied = 0;
@@ -56,8 +57,11 @@ public class ThreeRow
     /**
      * constructor for ThreeRow
      */
-    public ThreeRow()
+    public ThreeRow(int gridDimension)
     {
+        mRows       = gridDimension;
+        mColumns    = gridDimension;
+
         // get a 2D array
         mBoard = getTwoDimensionalArray(mRows, mColumns);
     }
@@ -82,6 +86,16 @@ public class ThreeRow
         // reset
         mNoOfPositionsOccupied = 0;
         mGameOver = false;
+
+//        // loop through outer array;
+//        for(int i = 0; i < mRows; i++)
+//        {
+//            // loop through inner array
+//            for(int j = 0; j < mColumns; j++)
+//            {
+//                mBoard[i][j] = GRID_CHARACTER_DEFAULT;
+//            }
+//        }
 
         // loop through outer array;
         for(int i = 0; i < mRows; i++)
