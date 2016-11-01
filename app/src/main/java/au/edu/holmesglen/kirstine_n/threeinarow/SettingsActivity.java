@@ -226,85 +226,16 @@ public class SettingsActivity extends CommonActivity {
         Log.v(LOGGING_TAG, "SettingsActivity in saveSettings");
         SharedPreferences.Editor editor = sharedPreferences.edit();
 
-        updateTheme(editor, spinnerThemeSelectedItem);
-//        updateDifficulty(editor, textSpinnerDifficulty);
-//        updateGridSize(editor, textSpinnerGridSize);
-        updateColor1(editor, itemNumberColor1);
-        updateColor2(editor, itemNumberColor2);
-        Toast.makeText(this, "Settings are saved", Toast.LENGTH_SHORT).show();
-    }
-
-
-    /**
-     * saves the theme to local storage
-     * @param editor
-     * @param spinnerThemeSelectedItem
-     */
-    public void updateTheme(SharedPreferences.Editor editor, int spinnerThemeSelectedItem) {
-        Log.v(LOGGING_TAG, "SettingsActivity in updateTheme");
-
         updateThemeInSharedPreferences(editor, spinnerThemeSelectedItem);
 
         // change the theme GUI for SettingsActivity
         Utils.changeToTheme(this, spinnerThemeSelectedItem);
 
-        Log.v(LOGGING_TAG, "Theme is saved: " + spinnerThemeSelectedItem);
-    }
-
-
-    /**
-     * saves the difficulty level to local storage
-     * @param textSpinnerDifficulty
-     */
-    public void updateDifficulty(SharedPreferences.Editor editor, String textSpinnerDifficulty) {
-        // TODO update the difficulty in shared preferences
-        Log.v(LOGGING_TAG, "SettingsActivity in updateDifficulty");
-    }
-
-
-    /**
-     * saves the difficulty grid size to local storage
-     * @param textSpinnerGridSize
-     */
-    public void updateGridSize(SharedPreferences.Editor editor, String textSpinnerGridSize) {
-        // TODO update the gridsize in shared preferences
-        Log.v(LOGGING_TAG, "SettingsActivity in updateGridSize");
-    }
-
-
-    /**
-     * saves color 1 to local storage
-     * @param editor
-     * @param color1
-     */
-    public void updateColor1(SharedPreferences.Editor editor, int color1) {
-        // TODO update the color 1 in shared preferences
-        Log.v(LOGGING_TAG, "SettingsActivity in updateColor1");
-
-        // format is: editor.putString("key", "value");
-        // in our example the key/value is:
-        editor.putInt(COLOR_1, color1);
-        editor.commit();
-
-        Log.v(LOGGING_TAG, "Color1 is saved");
-    }
-
-
-    /**
-     * saves color 2 to local storage
-     * @param editor
-     * @param color2
-     */
-    public void updateColor2(SharedPreferences.Editor editor, int color2) {
-        // TODO update the color 2 in shared preferences
-        Log.v(LOGGING_TAG, "SettingsActivity in updateColor2");
-
-        // format is: editor.putString("key", "value");
-        // in our example the key/value is:
-        editor.putInt(COLOR_2, color2);
-        editor.commit();
-
-        Log.v(LOGGING_TAG, "Color2 is saved");
+//        updateDifficultyInSharedPreferences(editor, textSpinnerDifficulty);
+//        updateGridSizeInSharedPreferences(editor, textSpinnerGridSize);
+        updateColor1InSharedPreferences(editor, itemNumberColor1);
+        updateColor2InSharedPreferences(editor, itemNumberColor2);
+        Toast.makeText(this, "Settings are saved", Toast.LENGTH_SHORT).show();
     }
 
 
@@ -344,7 +275,7 @@ public class SettingsActivity extends CommonActivity {
             // set i to the default color
             i = DEFAULT_RED;
 
-            updateColor1(editor, DEFAULT_RED);
+            updateColor1InSharedPreferences(editor, DEFAULT_RED);
         }
 
         return i;
@@ -371,7 +302,7 @@ public class SettingsActivity extends CommonActivity {
             // set i to the default color
             i = DEFAULT_WHITE;
 
-            updateColor2(editor, DEFAULT_WHITE);
+            updateColor2InSharedPreferences(editor, DEFAULT_WHITE);
         }
 
         return i;
