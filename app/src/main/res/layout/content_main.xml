@@ -20,8 +20,7 @@ Version:         1.0 - Prototype
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context="au.edu.holmesglen.kirstine_n.threeinarow.MainActivity"
     tools:showIn="@layout/activity_main"
-    android:orientation="vertical"
-    android:background="@color/colorBackground" >
+    android:orientation="vertical" >
 
     <TextView
         android:id="@+id/header"

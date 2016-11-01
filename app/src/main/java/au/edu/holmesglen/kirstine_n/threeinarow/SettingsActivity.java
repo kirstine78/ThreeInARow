@@ -45,6 +45,10 @@ public class SettingsActivity extends AppCompatActivity {
     private final String[] COLOR_STRING_LIST = {"Red", "White", "Blue", "Green","Pink", "Purple",
                                                 "Brown", "Orange", "Turquoise", "Yellow"};
 
+
+    // list of images with different colors
+    final static int[] THEME_LIST = {R.drawable.blue_background, R.drawable.copper, R.drawable.gold};
+
     // decl reference to SharedPreferences class
     private SharedPreferences sharedPreferences;
 
@@ -302,6 +306,11 @@ public class SettingsActivity extends AppCompatActivity {
         // in our example the key/value is:
         editor.putInt(THEME, spinnerThemeSelectedItem);
         editor.commit();
+
+        // change the theme GUI
+
+        LinearLayout llSettingsContainer = (LinearLayout) findViewById(R.id.content_settings);
+        llSettingsContainer.setBackgroundResource(THEME_LIST[spinnerThemeSelectedItem]);
 
         Log.v(LOGGING_TAG, "Theme is saved: " + spinnerThemeSelectedItem);
     }
