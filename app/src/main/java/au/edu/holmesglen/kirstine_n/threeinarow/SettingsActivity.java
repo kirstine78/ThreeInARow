@@ -43,11 +43,9 @@ public class SettingsActivity extends CommonActivity {
     private final String[] COLOR_STRING_LIST = {"Red", "White", "Blue", "Green","Pink", "Purple",
                                                 "Brown", "Orange", "Turquoise", "Yellow"};
 
-
-    // list of images with different colors
-//    final static int[] THEME_LIST = {R.drawable.blue_background, R.drawable.copper, R.drawable.gold};
-
     private Spinner spinnerTheme;
+    private Spinner spinnerDifficulty;
+    private Spinner spinnerGridSize;
 
 
     @Override
@@ -84,47 +82,20 @@ public class SettingsActivity extends CommonActivity {
             checkBoxList[i] = cb;
         }
 
-
-
-        // build spinner Theme
-//        final Spinner spinnerTheme = (Spinner) findViewById(R.id.spinner_theme);
+        // build spinner Theme and set adapter
         spinnerTheme = (Spinner) findViewById(R.id.spinner_theme);
+        spinnerTheme.setAdapter(getArrayAdapter(R.array.theme));
 
-        ArrayAdapter<CharSequence> adapterTheme = ArrayAdapter.createFromResource(
-                this, R.array.theme, android.R.layout.simple_spinner_item);
-        adapterTheme.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        // build spinner Difficulty and set adapter
+        spinnerDifficulty = (Spinner) findViewById(R.id.spinner_difficulty);
+        spinnerDifficulty.setAdapter(getArrayAdapter(R.array.difficulty));
 
-        spinnerTheme.setAdapter(adapterTheme);
+        // build spinner grid size and set adapter
+        spinnerGridSize = (Spinner) findViewById(R.id.spinner_grid_size);
+        spinnerGridSize.setAdapter(getArrayAdapter(R.array.grid_size));
 
-
-
-        // build spinner Difficulty
-        final Spinner spinnerDifficulty = (Spinner) findViewById(R.id.spinner_difficulty);
-
-        ArrayAdapter<CharSequence> adapterDifficulty = ArrayAdapter.createFromResource(
-                this, R.array.difficulty, android.R.layout.simple_spinner_item);
-        adapterDifficulty.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-
-        spinnerDifficulty.setAdapter(adapterDifficulty);
-
-
-
-        // build spinner grid size
-        final Spinner spinnerGridSize = (Spinner) findViewById(R.id.spinner_grid_size);
-
-        ArrayAdapter<CharSequence> adapterGridSize = ArrayAdapter.createFromResource(
-                this, R.array.grid_size, android.R.layout.simple_spinner_item);
-        adapterGridSize.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-
-        spinnerGridSize.setAdapter(adapterGridSize);
-
-
-
-        // set settings to what was saved (VALUES, not how it looks)
+        // set settings VALUES from to what they are saved as in shared preferences (VALUES, not how it looks)
         displaySavedValues();
-
-
-
 
         // prepare button for save settings
         final Button btnSaveSettings = (Button) findViewById(R.id.button);
@@ -193,37 +164,6 @@ public class SettingsActivity extends CommonActivity {
             }
         });
 
-        // decide what to do on item selected in spinner for color 1
-//        spinnerColor1.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener()
-//        {
-//            public void onItemSelected(AdapterView<?> parent, View view, int position, long id)
-//            {
-//                String selectedItem = parent.getItemAtPosition(position).toString();
-//
-//                // check which item is selected
-//                if(selectedItem.equals("Red"))
-//                {
-//                    // do your stuff
-//                    Log.v(LOGGING_TAG, "Color 1 Red chosen");
-//                    selCol1 = "Red";
-//                }
-//                if(selectedItem.equals("White"))
-//                {
-//                    // do your stuff
-//                    Log.v(LOGGING_TAG, "Color 1 White chosen");
-//                }
-//                if(selectedItem.equals("Blue"))
-//                {
-//                    // do your stuff
-//                    Log.v(LOGGING_TAG, "Color 1 White chosen");
-//                }
-//            } // to close the onItemSelected
-//            public void onNothingSelected(AdapterView<?> parent)
-//            {
-//
-//            }
-//        });
-
     }  // end onCreate
 
 
@@ -264,6 +204,14 @@ public class SettingsActivity extends CommonActivity {
         return false;  // nothing happened  no menu items has been selected
     }  // end onOptionsItemSelected
 
+
+    public ArrayAdapter<CharSequence> getArrayAdapter(int someStringArray){
+        ArrayAdapter<CharSequence> adapterDifficulty = ArrayAdapter.createFromResource(
+                this, someStringArray, android.R.layout.simple_spinner_item);
+        adapterDifficulty.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+
+        return adapterDifficulty;
+    }
 
     /**
      * save the settings chosen
