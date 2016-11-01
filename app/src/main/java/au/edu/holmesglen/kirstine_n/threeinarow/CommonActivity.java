@@ -75,8 +75,8 @@ public class CommonActivity extends AppCompatActivity {
         if (sharedPreferences.contains(GRID_SIZE)) {
             savedGridSize = sharedPreferences.getInt(GRID_SIZE, 4);
         } else {
-            // if no grid size was saved, then save default grid size
-            updateGridSizeInSharedPreferences(4);
+            // if no grid size was saved, then save default grid size (0 will be converted to 4)
+            updateGridSizeInSharedPreferences(0);
         }
 
         return savedGridSize;
