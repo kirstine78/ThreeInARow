@@ -6,9 +6,13 @@
 
     <style name="myThemeCopper" parent="@style/AppTheme.NoActionBar">
         <item name="android:windowBackground">@drawable/copper</item>
+        <item name="colorPrimary">@color/colorCopperThin</item>
+        <item name="colorPrimaryDark">@color/colorCopperThick</item>
     </style>
 
     <style name="myThemeGold" parent="@style/AppTheme.NoActionBar">
         <item name="android:windowBackground">@drawable/gold</item>
+        <item name="colorPrimary">@color/colorGoldThin</item>
+        <item name="colorPrimaryDark">@color/colorGoldThick</item>
     </style>
 </resources>

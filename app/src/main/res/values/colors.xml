@@ -8,4 +8,10 @@
     <color name="colorPrimaryDark">#2D57B9</color>
     <color name="colorBackground">#8797AF</color>
     <color name="colorAccent">#ffffff</color>
+
+    <color name="colorCopperThin">#b87333</color>
+    <color name="colorCopperThick">#c9803c</color>
+
+    <color name="colorGoldThin">#A38900</color>
+    <color name="colorGoldThick">#CCAC00</color>
 </resources>
