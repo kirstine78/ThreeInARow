@@ -60,10 +60,6 @@ public class ThreeRow
     {
         // get a 2D array
         mBoard = getTwoDimensionalArray(ROWS, COLUMNS);
-
-        // set default which are red and white
-        mPlayColorList[0] = COLOR_LIST[0];
-        mPlayColorList[1] = COLOR_LIST[1];
     }
 
 
