@@ -10,7 +10,6 @@ package au.edu.holmesglen.kirstine_n.threeinarow;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Menu;
@@ -21,18 +20,19 @@ import android.widget.Button;
 /**
  * Home screen activity
  */
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends CommonActivity {
 
     public static final String LOGGING_TAG = "KIRSTI ";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        Log.v(LOGGING_TAG, "MainActivity, in onCreate");
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
+        Log.v(LOGGING_TAG, "MainActivity, in onCreate");
 
         final Button btnStartGame = (Button) findViewById(R.id.btn_home_screen_start_game);
 

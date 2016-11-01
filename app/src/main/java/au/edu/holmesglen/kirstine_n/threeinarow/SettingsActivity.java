@@ -45,7 +45,7 @@ public class SettingsActivity extends CommonActivity {
 
 
     // list of images with different colors
-    final static int[] THEME_LIST = {R.drawable.blue_background, R.drawable.copper, R.drawable.gold};
+//    final static int[] THEME_LIST = {R.drawable.blue_background, R.drawable.copper, R.drawable.gold};
 
     private Spinner spinnerTheme;
 
@@ -293,7 +293,6 @@ public class SettingsActivity extends CommonActivity {
      * @param spinnerThemeSelectedItem
      */
     public void updateTheme(SharedPreferences.Editor editor, int spinnerThemeSelectedItem) {
-        // TODO update the theme in shared preferences
         Log.v(LOGGING_TAG, "SettingsActivity in updateTheme");
 
         updateThemeInSharedPreferences(editor, spinnerThemeSelectedItem);

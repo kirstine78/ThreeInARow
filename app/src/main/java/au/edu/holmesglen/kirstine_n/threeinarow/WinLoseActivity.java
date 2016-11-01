@@ -10,7 +10,6 @@ package au.edu.holmesglen.kirstine_n.threeinarow;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -18,7 +17,7 @@ import android.view.MenuItem;
 /**
  * class for the win lose statistic screen
  */
-public class WinLoseActivity extends AppCompatActivity {
+public class WinLoseActivity extends CommonActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

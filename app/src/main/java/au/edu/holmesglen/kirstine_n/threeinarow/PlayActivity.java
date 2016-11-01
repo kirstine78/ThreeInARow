@@ -13,7 +13,6 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Point;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Menu;
@@ -41,7 +40,7 @@ import static au.edu.holmesglen.kirstine_n.threeinarow.ThreeRow.ROWS;
  * fields.
  * The GUI will display next move to user.
  */
-public class PlayActivity extends AppCompatActivity {
+public class PlayActivity extends CommonActivity {
     // represents the internal state of the game
     private ThreeRow mGame;
 
