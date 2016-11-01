@@ -39,9 +39,9 @@ public class ThreeRow
 
     // minimum should be grid of 4 x 4
     // since business rule is a square grid you could change it to only have DIMENSION = 4
-    static int mRows    = 4;
-    static int mColumns = 4;
-    static int mFullGrid = mRows * mColumns;
+    static int mRows;
+    static int mColumns;
+    static int mFullGrid;
 
     final static int POSITIONS_RANDOMLY_OCCUPIED = 4;
 
@@ -61,20 +61,12 @@ public class ThreeRow
     {
         mRows       = gridDimension;
         mColumns    = gridDimension;
+        mFullGrid = mRows * mColumns;
 
         // get a 2D array
         mBoard = getTwoDimensionalArray(mRows, mColumns);
     }
 
-
-    /**
-     * how many fields on board are filled with colours
-     * @return
-     */
-//    public int getNoOfPositionsOccupied()
-//    {
-//        return mNoOfPositionsOccupied;
-//    }
 
 
     /**
@@ -86,16 +78,6 @@ public class ThreeRow
         // reset
         mNoOfPositionsOccupied = 0;
         mGameOver = false;
-
-//        // loop through outer array;
-//        for(int i = 0; i < mRows; i++)
-//        {
-//            // loop through inner array
-//            for(int j = 0; j < mColumns; j++)
-//            {
-//                mBoard[i][j] = GRID_CHARACTER_DEFAULT;
-//            }
-//        }
 
         // loop through outer array;
         for(int i = 0; i < mRows; i++)

@@ -72,6 +72,10 @@ public class PlayActivity extends CommonActivity {
         // build GUI grid
         mGridArray = new Item[ThreeRow.mRows * ThreeRow.mColumns];
 
+        // find gridview and set column numbers
+        GridView gridViewGame = (GridView) findViewById(R.id.gridview);
+        gridViewGame.setNumColumns(ThreeRow.mRows);
+
         // generate array with all Items in the mGridArray set to the grey image
         for (int i = 0; i < ThreeRow.mRows * ThreeRow.mColumns; i++)
         {
