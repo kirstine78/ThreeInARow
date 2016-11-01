@@ -274,6 +274,15 @@ public class SettingsActivity extends CommonActivity {
         // set the spinner to this theme
         Log.v(LOGGING_TAG, "SettingsActivity in displaySavedValueGridSize: " + gridsize);
 
+        // convert the row/colum size (4, 5, or 6) to (0, 1, or 2)
+        if (gridsize == 4) {
+            gridsize = 0;
+        } else if (gridsize == 5) {
+            gridsize = 1;
+        } else {
+            gridsize = 2;
+        }
+
         // set correct spinner item to be the selected one (based on value in storage)
         spinnerGridSize.setSelection(gridsize);
     }

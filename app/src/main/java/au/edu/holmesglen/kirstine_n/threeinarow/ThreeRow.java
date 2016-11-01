@@ -39,14 +39,14 @@ public class ThreeRow
 
     // minimum should be grid of 4 x 4
     // since business rule is a square grid you could change it to only have DIMENSION = 4
-    final static int ROWS       = 4;
-    final static int COLUMNS    = 4;
-    final static int FULL_GRID  = ROWS * COLUMNS;
+    static int mRows    = 4;
+    static int mColumns = 4;
+    static int mFullGrid = mRows * mColumns;
 
     final static int POSITIONS_RANDOMLY_OCCUPIED = 4;
 
     // declare a 2D array  String[rows][columns]
-    private String[][] mBoard = getTwoDimensionalArray(ROWS, COLUMNS);
+    private String[][] mBoard = getTwoDimensionalArray(mRows, mColumns);
 
     // flags
     private int mNoOfPositionsOccupied = 0;
@@ -59,7 +59,7 @@ public class ThreeRow
     public ThreeRow()
     {
         // get a 2D array
-        mBoard = getTwoDimensionalArray(ROWS, COLUMNS);
+        mBoard = getTwoDimensionalArray(mRows, mColumns);
     }
 
 
@@ -84,10 +84,10 @@ public class ThreeRow
         mGameOver = false;
 
         // loop through outer array;
-        for(int i = 0; i < ROWS; i++)
+        for(int i = 0; i < mRows; i++)
         {
             // loop through inner array
-            for(int j = 0; j < COLUMNS; j++)
+            for(int j = 0; j < mColumns; j++)
             {
                 mBoard[i][j] = GRID_CHARACTER_DEFAULT;
             }
@@ -108,8 +108,8 @@ public class ThreeRow
 
         while (keepGeneratingRandomPosition)
         {
-            int randomX = generateRandomInteger(COLUMNS);
-            int randomY = generateRandomInteger(ROWS);
+            int randomX = generateRandomInteger(mColumns);
+            int randomY = generateRandomInteger(mRows);
 
             if (isPositionAvailable(randomX, randomY))
             {
@@ -370,7 +370,7 @@ public class ThreeRow
     public boolean isGridFull()
     {
         // update flags
-        mGameOver = mNoOfPositionsOccupied == FULL_GRID;
+        mGameOver = mNoOfPositionsOccupied == mFullGrid;
 
         return mGameOver;
     }

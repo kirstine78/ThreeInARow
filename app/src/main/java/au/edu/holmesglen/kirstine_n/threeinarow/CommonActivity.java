@@ -57,7 +57,6 @@ public class CommonActivity extends AppCompatActivity {
         if (sharedPreferences.contains(THEME)) {
             savedTheme = sharedPreferences.getInt(THEME, 0);
         } else {
-            SharedPreferences.Editor editor = sharedPreferences.edit();
             updateThemeInSharedPreferences(0);
         }
 
@@ -69,13 +68,13 @@ public class CommonActivity extends AppCompatActivity {
         // To retrieve an already saved shared preference we use the contains() method
         // to check that the key value is stored in the sharedpreferences collection
 
-        int savedGridSize = 0;
+        // remember we save 4, 5, or 6, and not item selected 0, 1, or 2
+        int savedGridSize = 4;
 
         if (sharedPreferences.contains(GRID_SIZE)) {
-            savedGridSize = sharedPreferences.getInt(GRID_SIZE, 0);
+            savedGridSize = sharedPreferences.getInt(GRID_SIZE, 4);
         } else {
-            SharedPreferences.Editor editor = sharedPreferences.edit();
-            updateThemeInSharedPreferences(0);
+            updateThemeInSharedPreferences(4);
         }
 
         return savedGridSize;
@@ -91,14 +90,12 @@ public class CommonActivity extends AppCompatActivity {
         // To retrieve an already saved shared preference we use the contains() method
         // to check that the key value is stored in the sharedpreferences collection
 
-        int i = 0;
+        int i;
         final int DEFAULT_RED = 0;
 
         if (sharedPreferences.contains(COLOR_1)) {
             i = sharedPreferences.getInt(COLOR_1, DEFAULT_RED);
         } else {
-            SharedPreferences.Editor editor = sharedPreferences.edit();
-
             // set i to the default color
             i = DEFAULT_RED;
 
@@ -119,14 +116,12 @@ public class CommonActivity extends AppCompatActivity {
         // To retrieve an already saved shared preference we use the contains() method
         // to check that the key value is stored in the sharedpreferences collection
 
-        int i = 0;
+        int i;
         final int DEFAULT_WHITE = 1;
 
         if (sharedPreferences.contains(COLOR_2)) {
             i = sharedPreferences.getInt(COLOR_2, DEFAULT_WHITE);
         } else {
-            SharedPreferences.Editor editor = sharedPreferences.edit();
-
             // set i to the default color
             i = DEFAULT_WHITE;
 
@@ -166,6 +161,16 @@ public class CommonActivity extends AppCompatActivity {
     public void updateGridSizeInSharedPreferences(int spinnerGridSizeSelectedItem) {
         // TODO update the gridsize in shared preferences
         Log.v(LOGGING_TAG, "CommonActivity in updateGridSizeInSharedPreferences: " + spinnerGridSizeSelectedItem);
+
+        // convert to the actual row/colum size (4, 5, or 6)
+        if (spinnerGridSizeSelectedItem == 0) {
+            spinnerGridSizeSelectedItem = 4;
+        } else if (spinnerGridSizeSelectedItem == 1) {
+            spinnerGridSizeSelectedItem = 5;
+        } else {
+            spinnerGridSizeSelectedItem = 6;
+        }
+
         // format is: editor.putString("key", "value");
         // in our example the key/value is:
         editor.putInt(GRID_SIZE, spinnerGridSizeSelectedItem);
