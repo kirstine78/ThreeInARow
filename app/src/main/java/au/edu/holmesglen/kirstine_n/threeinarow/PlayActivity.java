@@ -8,9 +8,7 @@ package au.edu.holmesglen.kirstine_n.threeinarow;
  * Version:         1.1
  */
 
-import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.graphics.Point;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
@@ -25,8 +23,6 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import static au.edu.holmesglen.kirstine_n.threeinarow.MainActivity.LOGGING_TAG;
-import static au.edu.holmesglen.kirstine_n.threeinarow.SettingsActivity.COLOR_1;
-import static au.edu.holmesglen.kirstine_n.threeinarow.SettingsActivity.COLOR_2;
 import static au.edu.holmesglen.kirstine_n.threeinarow.ThreeRow.COLOR_LIST;
 import static au.edu.holmesglen.kirstine_n.threeinarow.ThreeRow.COLUMNS;
 import static au.edu.holmesglen.kirstine_n.threeinarow.ThreeRow.POSITIONS_RANDOMLY_OCCUPIED;
@@ -69,14 +65,11 @@ public class PlayActivity extends CommonActivity {
         // instantiate mGame so the activity can access the ThreeRow game logic
         mGame = new ThreeRow();
 
-        // set up preferences collection
-        SharedPreferences sharedPreferences = getSharedPreferences(SettingsActivity.MY_PREFERENCES, Context.MODE_PRIVATE);
-
-        // is there are color choices saved in settings, then assign them to mPlayColorList
-        if (sharedPreferences.contains(COLOR_1) && sharedPreferences.contains(COLOR_2)) {
-            mGame.mPlayColorList[0] = COLOR_LIST[sharedPreferences.getInt(COLOR_1, 0)];
-            mGame.mPlayColorList[1] = COLOR_LIST[sharedPreferences.getInt(COLOR_2, 1)];
-        }
+        // get the colors saved in shared preferences
+        // if no color is saved, then it will get the default value
+        // then assign them to mPlayColorList
+        mGame.mPlayColorList[0] = COLOR_LIST[getSavedValueColor1()];
+        mGame.mPlayColorList[1] = COLOR_LIST[getSavedValueColor2()];
 
         // generate array with all Items in the mGridArray set to the grey image
         for (int i = 0; i < 16; i++)

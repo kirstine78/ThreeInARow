@@ -9,7 +9,6 @@ package au.edu.holmesglen.kirstine_n.threeinarow;
  */
 
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
@@ -106,8 +105,8 @@ public class SettingsActivity extends CommonActivity {
             public void onClick(View v) {
 
                 // make sure that exactly two colors are chosen
+                final int DESIRED_CHECKBOXES_CHECKED = 2;
                 int amountChkBoxChecked = 0;
-                int desiredColorsAmountChosen = 2;
 
                 for (int i = 0; i < ThreeRow.COLOR_LIST.length; i++) {
                     if (checkBoxList[i].isChecked()) {
@@ -116,30 +115,16 @@ public class SettingsActivity extends CommonActivity {
                     }
                 }
 
-
                 Log.v(LOGGING_TAG, "amount checked: " + amountChkBoxChecked);
 
                 // check how many colors chosen
-                if (amountChkBoxChecked == desiredColorsAmountChosen) {
+                if (amountChkBoxChecked == DESIRED_CHECKBOXES_CHECKED) {
 
                     // do the THEME spinner
-//                    String textSpinnerTheme = (String)spinnerTheme.getSelectedItem();
-
                     int spinnerThemeSelectedItem = spinnerTheme.getSelectedItemPosition();
 
-                    int index = 0;  // will never be other than 0 and 1
-
-                    // we know only two color checkboxes are checked
-                    for (int i = 0; i < ThreeRow.COLOR_LIST.length; i++)
-                    {
-                        // if checked, then assign i to colorIndexList[index]
-                        if (checkBoxList[i].isChecked()) {
-                            Log.v(LOGGING_TAG, "chk checked: " + i);
-                            // add to list
-                            colorIndexList[index] = i;
-                            index++;
-                        }
-                    }
+                    // put the correct indexes chosen from checkBoxList array into the colorIndexList array
+                    populateColorIndexList();
 
                     Log.v(LOGGING_TAG, "colorIndexList 0: " + colorIndexList[0] );
                     Log.v(LOGGING_TAG, "colorIndexList 1: " + colorIndexList[1] );
@@ -157,14 +142,33 @@ public class SettingsActivity extends CommonActivity {
                     // save the settings
                     saveSettings(spinnerThemeSelectedItem, textSpinnerDifficulty, textSpinnerGridSize, colorIndexList[0], colorIndexList[1]);
                 } else {
-                    // not ok amount, so don't proceed with any saving
+                    // not ok amount of checkbox colors chosen, so don't proceed with any saving
                     Toast.makeText(SettingsActivity.this, "Please choose exactly two colors", Toast.LENGTH_SHORT).show();
                 }
-
             }
-        });
+        });  // end btnSaveSettings.setOnClickListener
 
     }  // end onCreate
+
+
+    /**
+     * will populate our colorIndexList array with the checkboxes chosen from the checkBoxList array
+     */
+    public void populateColorIndexList() {
+        int index = 0;  // will never be more than 1
+
+        // we know only two color checkboxes are checked
+        for (int i = 0; i < ThreeRow.COLOR_LIST.length; i++)
+        {
+            // if checked, then assign i to colorIndexList[index]
+            if (checkBoxList[i].isChecked()) {
+                Log.v(LOGGING_TAG, "chk checked: " + i);
+                // add to list
+                colorIndexList[index] = i;
+                index++;
+            }
+        }
+    }
 
 
     @Override
@@ -205,6 +209,11 @@ public class SettingsActivity extends CommonActivity {
     }  // end onOptionsItemSelected
 
 
+    /**
+     * create an adapter using string array from resources in strings.xml
+     * @param someStringArray
+     * @return   ArrayAdapter with values from resources
+     */
     public ArrayAdapter<CharSequence> getArrayAdapter(int someStringArray){
         ArrayAdapter<CharSequence> adapterDifficulty = ArrayAdapter.createFromResource(
                 this, someStringArray, android.R.layout.simple_spinner_item);
@@ -212,6 +221,7 @@ public class SettingsActivity extends CommonActivity {
 
         return adapterDifficulty;
     }
+
 
     /**
      * save the settings chosen
@@ -224,17 +234,16 @@ public class SettingsActivity extends CommonActivity {
                                int itemNumberColor1, int itemNumberColor2) {
 
         Log.v(LOGGING_TAG, "SettingsActivity in saveSettings");
-        SharedPreferences.Editor editor = sharedPreferences.edit();
 
-        updateThemeInSharedPreferences(editor, spinnerThemeSelectedItem);
+        updateThemeInSharedPreferences(spinnerThemeSelectedItem);
 
         // change the theme GUI for SettingsActivity
         Utils.changeToTheme(this, spinnerThemeSelectedItem);
 
-//        updateDifficultyInSharedPreferences(editor, textSpinnerDifficulty);
-//        updateGridSizeInSharedPreferences(editor, textSpinnerGridSize);
-        updateColor1InSharedPreferences(editor, itemNumberColor1);
-        updateColor2InSharedPreferences(editor, itemNumberColor2);
+//        updateDifficultyInSharedPreferences(textSpinnerDifficulty);
+//        updateGridSizeInSharedPreferences(textSpinnerGridSize);
+        updateColor1InSharedPreferences(itemNumberColor1);
+        updateColor2InSharedPreferences(itemNumberColor2);
         Toast.makeText(this, "Settings are saved", Toast.LENGTH_SHORT).show();
     }
 
@@ -252,60 +261,6 @@ public class SettingsActivity extends CommonActivity {
 
         displaySavedValueColor1(getSavedValueColor1());
         displaySavedValueColor2(getSavedValueColor2());
-    }
-
-
-    /**
-     * fetch saved color 1 from local storage
-     * @return an integer representing the index to be used in checkBoxList to set the specific check
-     * box to be checked.
-     */
-    public int getSavedValueColor1() {
-        // To retrieve an already saved shared preference we use the contains() method
-        // to check that the key value is stored in the sharedpreferences collection
-
-        int i = 0;
-        final int DEFAULT_RED = 0;
-
-        if (sharedPreferences.contains(COLOR_1)) {
-            i = sharedPreferences.getInt(COLOR_1, DEFAULT_RED);
-        } else {
-            SharedPreferences.Editor editor = sharedPreferences.edit();
-
-            // set i to the default color
-            i = DEFAULT_RED;
-
-            updateColor1InSharedPreferences(editor, DEFAULT_RED);
-        }
-
-        return i;
-    }
-
-
-    /**
-     * fetch saved color 2 from local storage
-     * @returnan integer representing the index to be used in checkBoxList to set the specific check
-     * box to be checked.
-     */
-    public int getSavedValueColor2() {
-        // To retrieve an already saved shared preference we use the contains() method
-        // to check that the key value is stored in the sharedpreferences collection
-
-        int i = 0;
-        final int DEFAULT_WHITE = 1;
-
-        if (sharedPreferences.contains(COLOR_2)) {
-            i = sharedPreferences.getInt(COLOR_2, DEFAULT_WHITE);
-        } else {
-            SharedPreferences.Editor editor = sharedPreferences.edit();
-
-            // set i to the default color
-            i = DEFAULT_WHITE;
-
-            updateColor2InSharedPreferences(editor, DEFAULT_WHITE);
-        }
-
-        return i;
     }
 
 

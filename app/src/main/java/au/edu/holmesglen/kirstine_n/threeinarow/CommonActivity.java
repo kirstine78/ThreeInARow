@@ -1,5 +1,13 @@
 package au.edu.holmesglen.kirstine_n.threeinarow;
 
+/**
+ * Student name:    Kirstine B. Nielsen
+ * Student id:      100527988
+ * Date:            01/1/2016
+ * Project:         Three in a row
+ * Version:         1.1
+ */
+
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -19,7 +27,8 @@ import static au.edu.holmesglen.kirstine_n.threeinarow.SettingsActivity.THEME;
 public class CommonActivity extends AppCompatActivity {
 
     // decl reference to SharedPreferences class
-    public SharedPreferences sharedPreferences;
+    private SharedPreferences sharedPreferences;
+    private SharedPreferences.Editor editor;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,6 +36,7 @@ public class CommonActivity extends AppCompatActivity {
 
         // set up preferences collection
         sharedPreferences = getSharedPreferences(MY_PREFERENCES, Context.MODE_PRIVATE);
+        editor = sharedPreferences.edit();
 
         // set theme of this activity to the globally chosen theme
         Utils.sTheme = getSavedValueTheme();  // get saved theme, if nothing there, then default 0
@@ -44,7 +54,7 @@ public class CommonActivity extends AppCompatActivity {
             savedTheme = sharedPreferences.getInt(THEME, 0);
         } else {
             SharedPreferences.Editor editor = sharedPreferences.edit();
-            updateThemeInSharedPreferences(editor, 0);
+            updateThemeInSharedPreferences(0);
         }
 
         return savedTheme;
@@ -52,7 +62,7 @@ public class CommonActivity extends AppCompatActivity {
 
 
 
-    public void updateThemeInSharedPreferences(SharedPreferences.Editor editor, int spinnerThemeSelectedItem) {
+    public void updateThemeInSharedPreferences(int spinnerThemeSelectedItem) {
         // format is: editor.putString("key", "value");
         // in our example the key/value is:
         editor.putInt(THEME, spinnerThemeSelectedItem);
@@ -66,9 +76,9 @@ public class CommonActivity extends AppCompatActivity {
      * saves the difficulty level to local storage
      * @param textSpinnerDifficulty
      */
-    public void updateDifficultyInSharedPreferences(SharedPreferences.Editor editor, String textSpinnerDifficulty) {
+    public void updateDifficultyInSharedPreferences(String textSpinnerDifficulty) {
         // TODO update the difficulty in shared preferences
-        Log.v(LOGGING_TAG, "SettingsActivity in updateDifficulty");
+        Log.v(LOGGING_TAG, "CommonActivity in updateDifficultyInSharedPreferences");
     }
 
 
@@ -76,18 +86,17 @@ public class CommonActivity extends AppCompatActivity {
      * saves the difficulty grid size to local storage
      * @param textSpinnerGridSize
      */
-    public void updateGridSizeInSharedPreferences(SharedPreferences.Editor editor, String textSpinnerGridSize) {
+    public void updateGridSizeInSharedPreferences(String textSpinnerGridSize) {
         // TODO update the gridsize in shared preferences
-        Log.v(LOGGING_TAG, "SettingsActivity in updateGridSize");
+        Log.v(LOGGING_TAG, "CommonActivity in updateGridSizeInSharedPreferences");
     }
 
 
     /**
      * saves color 1 to local storage
-     * @param editor
      * @param color1
      */
-    public void updateColor1InSharedPreferences(SharedPreferences.Editor editor, int color1) {
+    public void updateColor1InSharedPreferences(int color1) {
         // format is: editor.putString("key", "value");
         // in our example the key/value is:
         editor.putInt(COLOR_1, color1);
@@ -99,12 +108,11 @@ public class CommonActivity extends AppCompatActivity {
 
     /**
      * saves color 2 to local storage
-     * @param editor
      * @param color2
      */
-    public void updateColor2InSharedPreferences(SharedPreferences.Editor editor, int color2) {
+    public void updateColor2InSharedPreferences(int color2) {
         // TODO update the color 2 in shared preferences
-        Log.v(LOGGING_TAG, "SettingsActivity in updateColor2InSharedPreferences");
+        Log.v(LOGGING_TAG, "CommonActivity in updateColor2InSharedPreferences");
 
         // format is: editor.putString("key", "value");
         // in our example the key/value is:
@@ -112,6 +120,62 @@ public class CommonActivity extends AppCompatActivity {
         editor.commit();
 
         Log.v(LOGGING_TAG, "Color2 is saved");
+    }
+
+
+    /**
+     * fetch saved color 1 from local storage
+     * @return an integer representing the index to be used in checkBoxList to set the specific check
+     * box to be checked.
+     */
+    public int getSavedValueColor1() {
+        // To retrieve an already saved shared preference we use the contains() method
+        // to check that the key value is stored in the sharedpreferences collection
+
+        int i = 0;
+        final int DEFAULT_RED = 0;
+
+        if (sharedPreferences.contains(COLOR_1)) {
+            i = sharedPreferences.getInt(COLOR_1, DEFAULT_RED);
+        } else {
+            SharedPreferences.Editor editor = sharedPreferences.edit();
+
+            // set i to the default color
+            i = DEFAULT_RED;
+
+            // update to default
+            updateColor1InSharedPreferences(DEFAULT_RED);
+        }
+
+        return i;
+    }
+
+
+    /**
+     * fetch saved color 2 from local storage
+     * @returnan integer representing the index to be used in checkBoxList to set the specific check
+     * box to be checked.
+     */
+    public int getSavedValueColor2() {
+        // To retrieve an already saved shared preference we use the contains() method
+        // to check that the key value is stored in the sharedpreferences collection
+
+        int i = 0;
+        final int DEFAULT_WHITE = 1;
+
+        if (sharedPreferences.contains(COLOR_2)) {
+            i = sharedPreferences.getInt(COLOR_2, DEFAULT_WHITE);
+        } else {
+            SharedPreferences.Editor editor = sharedPreferences.edit();
+
+            // set i to the default color
+            i = DEFAULT_WHITE;
+
+            // update to default
+            updateColor2InSharedPreferences(DEFAULT_WHITE);
+        }
+
+        return i;
     }
 
 }
