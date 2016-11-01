@@ -8,11 +8,9 @@ package au.edu.holmesglen.kirstine_n.threeinarow;
  * Version:         1.1
  */
 
-import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Menu;
@@ -31,7 +29,7 @@ import static au.edu.holmesglen.kirstine_n.threeinarow.MainActivity.LOGGING_TAG;
  * SettingsActivity is used for storing preferences in phones local storage
  * You can save difficulty of game, grid size, colors etc.
  */
-public class SettingsActivity extends AppCompatActivity {
+public class SettingsActivity extends CommonActivity {
 
     // decl constants
     public static final String MY_PREFERENCES = "MyPrefs";
@@ -49,24 +47,12 @@ public class SettingsActivity extends AppCompatActivity {
     // list of images with different colors
     final static int[] THEME_LIST = {R.drawable.blue_background, R.drawable.copper, R.drawable.gold};
 
-    // decl reference to SharedPreferences class
-    private SharedPreferences sharedPreferences;
-
     private Spinner spinnerTheme;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-
-        // set up preferences collection
-        sharedPreferences = getSharedPreferences(MY_PREFERENCES, Context.MODE_PRIVATE);
-
-        // set theme of this activity to the globally chosen theme
-        Utils.sTheme = getSavedValueTheme();  // get saved theme, if nothing there, then default 0
-        Utils.onActivityCreateSetTheme(this);
-
         setContentView(R.layout.activity_settings);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -310,10 +296,7 @@ public class SettingsActivity extends AppCompatActivity {
         // TODO update the theme in shared preferences
         Log.v(LOGGING_TAG, "SettingsActivity in updateTheme");
 
-        // format is: editor.putString("key", "value");
-        // in our example the key/value is:
-        editor.putInt(THEME, spinnerThemeSelectedItem);
-        editor.commit();
+        updateThemeInSharedPreferences(editor, spinnerThemeSelectedItem);
 
         // change the theme GUI for SettingsActivity
         Utils.changeToTheme(this, spinnerThemeSelectedItem);
@@ -391,23 +374,6 @@ public class SettingsActivity extends AppCompatActivity {
 
         displaySavedValueColor1(getSavedValueColor1());
         displaySavedValueColor2(getSavedValueColor2());
-    }
-
-
-    public int getSavedValueTheme() {
-        // To retrieve an already saved shared preference we use the contains() method
-        // to check that the key value is stored in the sharedpreferences collection
-
-        int savedTheme = 0;
-
-        if (sharedPreferences.contains(THEME)) {
-            savedTheme = sharedPreferences.getInt(THEME, 0);
-        } else {
-            SharedPreferences.Editor editor = sharedPreferences.edit();
-            updateTheme(editor, 0);
-        }
-
-        return savedTheme;
     }
 
 
