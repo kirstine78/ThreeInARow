@@ -1,6 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <style name="myTheme" parent="@style/AppTheme.NoActionBar">
+    <style name="myThemeBlue" parent="@style/AppTheme.NoActionBar">
         <item name="android:windowBackground">@drawable/blue_background</item>
+    </style>
+
+    <style name="myThemeCopper" parent="@style/AppTheme.NoActionBar">
+        <item name="android:windowBackground">@drawable/copper</item>
+    </style>
+
+    <style name="myThemeGold" parent="@style/AppTheme.NoActionBar">
+        <item name="android:windowBackground">@drawable/gold</item>
     </style>
 </resources>

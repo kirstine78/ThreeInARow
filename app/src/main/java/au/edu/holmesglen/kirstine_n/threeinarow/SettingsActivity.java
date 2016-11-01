@@ -58,6 +58,15 @@ public class SettingsActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+
+        // set up preferences collection
+        sharedPreferences = getSharedPreferences(MY_PREFERENCES, Context.MODE_PRIVATE);
+
+        // set theme of this activity to the globally chosen theme
+        Utils.sTheme = getSavedValueTheme();  // get saved theme, if nothing there, then default 0
+        Utils.onActivityCreateSetTheme(this);
+
         setContentView(R.layout.activity_settings);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -125,11 +134,10 @@ public class SettingsActivity extends AppCompatActivity {
 
 
 
-        // set up preferences collection
-        sharedPreferences = getSharedPreferences(MY_PREFERENCES, Context.MODE_PRIVATE);
-
-        // set settings to what was saved
+        // set settings to what was saved (VALUES, not how it looks)
         displaySavedValues();
+
+
 
 
         // prepare button for save settings
@@ -307,10 +315,8 @@ public class SettingsActivity extends AppCompatActivity {
         editor.putInt(THEME, spinnerThemeSelectedItem);
         editor.commit();
 
-        // change the theme GUI
-
-        LinearLayout llSettingsContainer = (LinearLayout) findViewById(R.id.content_settings);
-        llSettingsContainer.setBackgroundResource(THEME_LIST[spinnerThemeSelectedItem]);
+        // change the theme GUI for SettingsActivity
+        Utils.changeToTheme(this, spinnerThemeSelectedItem);
 
         Log.v(LOGGING_TAG, "Theme is saved: " + spinnerThemeSelectedItem);
     }
@@ -379,6 +385,7 @@ public class SettingsActivity extends AppCompatActivity {
     public void displaySavedValues() {
         // TODO put code here
         Log.v(LOGGING_TAG, "SettingsActivity in displaySavedValues");
+
 
         displaySavedValueTheme(getSavedValueTheme());
 
