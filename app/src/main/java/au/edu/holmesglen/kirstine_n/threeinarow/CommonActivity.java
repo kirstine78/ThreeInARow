@@ -15,10 +15,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 
 import static au.edu.holmesglen.kirstine_n.threeinarow.MainActivity.LOGGING_TAG;
-import static au.edu.holmesglen.kirstine_n.threeinarow.SettingsActivity.COLOR_1;
-import static au.edu.holmesglen.kirstine_n.threeinarow.SettingsActivity.COLOR_2;
-import static au.edu.holmesglen.kirstine_n.threeinarow.SettingsActivity.MY_PREFERENCES;
-import static au.edu.holmesglen.kirstine_n.threeinarow.SettingsActivity.THEME;
 
 /**
  * Created by Kirsti on 1/11/2016.
@@ -26,9 +22,17 @@ import static au.edu.holmesglen.kirstine_n.threeinarow.SettingsActivity.THEME;
 
 public class CommonActivity extends AppCompatActivity {
 
+    // decl constants
+    public static final String MY_PREFERENCES = "MyPrefs";
+    public static final String COLOR_1 = "color1Key";
+    public static final String COLOR_2 = "color2Key";
+    public static final String THEME = "themeKey";
+    public static final String GRID_SIZE = "gridsizeKey";
+
     // decl reference to SharedPreferences class
     private SharedPreferences sharedPreferences;
     private SharedPreferences.Editor editor;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,65 +65,20 @@ public class CommonActivity extends AppCompatActivity {
     }
 
 
+    public int getSavedValueGridSize() {
+        // To retrieve an already saved shared preference we use the contains() method
+        // to check that the key value is stored in the sharedpreferences collection
 
-    public void updateThemeInSharedPreferences(int spinnerThemeSelectedItem) {
-        // format is: editor.putString("key", "value");
-        // in our example the key/value is:
-        editor.putInt(THEME, spinnerThemeSelectedItem);
-        editor.commit();
+        int savedGridSize = 0;
 
-        Log.v(LOGGING_TAG, "Theme is saved: " + spinnerThemeSelectedItem);
-    }
+        if (sharedPreferences.contains(GRID_SIZE)) {
+            savedGridSize = sharedPreferences.getInt(GRID_SIZE, 0);
+        } else {
+            SharedPreferences.Editor editor = sharedPreferences.edit();
+            updateThemeInSharedPreferences(0);
+        }
 
-
-    /**
-     * saves the difficulty level to local storage
-     * @param textSpinnerDifficulty
-     */
-    public void updateDifficultyInSharedPreferences(String textSpinnerDifficulty) {
-        // TODO update the difficulty in shared preferences
-        Log.v(LOGGING_TAG, "CommonActivity in updateDifficultyInSharedPreferences");
-    }
-
-
-    /**
-     * saves the difficulty grid size to local storage
-     * @param textSpinnerGridSize
-     */
-    public void updateGridSizeInSharedPreferences(String textSpinnerGridSize) {
-        // TODO update the gridsize in shared preferences
-        Log.v(LOGGING_TAG, "CommonActivity in updateGridSizeInSharedPreferences");
-    }
-
-
-    /**
-     * saves color 1 to local storage
-     * @param color1
-     */
-    public void updateColor1InSharedPreferences(int color1) {
-        // format is: editor.putString("key", "value");
-        // in our example the key/value is:
-        editor.putInt(COLOR_1, color1);
-        editor.commit();
-
-        Log.v(LOGGING_TAG, "Color1 is saved");
-    }
-
-
-    /**
-     * saves color 2 to local storage
-     * @param color2
-     */
-    public void updateColor2InSharedPreferences(int color2) {
-        // TODO update the color 2 in shared preferences
-        Log.v(LOGGING_TAG, "CommonActivity in updateColor2InSharedPreferences");
-
-        // format is: editor.putString("key", "value");
-        // in our example the key/value is:
-        editor.putInt(COLOR_2, color2);
-        editor.commit();
-
-        Log.v(LOGGING_TAG, "Color2 is saved");
+        return savedGridSize;
     }
 
 
@@ -177,5 +136,76 @@ public class CommonActivity extends AppCompatActivity {
 
         return i;
     }
+
+
+
+    public void updateThemeInSharedPreferences(int spinnerThemeSelectedItem) {
+        // format is: editor.putString("key", "value");
+        // in our example the key/value is:
+        editor.putInt(THEME, spinnerThemeSelectedItem);
+        editor.commit();
+
+        Log.v(LOGGING_TAG, "Theme is saved: " + spinnerThemeSelectedItem);
+    }
+
+
+    /**
+     * saves the difficulty level to local storage
+     * @param textSpinnerDifficulty
+     */
+    public void updateDifficultyInSharedPreferences(String textSpinnerDifficulty) {
+        // TODO update the difficulty in shared preferences
+        Log.v(LOGGING_TAG, "CommonActivity in updateDifficultyInSharedPreferences");
+    }
+
+
+    /**
+     * saves the difficulty grid size to local storage
+     * @param spinnerGridSizeSelectedItem
+     */
+    public void updateGridSizeInSharedPreferences(int spinnerGridSizeSelectedItem) {
+        // TODO update the gridsize in shared preferences
+        Log.v(LOGGING_TAG, "CommonActivity in updateGridSizeInSharedPreferences: " + spinnerGridSizeSelectedItem);
+        // format is: editor.putString("key", "value");
+        // in our example the key/value is:
+        editor.putInt(GRID_SIZE, spinnerGridSizeSelectedItem);
+        editor.commit();
+
+        Log.v(LOGGING_TAG, "Gridsize is saved: " + spinnerGridSizeSelectedItem);
+    }
+
+
+    /**
+     * saves color 1 to local storage
+     * @param color1
+     */
+    public void updateColor1InSharedPreferences(int color1) {
+        // format is: editor.putString("key", "value");
+        // in our example the key/value is:
+        editor.putInt(COLOR_1, color1);
+        editor.commit();
+
+        Log.v(LOGGING_TAG, "Color1 is saved");
+    }
+
+
+    /**
+     * saves color 2 to local storage
+     * @param color2
+     */
+    public void updateColor2InSharedPreferences(int color2) {
+        // TODO update the color 2 in shared preferences
+        Log.v(LOGGING_TAG, "CommonActivity in updateColor2InSharedPreferences");
+
+        // format is: editor.putString("key", "value");
+        // in our example the key/value is:
+        editor.putInt(COLOR_2, color2);
+        editor.commit();
+
+        Log.v(LOGGING_TAG, "Color2 is saved");
+    }
+
+
+
 
 }

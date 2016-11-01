@@ -30,12 +30,6 @@ import static au.edu.holmesglen.kirstine_n.threeinarow.MainActivity.LOGGING_TAG;
  */
 public class SettingsActivity extends CommonActivity {
 
-    // decl constants
-    public static final String MY_PREFERENCES = "MyPrefs";
-    public static final String COLOR_1 = "color1Key";
-    public static final String COLOR_2 = "color2Key";
-    public static final String THEME = "themeKey";
-
     private CheckBox[] checkBoxList = new CheckBox[ThreeRow.COLOR_LIST.length];
     private int[] colorIndexList = new int[2];
 
@@ -108,6 +102,7 @@ public class SettingsActivity extends CommonActivity {
                 final int DESIRED_CHECKBOXES_CHECKED = 2;
                 int amountChkBoxChecked = 0;
 
+                // find out how many check boxes for colors were checked
                 for (int i = 0; i < ThreeRow.COLOR_LIST.length; i++) {
                     if (checkBoxList[i].isChecked()) {
                         Log.v(LOGGING_TAG, "chk checked: " + i);
@@ -117,30 +112,31 @@ public class SettingsActivity extends CommonActivity {
 
                 Log.v(LOGGING_TAG, "amount checked: " + amountChkBoxChecked);
 
-                // check how many colors chosen
+                // check if amount of colors chosen is exactly 2
                 if (amountChkBoxChecked == DESIRED_CHECKBOXES_CHECKED) {
+                    // ok to proceed with saving
 
                     // do the THEME spinner
                     int spinnerThemeSelectedItem = spinnerTheme.getSelectedItemPosition();
 
+                    // do the COLORS
                     // put the correct indexes chosen from checkBoxList array into the colorIndexList array
                     populateColorIndexList();
 
                     Log.v(LOGGING_TAG, "colorIndexList 0: " + colorIndexList[0] );
                     Log.v(LOGGING_TAG, "colorIndexList 1: " + colorIndexList[1] );
 
-                    // 2 colors are chosen
-
                     // get difficulty chosen
                     String textSpinnerDifficulty = spinnerDifficulty.getSelectedItem().toString();
                     Log.v(LOGGING_TAG, "Difficulty: " + textSpinnerDifficulty);
 
-                    // get grid size chosen
-                    String textSpinnerGridSize = spinnerGridSize.getSelectedItem().toString();
-                    Log.v(LOGGING_TAG, "GridSize: " + textSpinnerGridSize);
+                    // get GRID SIZE spinner
+                    int spinnerGridSizeSelectedItem = spinnerGridSize.getSelectedItemPosition();
+//                    String textSpinnerGridSize = spinnerGridSize.getSelectedItem().toString();
+//                    Log.v(LOGGING_TAG, "GridSize: " + textSpinnerGridSize);
 
                     // save the settings
-                    saveSettings(spinnerThemeSelectedItem, textSpinnerDifficulty, textSpinnerGridSize, colorIndexList[0], colorIndexList[1]);
+                    saveSettings(spinnerThemeSelectedItem, textSpinnerDifficulty, spinnerGridSizeSelectedItem, colorIndexList[0], colorIndexList[1]);
                 } else {
                     // not ok amount of checkbox colors chosen, so don't proceed with any saving
                     Toast.makeText(SettingsActivity.this, "Please choose exactly two colors", Toast.LENGTH_SHORT).show();
@@ -226,24 +222,24 @@ public class SettingsActivity extends CommonActivity {
     /**
      * save the settings chosen
      * @param textSpinnerDifficulty
-     * @param textSpinnerGridSize
+     * @param spinnerGridSizeSelectedItem
      * @param itemNumberColor1
      * @param itemNumberColor2
      */
-    public void saveSettings(int spinnerThemeSelectedItem, String textSpinnerDifficulty, String textSpinnerGridSize,
+    public void saveSettings(int spinnerThemeSelectedItem, String textSpinnerDifficulty, int spinnerGridSizeSelectedItem,
                                int itemNumberColor1, int itemNumberColor2) {
 
         Log.v(LOGGING_TAG, "SettingsActivity in saveSettings");
 
         updateThemeInSharedPreferences(spinnerThemeSelectedItem);
+//        updateDifficultyInSharedPreferences(textSpinnerDifficulty);
+        updateGridSizeInSharedPreferences(spinnerGridSizeSelectedItem);
+        updateColor1InSharedPreferences(itemNumberColor1);
+        updateColor2InSharedPreferences(itemNumberColor2);
 
         // change the theme GUI for SettingsActivity
         Utils.changeToTheme(this, spinnerThemeSelectedItem);
 
-//        updateDifficultyInSharedPreferences(textSpinnerDifficulty);
-//        updateGridSizeInSharedPreferences(textSpinnerGridSize);
-        updateColor1InSharedPreferences(itemNumberColor1);
-        updateColor2InSharedPreferences(itemNumberColor2);
         Toast.makeText(this, "Settings are saved", Toast.LENGTH_SHORT).show();
     }
 
@@ -258,6 +254,7 @@ public class SettingsActivity extends CommonActivity {
 
 
         displaySavedValueTheme(getSavedValueTheme());
+        displaySavedValueGridSize(getSavedValueGridSize());
 
         displaySavedValueColor1(getSavedValueColor1());
         displaySavedValueColor2(getSavedValueColor2());
@@ -271,6 +268,16 @@ public class SettingsActivity extends CommonActivity {
         // set correct spinner item to be the selected one (based on value in storage)
         spinnerTheme.setSelection(theme);
     }
+
+
+    public void displaySavedValueGridSize(int gridsize) {
+        // set the spinner to this theme
+        Log.v(LOGGING_TAG, "SettingsActivity in displaySavedValueGridSize: " + gridsize);
+
+        // set correct spinner item to be the selected one (based on value in storage)
+        spinnerGridSize.setSelection(gridsize);
+    }
+
 
     /**
      * set the correct checkbox for a color 1 to be checked
