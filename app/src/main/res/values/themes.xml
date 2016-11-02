@@ -15,4 +15,5 @@
         <item name="colorPrimary">@color/colorGoldThin</item>
         <item name="colorPrimaryDark">@color/colorGoldThick</item>
     </style>
+
 </resources>
