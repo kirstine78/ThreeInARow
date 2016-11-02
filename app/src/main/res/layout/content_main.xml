@@ -4,7 +4,7 @@ Student name:    Kirstine B. Nielsen
 Student id:      100527988
 Date:            13/10/2016
 Project:         Three in a row
-Version:         1.0 - Prototype
+Version:         1.1
 -->
 
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
@@ -62,57 +62,5 @@ Version:         1.0 - Prototype
         android:text="@string/main_help_axplain"
         android:textSize="20dp"
         android:textColor="@android:color/white"/>
-
-    <!--<RelativeLayout-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:paddingBottom="24dp">-->
-
-        <!--&lt;!&ndash;<ImageView&ndash;&gt;-->
-            <!--&lt;!&ndash;android:id="@+id/image"&ndash;&gt;-->
-            <!--&lt;!&ndash;android:layout_width="wrap_content"&ndash;&gt;-->
-            <!--&lt;!&ndash;android:layout_height="wrap_content"&ndash;&gt;-->
-            <!--&lt;!&ndash;android:layout_alignParentLeft="true"&ndash;&gt;-->
-            <!--&lt;!&ndash;android:src="@mipmap/welcome"&ndash;&gt;-->
-            <!--&lt;!&ndash;android:paddingRight="12dp"/>&ndash;&gt;-->
-    <!--</RelativeLayout>-->
-
-    <!--<RelativeLayout-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:paddingBottom="24dp">-->
-
-        <!--<ImageView-->
-            <!--android:id="@+id/image2"-->
-            <!--android:layout_width="wrap_content"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:layout_alignParentLeft="true"-->
-            <!--android:src="@mipmap/welcome"-->
-            <!--android:paddingRight="12dp"/>-->
-    <!--</RelativeLayout>-->
-
-    <!--<RelativeLayout-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:paddingBottom="24dp">-->
-
-        <!--<ImageView-->
-            <!--android:id="@+id/image3"-->
-            <!--android:layout_width="wrap_content"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:layout_alignParentLeft="true"-->
-            <!--android:src="@mipmap/welcome"-->
-            <!--android:paddingRight="12dp"/>-->
-
-        <!--<TextView-->
-            <!--android:layout_width="wrap_content"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:text="@string/main_play_now"-->
-            <!--android:layout_alignParentRight="true"-->
-            <!--android:layout_toRightOf="@id/image3"-->
-            <!--android:textSize="20dp"-->
-            <!--android:textColor="@android:color/white"/>-->
-    <!--</RelativeLayout>-->
-
 
 </LinearLayout>

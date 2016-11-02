@@ -11,8 +11,13 @@ package au.edu.holmesglen.kirstine_n.threeinarow;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
+
+import static au.edu.holmesglen.kirstine_n.threeinarow.MainActivity.LOGGING_TAG;
 
 /**
  * Help screen activity
@@ -25,6 +30,21 @@ public class HelpActivity extends CommonActivity {
         setContentView(R.layout.activity_help);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
+        final Button btnStartGame = (Button) findViewById(R.id.btn_help_screen_start_game);
+
+        btnStartGame.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Log.v(LOGGING_TAG, "HelpActivity, in onClick btnStartGame");
+                // declare an intent, the activity to start
+                Intent intent;
+
+                // start game
+                intent = new Intent(getApplicationContext(), PlayActivity.class);
+                startActivity(intent);
+            }
+        });
 
 //        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
 //        fab.setOnClickListener(new View.OnClickListener() {

@@ -4,7 +4,7 @@ Student name:    Kirstine B. Nielsen
 Student id:      100527988
 Date:            13/10/2016
 Project:         Three in a row
-Version:         1.0 - Prototype
+Version:         1.1
 -->
 
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
@@ -26,7 +26,7 @@ Version:         1.0 - Prototype
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/help_explain"
-        android:paddingBottom="20dp"
+        android:paddingBottom="16dp"
         android:textSize="16dp"
         android:textStyle="bold"
         android:textColor="@android:color/white"/>
@@ -35,7 +35,7 @@ Version:         1.0 - Prototype
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/help_rule"
-        android:paddingBottom="20dp"
+        android:paddingBottom="16dp"
         android:textSize="16dp"
         android:textStyle="bold"
         android:textColor="@android:color/white"/>
@@ -44,7 +44,7 @@ Version:         1.0 - Prototype
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/help_play_now"
-        android:paddingBottom="20dp"
+        android:paddingBottom="16dp"
         android:textSize="16dp"
         android:textStyle="bold"
         android:textColor="@android:color/white"/>
@@ -53,7 +53,7 @@ Version:         1.0 - Prototype
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/help_navigation_explain"
-        android:paddingBottom="20dp"
+        android:paddingBottom="16dp"
         android:textSize="16dp"
         android:textStyle="bold"
         android:textColor="@android:color/white"/>
@@ -62,9 +62,16 @@ Version:         1.0 - Prototype
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/help_settings_statistic_explain"
-        android:paddingBottom="20dp"
+        android:paddingBottom="16dp"
         android:textSize="16dp"
         android:textStyle="bold"
         android:textColor="@android:color/white"/>
+
+    <Button
+        android:id="@+id/btn_help_screen_start_game"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="@string/btn_text_start_game_help_screen"/>
 
 </LinearLayout>
