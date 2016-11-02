@@ -22,19 +22,20 @@ Version:         1.1
     tools:showIn="@layout/activity_settings"
     android:orientation="vertical">
 
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/settings_body"
-        android:textSize="20dp"
-        android:textStyle="bold"
-        android:textColor="@android:color/white"
-        android:paddingBottom="24dp"/>
+    <!--<TextView-->
+        <!--android:id="@+id/textView"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:text="@string/settings_body"-->
+        <!--android:textSize="20dp"-->
+        <!--android:textStyle="bold"-->
+        <!--android:textColor="@android:color/white"-->
+        <!--android:paddingBottom="24dp"/>-->
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp">
 
         <TextView
             android:id="@+id/theme_textview"
@@ -42,7 +43,7 @@ Version:         1.1
             android:layout_height="wrap_content"
             android:layout_alignParentLeft="true"
             android:text="@string/settings_theme"
-            android:textSize="16dp"
+            android:textSize="20dp"
             android:textColor="@android:color/white"/>
 
         <Spinner
@@ -56,7 +57,8 @@ Version:         1.1
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp">
 
         <TextView
             android:id="@+id/difficulty_textview"
@@ -64,7 +66,7 @@ Version:         1.1
             android:layout_height="wrap_content"
             android:layout_alignParentLeft="true"
             android:text="@string/settings_difficulty"
-            android:textSize="16dp"
+            android:textSize="20dp"
             android:textColor="@android:color/white"/>
 
         <Spinner
@@ -79,7 +81,7 @@ Version:         1.1
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="24dp">
+        android:layout_marginBottom="16dp">
 
         <TextView
             android:id="@+id/grid_size_textview"
@@ -87,7 +89,7 @@ Version:         1.1
             android:layout_height="wrap_content"
             android:layout_alignParentLeft="true"
             android:text="@string/settings_grid_size"
-            android:textSize="16dp"
+            android:textSize="20dp"
             android:textColor="@android:color/white"/>
 
         <Spinner
@@ -103,20 +105,21 @@ Version:         1.1
         android:id="@+id/chkColors"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
         android:text="@string/settings_colors"
-        android:textSize="16dp"
+        android:textSize="20dp"
         android:textColor="@android:color/white"/>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="32dp"
         android:orientation="horizontal">
 
         <LinearLayout
             android:id="@+id/checkboxLinearLayoutContainerLeft"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="24dp"
             android:layout_weight="1"
             android:orientation="vertical">
         </LinearLayout>
@@ -125,11 +128,9 @@ Version:         1.1
             android:id="@+id/checkboxLinearLayoutContainerRight"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="24dp"
             android:layout_weight="1"
             android:orientation="vertical">
         </LinearLayout>
-
     </LinearLayout>
 
     <Button
@@ -137,7 +138,6 @@ Version:         1.1
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/settings_btn"
-        android:layout_marginTop="23dp"
         android:layout_gravity="center" />
 
 </LinearLayout>
