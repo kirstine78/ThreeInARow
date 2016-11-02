@@ -49,6 +49,7 @@ public class PlayActivity extends CommonActivity {
     // Various text displayed
     private TextView mInfoTextView;
     private ImageView mInfoImageView;
+    private TextView mTimerValue;
 
 
     @Override
@@ -202,6 +203,11 @@ public class PlayActivity extends CommonActivity {
 
         // show image hint
         mInfoImageView.setVisibility(View.VISIBLE);
+
+//        mTimerValue = (TextView) findViewById(R.id.game_timer_value);
+
+//        mGame.startTimer();
+
     } // End of startNewGame
 
 

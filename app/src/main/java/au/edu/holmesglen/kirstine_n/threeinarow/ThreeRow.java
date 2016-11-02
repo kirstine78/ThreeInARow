@@ -53,6 +53,10 @@ public class ThreeRow
     private int mNoOfPositionsOccupied = 0;
     private boolean mGameOver = false;
 
+    // timer
+    private long minutes;
+    private long seconds;
+
 
     /**
      * constructor for ThreeRow
@@ -409,5 +413,50 @@ public class ThreeRow
 
         return str;
     }
+
+//    public void startTimer()
+//    {
+//        new CountDownTimer(5000, 1000) {
+//
+//            public void onTick(long millisUntilFinished) {
+//
+//                // update minutes
+//
+//                // calc min
+//                minutes  = millisUntilFinished / 60000;
+//
+//                // cal millisec left over
+//                long millisec = millisUntilFinished % 60000;
+//
+//                // calc sec
+//                seconds = millisec / 1000;
+//
+////                // make sure that 0-9 seconds appear 00-09
+////                if (sec < 10)
+////                {
+////                    tv.setText(min + ":0" + sec);
+////                }
+////                else
+////                {
+////                    tv.setText(min + ":" + sec);
+////                }
+//
+//            }
+//
+//            public void onFinish() {
+////                mTimerValue.setText("done!");
+//            }
+//        }.start();
+//    }
+//
+//    public long getMinutes()
+//    {
+//        return minutes;
+//    }
+//
+//    public long getSecondss()
+//    {
+//        return seconds;
+//    }
 
 }
