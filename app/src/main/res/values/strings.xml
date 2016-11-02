@@ -1,11 +1,10 @@
 <resources>
     <string name="app_name">Three in a Row</string>
     <string name="main_header">Welcome</string>
-    <string name="main_explain">Fill out the game board with 2 colours.</string>
+    <string name="main_know_game">If you know the game and are ready to play just click \"Start Game\"</string>
+    <string name="main_dont_know_game">Don\'t know how to play the game? Please click \"Help\" in the menu in the top right corner.</string>
 
-    <string name="main_rule">To win a game, the board must be full without having three in a row of any of your two colours (horizontally or vertically).</string>
-
-    <string name="main_play_now">Click \"Start New Game\" in the menu in top right corner to play.</string>
+    <string name="main_help_axplain">In \"Help\" you can read about the rules and how to navigate around this app.</string>
 
     <string name="action_home">Home</string>
     <string name="action_settings">Settings</string>
