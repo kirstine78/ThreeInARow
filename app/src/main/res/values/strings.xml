@@ -24,12 +24,11 @@
     <string name="game_timer">Time: 3.00</string>
 
     <string name="title_activity_help">Help</string>
-    <string name="help_explain">The aim of the game is to fill out the game board with 2 different colors. The colours will alternate and you have to choose a free (grey) spot on the board.</string>
-    <string name="help_rule">To win a game, the board must be full and you cannot have three in a row of any of your two colors (diagonally is accepted).</string>
-    <string name="help_play_now">Start a new game by clicking \"Start New Game\" in the menu in top right corner or just press the \"Start New Game\" button below the board.</string>
-    <string name="help_navigation_explain">You can navigate by using the menu in top right corner</string>
-    <string name="help_settings_explain">You can change the colours, difficulty, and grid size in \"Settings\"</string>
-    <string name="help_statistic_explain">You can see your game statistics in \"Win - Lose record\"</string>
+    <string name="help_explain">The aim of the game is to fill out the game board with 2 different colors within a limited amount of time. The colours will alternate and you have to choose a free (grey) spot on the board.</string>
+    <string name="help_rule">To win a game, the board must be full without having three in a row of any of your two colors (diagonally is accepted).</string>
+    <string name="help_play_now">You can start a new game by clicking \"Start New Game\" in the menu in the top right corner or just press the \"Start New Game\" button below the board.</string>
+    <string name="help_navigation_explain">Use the menu in the top right corner to navigate around.</string>
+    <string name="help_settings_statistic_explain">You can change the settings in \"Settings\" and see your game statistics in \"Win - Lose record\"</string>
 
     <string name="title_activity_win_lose">Win - Lose record</string>
     <string name="win_lose_body">Win - Lose screen under construction</string>

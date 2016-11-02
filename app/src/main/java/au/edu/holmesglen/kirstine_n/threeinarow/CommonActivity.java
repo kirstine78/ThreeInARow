@@ -173,7 +173,7 @@ public class CommonActivity extends AppCompatActivity {
             spinnerGridSizeSelectedItem = 6;
         }
 
-        // format is: editor.putString("key", "value");
+        // format is: editor.putInt("key", "value");
         // in our example the key/value is:
         editor.putInt(GRID_SIZE, spinnerGridSizeSelectedItem);
         editor.commit();
