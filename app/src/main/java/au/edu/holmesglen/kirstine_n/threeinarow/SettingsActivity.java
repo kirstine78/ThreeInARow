@@ -10,7 +10,6 @@ package au.edu.holmesglen.kirstine_n.threeinarow;
 
 import android.content.Intent;
 import android.graphics.Color;
-import android.graphics.PorterDuff;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
@@ -101,8 +100,8 @@ public class SettingsActivity extends CommonActivity {
         // I want to change the color of the existing background resource.
         // To avoid overwriting/removing any existing background resource, including any borders,
         // corners, padding, etc. use the below instead of setBackgoundColor.
-        btnSaveSettings.getBackground().setColorFilter(Color.parseColor("#2D57B9"), PorterDuff.Mode.DARKEN);
-        btnSaveSettings.setTextColor(Color.parseColor("#ffffff"));
+//        btnSaveSettings.getBackground().setColorFilter(Color.parseColor("#2D57B9"), PorterDuff.Mode.DARKEN);
+//        btnSaveSettings.setTextColor(Color.parseColor("#ffffff"));
 
         // register a listener to button
         btnSaveSettings.setOnClickListener(new View.OnClickListener() {
@@ -248,8 +247,11 @@ public class SettingsActivity extends CommonActivity {
         updateColor1InSharedPreferences(itemNumberColor1);
         updateColor2InSharedPreferences(itemNumberColor2);
 
-        // change the theme GUI for SettingsActivity
+        // change the theme GUI
         Utils.changeToTheme(this, spinnerThemeSelectedItem);
+
+        // change button GUI
+
 
         Toast.makeText(this, "Settings are saved", Toast.LENGTH_SHORT).show();
     }

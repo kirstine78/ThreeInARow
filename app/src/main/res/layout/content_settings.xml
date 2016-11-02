@@ -138,6 +138,7 @@ Version:         1.1
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/settings_btn"
+        android:textAllCaps="true"
         android:layout_gravity="center" />
 
 </LinearLayout>
