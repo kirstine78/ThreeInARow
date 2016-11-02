@@ -29,6 +29,9 @@ public class CommonActivity extends AppCompatActivity {
     public static final String THEME = "themeKey";
     public static final String GRID_SIZE = "gridsizeKey";
 
+    public static final String TOTAL_GAMES = "totalgamesKey";
+
+
     // decl reference to SharedPreferences class
     private SharedPreferences sharedPreferences;
     private SharedPreferences.Editor editor;
@@ -135,9 +138,48 @@ public class CommonActivity extends AppCompatActivity {
     }
 
 
+    public int getSavedValueTotalGames() {
+        // To retrieve an already saved shared preference we use the contains() method
+        // to check that the key value is stored in the sharedpreferences collection
+
+        int savedTotalGames = 0;
+
+        if (sharedPreferences.contains(TOTAL_GAMES)) {
+            savedTotalGames = sharedPreferences.getInt(TOTAL_GAMES, 0);
+        } else {
+            // if no TOTAL_GAMES was saved, then save default total games 0
+            saveDefaultZeroTotalGames();
+        }
+
+        return savedTotalGames;
+    }
+
+
+    public void saveDefaultZeroTotalGames() {
+        // format is: editor.putInt("key", value);
+        // in our example the key/value is:
+        editor.putInt(TOTAL_GAMES, 0);
+        editor.commit();
+
+        Log.v(LOGGING_TAG, "Total games is default: 0");
+    }
+
+
+    public void updateTotalGamesInSharedPreferences() {
+        // get what was saved and then add 1
+        int currentlyTotalGames = getSavedValueTotalGames();
+        Log.v(LOGGING_TAG, "currently Total games saved: " + currentlyTotalGames);
+
+        // format is: editor.putInt("key", value);
+        // in our example the key/value is:
+        editor.putInt(TOTAL_GAMES, (currentlyTotalGames + 1));
+        editor.commit();
+
+        Log.v(LOGGING_TAG, "Total games is saved: " + (currentlyTotalGames + 1));
+    }
 
     public void updateThemeInSharedPreferences(int spinnerThemeSelectedItem) {
-        // format is: editor.putString("key", "value");
+        // format is: editor.putInt("key", value);
         // in our example the key/value is:
         editor.putInt(THEME, spinnerThemeSelectedItem);
         editor.commit();
@@ -173,7 +215,7 @@ public class CommonActivity extends AppCompatActivity {
             spinnerGridSizeSelectedItem = 6;
         }
 
-        // format is: editor.putInt("key", "value");
+        // format is: editor.putInt("key", value);
         // in our example the key/value is:
         editor.putInt(GRID_SIZE, spinnerGridSizeSelectedItem);
         editor.commit();
@@ -187,7 +229,7 @@ public class CommonActivity extends AppCompatActivity {
      * @param color1
      */
     public void updateColor1InSharedPreferences(int color1) {
-        // format is: editor.putString("key", "value");
+        // format is: editor.putInt("key", value);
         // in our example the key/value is:
         editor.putInt(COLOR_1, color1);
         editor.commit();
@@ -204,7 +246,7 @@ public class CommonActivity extends AppCompatActivity {
         // TODO update the color 2 in shared preferences
         Log.v(LOGGING_TAG, "CommonActivity in updateColor2InSharedPreferences");
 
-        // format is: editor.putString("key", "value");
+        // format is: editor.putInt("key", value);
         // in our example the key/value is:
         editor.putInt(COLOR_2, color2);
         editor.commit();

@@ -119,7 +119,7 @@ public class PlayActivity extends CommonActivity {
                         mInfoTextView.setText(displayNextColorHint());
 
                         // check if 3 in a row first
-                        if (mGame.checkForThreeInARow())
+                        if (mGame.checkForThreeInARow())  //LOSING
                         {
                             Log.v(LOGGING_TAG, "losing");
                             // display appropriate msg to player
@@ -130,7 +130,7 @@ public class PlayActivity extends CommonActivity {
                         }
                         else
                         {
-                            if (mGame.isGridFull())
+                            if (mGame.isGridFull())  // WINNING
                             {
                                 Log.v(LOGGING_TAG, "winning");
                                 // display appropriate msg to player
@@ -204,6 +204,9 @@ public class PlayActivity extends CommonActivity {
         // show image hint
         mInfoImageView.setVisibility(View.VISIBLE);
 
+        // increment TOTAL GAMES played
+        incrementTotalGames();
+        
 //        mTimerValue = (TextView) findViewById(R.id.game_timer_value);
 
 //        mGame.startTimer();
@@ -356,5 +359,11 @@ public class PlayActivity extends CommonActivity {
             img.setImageResource(imageResource);
         }
     }
+
+    public void incrementTotalGames()
+    {
+        updateTotalGamesInSharedPreferences();
+    }
+
 
 }  // end class
