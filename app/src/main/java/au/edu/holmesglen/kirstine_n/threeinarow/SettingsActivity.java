@@ -9,6 +9,7 @@ package au.edu.holmesglen.kirstine_n.threeinarow;
  */
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
@@ -58,6 +59,9 @@ public class SettingsActivity extends CommonActivity {
             CheckBox cb = new CheckBox(this);
             cb.setText(COLOR_STRING_LIST[i]);
             cb.setId(i + ThreeRow.COLOR_LIST.length);
+            cb.setPadding(8, 32, 16, 32);  // left, top, right, bottom
+            cb.setTextColor(Color.WHITE);
+            cb.setTextSize(16);
 
             // check which container to add checkbox to? left or right
             if (i < ThreeRow.COLOR_LIST.length/2)
