@@ -39,11 +39,21 @@ Version:         1.0 - Prototype
             android:textColor="@android:color/white"/>
 
         <TextView
-            android:id="@+id/game_timer"
+            android:id="@+id/game_timer_value"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
-            android:text="@string/game_timer"
+            android:text="@string/game_timer_value"
+            android:textSize="20dp"
+            android:textStyle="bold"
+            android:textColor="@android:color/white"/>
+
+        <TextView
+            android:id="@+id/game_timer_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toLeftOf="@id/game_timer_value"
+            android:text="@string/game_timer_label"
             android:textSize="20dp"
             android:textStyle="bold"
             android:textColor="@android:color/white"/>
