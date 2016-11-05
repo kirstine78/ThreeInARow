@@ -97,7 +97,7 @@ Version:         1.0 - Prototype
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_marginTop="8dp"
-        android:textAllCaps="false"
+        android:textAllCaps="true"
         android:text="@string/btn_text_start_new_game_play_screen"/>
 
 </LinearLayout>

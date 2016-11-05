@@ -45,7 +45,7 @@ Version:         1.1
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_marginTop="16dp"
-        android:textAllCaps="false"
+        android:textAllCaps="true"
         android:text="@string/btn_text_start_new_game_home_screen"/>
 
     <TextView
