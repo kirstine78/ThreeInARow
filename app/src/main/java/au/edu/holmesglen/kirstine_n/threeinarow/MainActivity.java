@@ -44,8 +44,7 @@ public class MainActivity extends CommonActivity {
                 Intent intent;
 
                 // start game
-                intent = new Intent(getApplicationContext(), PlayActivity.class);
-                startActivity(intent);
+                startGame(view);
             }
         });
 
@@ -97,9 +96,9 @@ public class MainActivity extends CommonActivity {
         return false;  // nothing happened  no menu items has been selected
     }  // end onOptionsItemSelected
 
-//    public void startGame(View view) {
-//        Intent intent = new Intent(MainActivity.this, PlayActivity.class);
-//        startActivity(intent);
-//    }
+    public void startGame(View view) {
+        Intent intent = new Intent(MainActivity.this, PlayActivity.class);
+        startActivity(intent);
+    }
 
 }  // end class MainActivity

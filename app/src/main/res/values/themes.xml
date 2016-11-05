@@ -2,23 +2,38 @@
 <resources>
     <style name="myThemeBlue" parent="@style/AppTheme.NoActionBar">
         <item name="android:windowBackground">@drawable/blue_background</item>
+        <item name="android:buttonStyle">@style/ButtonColorBlue</item>
+    </style>
+
+    <style name="ButtonColorBlue" parent="@android:style/Widget.Button">
+        <item name="android:textColor">@color/colorAccent</item>
+        <item name="android:background">@color/colorPrimary</item>
+        <item name="android:padding">8dp</item>
     </style>
 
     <style name="myThemeCopper" parent="@style/AppTheme.NoActionBar">
         <item name="android:windowBackground">@drawable/copper</item>
         <item name="colorPrimary">@color/colorCopperThin</item>
         <item name="colorPrimaryDark">@color/colorCopperThick</item>
+        <item name="android:buttonStyle">@style/ButtonColorCopper</item>
+    </style>
+
+    <style name="ButtonColorCopper" parent="@android:style/Widget.Button">
+        <item name="android:textColor">@color/colorAccent</item>
+        <item name="android:background">@color/colorCopperThin</item>
+        <item name="android:padding">8dp</item>
     </style>
 
     <style name="myThemeGold" parent="@style/AppTheme.NoActionBar">
         <item name="android:windowBackground">@drawable/gold</item>
         <item name="colorPrimary">@color/colorGoldThin</item>
         <item name="colorPrimaryDark">@color/colorGoldThick</item>
-
-        <item name="android:buttonStyle">@style/ButtonColor</item>
+        <item name="android:buttonStyle">@style/ButtonColorGold</item>
     </style>
 
-    <style name="ButtonColor" parent="@android:style/Widget.Button">
+    <style name="ButtonColorGold" parent="@android:style/Widget.Button">
         <item name="android:textColor">@color/colorAccent</item>
+        <item name="android:background">@color/colorGoldThick</item>
+        <item name="android:padding">8dp</item>
     </style>
 </resources>

@@ -59,7 +59,7 @@ public class SettingsActivity extends CommonActivity {
             CheckBox cb = new CheckBox(this);
             cb.setText(COLOR_STRING_LIST[i]);
             cb.setId(i + ThreeRow.COLOR_LIST.length);
-            cb.setPadding(8, 32, 16, 32);  // left, top, right, bottom
+            cb.setPadding(8, 12, 16, 12);  // left, top, right, bottom
             cb.setTextColor(Color.WHITE);
             cb.setTextSize(16);
 

@@ -205,8 +205,8 @@ public class PlayActivity extends CommonActivity {
         mInfoImageView.setVisibility(View.VISIBLE);
 
         // increment TOTAL GAMES played
-        incrementTotalGames();
-        
+//        incrementTotalGames();
+
 //        mTimerValue = (TextView) findViewById(R.id.game_timer_value);
 
 //        mGame.startTimer();
