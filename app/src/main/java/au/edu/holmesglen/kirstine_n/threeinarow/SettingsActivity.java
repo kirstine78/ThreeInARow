@@ -215,11 +215,11 @@ public class SettingsActivity extends CommonActivity {
      * @return   ArrayAdapter with values from resources
      */
     public ArrayAdapter<CharSequence> getArrayAdapter(int someStringArray){
-        ArrayAdapter<CharSequence> adapterDifficulty = ArrayAdapter.createFromResource(
-                this, someStringArray, android.R.layout.simple_spinner_item);
-        adapterDifficulty.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(
+                this, someStringArray, R.layout.spinner_item);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 
-        return adapterDifficulty;
+        return adapter;
     }
 
 

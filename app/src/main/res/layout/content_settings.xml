@@ -51,8 +51,7 @@ Version:         1.1
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
-            android:spinnerMode="dropdown"
-            android:textColor="@android:color/white" />
+            android:spinnerMode="dropdown" />
     </RelativeLayout>
 
     <RelativeLayout
@@ -74,8 +73,7 @@ Version:         1.1
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
-            android:spinnerMode="dropdown"
-            android:textColor="@android:color/white" />
+            android:spinnerMode="dropdown"/>
     </RelativeLayout>
 
     <RelativeLayout
@@ -97,8 +95,7 @@ Version:         1.1
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
-            android:spinnerMode="dropdown"
-            android:textColor="@android:color/white" />
+            android:spinnerMode="dropdown" />
     </RelativeLayout>
 
     <TextView
