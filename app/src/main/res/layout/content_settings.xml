@@ -16,6 +16,7 @@ Version:         1.1
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
+    android:textSize="16dp"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context="au.edu.holmesglen.kirstine_n.threeinarow.SettingsActivity"
     tools:showIn="@layout/activity_settings"
@@ -42,7 +43,7 @@ Version:         1.1
             android:layout_height="wrap_content"
             android:layout_alignParentLeft="true"
             android:text="@string/settings_theme"
-            android:textSize="20dp"
+            android:textSize="16dp"
             android:textColor="@android:color/white"/>
 
         <Spinner
@@ -65,7 +66,7 @@ Version:         1.1
             android:layout_height="wrap_content"
             android:layout_alignParentLeft="true"
             android:text="@string/settings_difficulty"
-            android:textSize="20dp"
+            android:textSize="16dp"
             android:textColor="@android:color/white"/>
 
         <Spinner
@@ -88,7 +89,7 @@ Version:         1.1
             android:layout_height="wrap_content"
             android:layout_alignParentLeft="true"
             android:text="@string/settings_grid_size"
-            android:textSize="20dp"
+            android:textSize="16dp"
             android:textColor="@android:color/white"/>
 
         <Spinner
@@ -106,7 +107,7 @@ Version:         1.1
         android:layout_height="wrap_content"
         android:layout_marginBottom="12dp"
         android:text="@string/settings_colors"
-        android:textSize="20dp"
+        android:textSize="16dp"
         android:textColor="@android:color/white"/>
 
     <LinearLayout
@@ -137,7 +138,7 @@ Version:         1.1
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/settings_btn"
-        android:textAllCaps="true"
+        android:textAllCaps="false"
         android:layout_gravity="center" />
 
 </LinearLayout>

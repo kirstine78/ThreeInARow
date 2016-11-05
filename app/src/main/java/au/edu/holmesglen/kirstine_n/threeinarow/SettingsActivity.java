@@ -97,12 +97,6 @@ public class SettingsActivity extends CommonActivity {
         // prepare button for save settings
         final Button btnSaveSettings = (Button) findViewById(R.id.button);
 
-        // I want to change the color of the existing background resource.
-        // To avoid overwriting/removing any existing background resource, including any borders,
-        // corners, padding, etc. use the below instead of setBackgoundColor.
-//        btnSaveSettings.getBackground().setColorFilter(Color.parseColor("#2D57B9"), PorterDuff.Mode.DARKEN);
-//        btnSaveSettings.setTextColor(Color.parseColor("#ffffff"));
-
         // register a listener to button
         btnSaveSettings.setOnClickListener(new View.OnClickListener() {
             @Override

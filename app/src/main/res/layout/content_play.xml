@@ -26,7 +26,7 @@ Version:         1.0 - Prototype
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingBottom="24dp">
+        android:paddingBottom="16dp">
 
         <TextView
             android:id="@+id/game_difficulty"
@@ -34,7 +34,7 @@ Version:         1.0 - Prototype
             android:layout_height="wrap_content"
             android:layout_alignParentLeft="true"
             android:text="@string/game_difficulty"
-            android:textSize="20dp"
+            android:textSize="16dp"
             android:textStyle="bold"
             android:textColor="@android:color/white"/>
 
@@ -44,7 +44,7 @@ Version:         1.0 - Prototype
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
             android:text="@string/game_timer_value"
-            android:textSize="20dp"
+            android:textSize="16dp"
             android:textStyle="bold"
             android:textColor="@android:color/white"/>
 
@@ -54,7 +54,7 @@ Version:         1.0 - Prototype
             android:layout_height="wrap_content"
             android:layout_toLeftOf="@id/game_timer_value"
             android:text="@string/game_timer_label"
-            android:textSize="20dp"
+            android:textSize="16dp"
             android:textStyle="bold"
             android:textColor="@android:color/white"/>
 
@@ -69,7 +69,6 @@ Version:         1.0 - Prototype
         android:horizontalSpacing="1dp"
         android:stretchMode="columnWidth"
         android:gravity="fill">
-
     </GridView>
 
 
@@ -82,7 +81,7 @@ Version:         1.0 - Prototype
             android:id="@+id/information"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="20dp"
+            android:textSize="16dp"
             android:textStyle="bold"
             android:textColor="@android:color/white" />
 
@@ -97,6 +96,8 @@ Version:         1.0 - Prototype
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
+        android:layout_marginTop="8dp"
+        android:textAllCaps="false"
         android:text="@string/btn_text_start_new_game_play_screen"/>
 
 </LinearLayout>
