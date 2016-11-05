@@ -15,9 +15,9 @@
 
     <string name="title_activity_play">Play Game</string>
     <string name="info_label">Choose a field on the grid</string>
-    <string name="losing_msg">Sorry, you lost!</string>
+    <string name="losing_msg">Three in a row, you lose!</string>
     <string name="btn_text_start_new_game_play_screen">Start new Game</string>
-    <string name="winning_msg">You won!</string>
+    <string name="winning_msg">You win!</string>
     <string name="game_difficulty">Difficulty: easy</string>
     <string name="game_timer_label">Time:\u0020</string>
     <string name="game_timer_value">3.00</string>

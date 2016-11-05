@@ -215,6 +215,7 @@ public class SettingsActivity extends CommonActivity {
      * @return   ArrayAdapter with values from resources
      */
     public ArrayAdapter<CharSequence> getArrayAdapter(int someStringArray){
+        // use my owen spinner item style
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(
                 this, someStringArray, R.layout.spinner_item);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
