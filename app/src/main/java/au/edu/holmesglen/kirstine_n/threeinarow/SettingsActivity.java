@@ -245,8 +245,6 @@ public class SettingsActivity extends CommonActivity {
         // change the theme GUI
         Utils.changeToTheme(this, spinnerThemeSelectedItem);
 
-        // change button GUI
-
         // msg to user
         Toast.makeText(this, "Settings are saved", Toast.LENGTH_SHORT).show();
     }
