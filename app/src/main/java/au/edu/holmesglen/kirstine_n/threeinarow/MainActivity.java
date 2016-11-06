@@ -18,7 +18,7 @@ import android.view.View;
 import android.widget.Button;
 
 /**
- * Home screen activity
+ * MainActivity where user can start a game from.
  */
 public class MainActivity extends CommonActivity {
 
@@ -47,16 +47,6 @@ public class MainActivity extends CommonActivity {
                 startGame(view);
             }
         });
-
-//        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-//        fab.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-//                        .setAction("Action", null).show();
-//            }
-//        });
-
     }  // end onCreate
 
 
@@ -66,6 +56,7 @@ public class MainActivity extends CommonActivity {
         getMenuInflater().inflate(R.menu.menu_main, menu);
         return true;
     }
+
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
@@ -96,6 +87,11 @@ public class MainActivity extends CommonActivity {
         return false;  // nothing happened  no menu items has been selected
     }  // end onOptionsItemSelected
 
+
+    /**
+     * Starts a game.
+     * @param view
+     */
     public void startGame(View view) {
         Intent intent = new Intent(MainActivity.this, PlayActivity.class);
         startActivity(intent);

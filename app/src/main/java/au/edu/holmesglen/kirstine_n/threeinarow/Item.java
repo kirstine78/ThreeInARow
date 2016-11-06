@@ -61,7 +61,7 @@ public class Item {
         return mClick;
     }
 
-    
+
     /**
      * will reset the amount of time clicked on Item to zero
      */
