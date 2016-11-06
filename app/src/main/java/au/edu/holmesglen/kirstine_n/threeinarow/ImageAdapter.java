@@ -16,8 +16,13 @@ import android.widget.GridView;
 import android.widget.ImageView;
 
 
+/**
+ * ImageAdapter acts as a bridge between AdapterView and the underlying data (Images) for that view.
+ * ImageAdapter provides access to the data items.
+ * ImageAdapter is also responsible for making a View for each item in the data set.
+ */
 public class ImageAdapter extends BaseAdapter {
-    // this references the 2D array passed through the constructor
+    // this references the array passed through the constructor
     private Item[] mGridArray;  // an array of the Item class - our Item class represents color images
     private Context mContext;  // the current state of an app or object or Activity
 
@@ -32,22 +37,43 @@ public class ImageAdapter extends BaseAdapter {
         this.mGridArray = gridArray;
     }
 
-    // return the size of the array
+
+    /**
+     * Gets the size of the array mGridArray.
+     * @return      integer representing array size.
+     */
     public int getCount() {
         return mGridArray.length;
     }
 
-    // return the current Item (color) in a grid on GridView
+
+    /**
+     * Gets the current Item (color) in a grid on GridView
+     * @param position
+     * @return      Item object
+     */
     public Item getItem(int position) {
         return null;
     }
 
-    // return the position in GridView of where the color can be found
+
+    /**
+     * Gets the position in GridView of where the color can be found
+     * @param position
+     * @return
+     */
     public long getItemId(int position) {
         return position;
     }
 
-    // create a new ImageView for each item referenced by the Adapter
+
+    /**
+     * Gets a View that displays the data at the specified position in the data set.
+     * @param position
+     * @param convertView
+     * @param parent
+     * @return
+     */
     public View getView(int position, View convertView, ViewGroup parent) {
         ImageView imageView;
 
