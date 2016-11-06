@@ -1,12 +1,15 @@
 package au.edu.holmesglen.kirstine_n.threeinarow;
 
 /**
- * Created by Kirsti on 1/11/2016.
  * Code taken from: http://stackoverflow.com/questions/18301554/android-change-app-theme-on-onclick
  */
 
 import android.app.Activity;
 import android.content.Intent;
+
+/**
+ * Common utility static methods, for example to change theme of an activity.
+ */
 public class Utils
 {
     public static int sTheme;
@@ -26,7 +29,9 @@ public class Utils
     }
 
 
-    /** Set the theme of the activity, according to the configuration. */
+    /**
+     * Set the theme of the activity, according to the configuration.
+     */
     public static void onActivityCreateSetTheme(Activity activity)
     {
         switch (sTheme)
