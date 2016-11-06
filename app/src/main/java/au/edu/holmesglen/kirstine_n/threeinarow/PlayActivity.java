@@ -164,15 +164,6 @@ public class PlayActivity extends CommonActivity {
                 startActivity(intent);
             }
         });
-
-//        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-//        fab.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-//                        .setAction("Action", null).show();
-//            }
-//        });
     }  // end onCreate
 
 
@@ -266,6 +257,7 @@ public class PlayActivity extends CommonActivity {
         return str;
     }
 
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
@@ -304,7 +296,7 @@ public class PlayActivity extends CommonActivity {
                 startActivity(intent);
                 return true;
         }
-        return false;  // nothing happened  no menu items has been selected
+        return false;  // nothing happened, no menu items has been selected
     }  // end onOptionsItemSelected
 
 
@@ -360,10 +352,10 @@ public class PlayActivity extends CommonActivity {
         }
     }
 
-    public void incrementTotalGames()
-    {
-        updateTotalGamesInSharedPreferences();
-    }
 
+//    public void incrementTotalGames()
+//    {
+//        updateTotalGamesInSharedPreferences();
+//    }
 
 }  // end class
