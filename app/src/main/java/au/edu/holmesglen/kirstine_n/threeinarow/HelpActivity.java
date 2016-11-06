@@ -20,7 +20,7 @@ import android.widget.Button;
 import static au.edu.holmesglen.kirstine_n.threeinarow.MainActivity.LOGGING_TAG;
 
 /**
- * Help screen activity
+ * HelpActivity shows help instructions to user
  */
 public class HelpActivity extends CommonActivity {
 
@@ -45,16 +45,8 @@ public class HelpActivity extends CommonActivity {
                 startActivity(intent);
             }
         });
-
-//        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-//        fab.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-//                        .setAction("Action", null).show();
-//            }
-//        });
     }
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -63,6 +55,7 @@ public class HelpActivity extends CommonActivity {
 //        menu.add("New Game");
         return true;
     }
+
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
@@ -90,7 +83,7 @@ public class HelpActivity extends CommonActivity {
                 startActivity(intent);
                 return true;
         }
-        return false;  // nothing happened  no menu items has been selected
+        return false;  // nothing happened, no menu items has been selected
     }  // end onOptionsItemSelected
 
 }

@@ -205,7 +205,7 @@ public class SettingsActivity extends CommonActivity {
                 startActivity(intent);
                 return true;
         }
-        return false;  // nothing happened  no menu items has been selected
+        return false;  // nothing happened, no menu items has been selected
     }  // end onOptionsItemSelected
 
 
