@@ -237,7 +237,7 @@ public class SettingsActivity extends CommonActivity {
         Log.v(LOGGING_TAG, "SettingsActivity in saveSettings");
 
         updateThemeInSharedPreferences(spinnerThemeSelectedItem);
-//        updateDifficultyInSharedPreferences(textSpinnerDifficulty);
+//        updateDifficultyInSharedPreferences(textSpinnerDifficulty);  // not implemented yet
         updateGridSizeInSharedPreferences(spinnerGridSizeSelectedItem);
         updateColor1InSharedPreferences(itemNumberColor1);
         updateColor2InSharedPreferences(itemNumberColor2);
@@ -247,7 +247,7 @@ public class SettingsActivity extends CommonActivity {
 
         // change button GUI
 
-
+        // msg to user
         Toast.makeText(this, "Settings are saved", Toast.LENGTH_SHORT).show();
     }
 
@@ -257,7 +257,6 @@ public class SettingsActivity extends CommonActivity {
      * the storage)
      */
     public void displaySavedValues() {
-        // TODO put code here
         Log.v(LOGGING_TAG, "SettingsActivity in displaySavedValues");
 
         displaySavedValueTheme(getSavedValueTheme());
@@ -268,6 +267,10 @@ public class SettingsActivity extends CommonActivity {
     }
 
 
+    /**
+     * display saved value for theme
+     * @param theme
+     */
     public void displaySavedValueTheme(int theme) {
         // set the spinner to this theme
         Log.v(LOGGING_TAG, "SettingsActivity in displaySavedValueTheme: " + theme);
@@ -277,6 +280,10 @@ public class SettingsActivity extends CommonActivity {
     }
 
 
+    /**
+     * display saved value for grid size
+     * @param gridsize
+     */
     public void displaySavedValueGridSize(int gridsize) {
         // set the spinner to this theme
         Log.v(LOGGING_TAG, "SettingsActivity in displaySavedValueGridSize: " + gridsize);
