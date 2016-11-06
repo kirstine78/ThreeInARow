@@ -80,7 +80,7 @@ public class PlayActivity extends CommonActivity {
         // generate array with all Items in the mGridArray set to the grey image
         for (int i = 0; i < ThreeRow.mRows * ThreeRow.mColumns; i++)
         {
-            mGridArray[i] = new Item(R.drawable.grey, "grey");
+            mGridArray[i] = new Item(R.drawable.grey);
         }
 
         // instantiate the mGridview

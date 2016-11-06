@@ -68,7 +68,7 @@ public class ImageAdapter extends BaseAdapter {
 
 
     /**
-     * Gets a View that displays the data at the specified position in the data set.
+     * Gets an ImageView to display the correct color image for the position passed in.     *
      * @param position
      * @param convertView
      * @param parent
