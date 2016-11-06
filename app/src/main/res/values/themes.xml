@@ -1,6 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources>
+<!--
+Student name:    Kirstine B. Nielsen
+Student id:      100527988
+Date:            13/10/2016
+Project:         Three in a row
+Version:         1.1
+-->
 
+<resources>
     <style name="myTopStyle" parent="@style/AppTheme.NoActionBar">
     </style>
 

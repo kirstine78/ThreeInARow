@@ -3,7 +3,7 @@ package au.edu.holmesglen.kirstine_n.threeinarow;
 /**
  * Student name:    Kirstine B. Nielsen
  * Student id:      100527988
- * Date:            01/1/2016
+ * Date:            01/11/2016
  * Project:         Three in a row
  * Version:         1.1
  */
@@ -17,9 +17,9 @@ import android.util.Log;
 import static au.edu.holmesglen.kirstine_n.threeinarow.MainActivity.LOGGING_TAG;
 
 /**
- * Created by Kirsti on 1/11/2016.
+ * Class contains functions that are common to all activities in Three in a row, for example
+ * accessing shared preferences.
  */
-
 public class CommonActivity extends AppCompatActivity {
 
     // decl constants
@@ -30,7 +30,6 @@ public class CommonActivity extends AppCompatActivity {
     public static final String GRID_SIZE = "gridsizeKey";
 
     public static final String TOTAL_GAMES = "totalgamesKey";
-
 
     // decl reference to SharedPreferences class
     private SharedPreferences sharedPreferences;
@@ -51,6 +50,10 @@ public class CommonActivity extends AppCompatActivity {
     }
 
 
+    /**
+     * Gets the currently set value of the selected theme, or the default if not set.
+     * @return   integer representing the theme.
+     */
     public int getSavedValueTheme() {
         // To retrieve an already saved shared preference we use the contains() method
         // to check that the key value is stored in the sharedpreferences collection
@@ -68,6 +71,10 @@ public class CommonActivity extends AppCompatActivity {
     }
 
 
+    /**
+     * Gets the currently set value of the selected grid size, or the default if not set.
+     * @return   integer representing the grid size.
+     */
     public int getSavedValueGridSize() {
         // To retrieve an already saved shared preference we use the contains() method
         // to check that the key value is stored in the sharedpreferences collection
@@ -87,9 +94,9 @@ public class CommonActivity extends AppCompatActivity {
 
 
     /**
-     * fetch saved color 1 from local storage
-     * @return an integer representing the index to be used in checkBoxList to set the specific check
-     * box to be checked.
+     * Gets the currently set value of the selected color 1, or the default if not set.
+     * @return      integer representing the color 1. This is the index to be used in checkBoxList
+     *              to set the specific check box to be checked.
      */
     public int getSavedValueColor1() {
         // To retrieve an already saved shared preference we use the contains() method
@@ -113,9 +120,9 @@ public class CommonActivity extends AppCompatActivity {
 
 
     /**
-     * fetch saved color 2 from local storage
-     * @returnan integer representing the index to be used in checkBoxList to set the specific check
-     * box to be checked.
+     * Gets the currently set value of the selected color 2, or the default if not set.
+     * @return      integer representing the color 2. This is the index to be used in checkBoxList
+     *              to set the specific check box to be checked.
      */
     public int getSavedValueColor2() {
         // To retrieve an already saved shared preference we use the contains() method
@@ -138,6 +145,10 @@ public class CommonActivity extends AppCompatActivity {
     }
 
 
+    /**
+     * Gets the currently set value of the total games, or the default if not set.
+     * @return      integer representing the total games.
+     */
     public int getSavedValueTotalGames() {
         // To retrieve an already saved shared preference we use the contains() method
         // to check that the key value is stored in the sharedpreferences collection
@@ -155,6 +166,9 @@ public class CommonActivity extends AppCompatActivity {
     }
 
 
+    /**
+     * Saves zero as value for total games.
+     */
     public void saveDefaultZeroTotalGames() {
         // format is: editor.putInt("key", value);
         // in our example the key/value is:
@@ -165,6 +179,9 @@ public class CommonActivity extends AppCompatActivity {
     }
 
 
+    /**
+     * Updates the set value of the total games.
+     */
     public void updateTotalGamesInSharedPreferences() {
         // get what was saved and then add 1
         int currentlyTotalGames = getSavedValueTotalGames();
@@ -178,6 +195,11 @@ public class CommonActivity extends AppCompatActivity {
         Log.v(LOGGING_TAG, "Total games is saved: " + (currentlyTotalGames + 1));
     }
 
+
+    /**
+     * Updates the set value of the theme.
+     * @param spinnerThemeSelectedItem representing the theme to update to.
+     */
     public void updateThemeInSharedPreferences(int spinnerThemeSelectedItem) {
         // format is: editor.putInt("key", value);
         // in our example the key/value is:
@@ -189,8 +211,8 @@ public class CommonActivity extends AppCompatActivity {
 
 
     /**
-     * saves the difficulty level to local storage
-     * @param textSpinnerDifficulty
+     * Updates the set value of the difficulty level.
+     * @param textSpinnerDifficulty representing the difficulty level to update to.
      */
     public void updateDifficultyInSharedPreferences(String textSpinnerDifficulty) {
         // TODO update the difficulty in shared preferences
@@ -199,8 +221,8 @@ public class CommonActivity extends AppCompatActivity {
 
 
     /**
-     * saves the difficulty grid size to local storage
-     * @param spinnerGridSizeSelectedItem
+     * Updates the set value of the grid size.
+     * @param spinnerGridSizeSelectedItem representing the grid size to update to.
      */
     public void updateGridSizeInSharedPreferences(int spinnerGridSizeSelectedItem) {
         // TODO update the gridsize in shared preferences
@@ -225,8 +247,8 @@ public class CommonActivity extends AppCompatActivity {
 
 
     /**
-     * saves color 1 to local storage
-     * @param color1
+     * Updates the set value of the color 1.
+     * @param color1 representing the color 1 to update to.
      */
     public void updateColor1InSharedPreferences(int color1) {
         // format is: editor.putInt("key", value);
@@ -239,8 +261,8 @@ public class CommonActivity extends AppCompatActivity {
 
 
     /**
-     * saves color 2 to local storage
-     * @param color2
+     * Updates the set value of the color 2.
+     * @param color2 representing the color 2 to update to.
      */
     public void updateColor2InSharedPreferences(int color2) {
         // TODO update the color 2 in shared preferences
@@ -253,8 +275,5 @@ public class CommonActivity extends AppCompatActivity {
 
         Log.v(LOGGING_TAG, "Color2 is saved");
     }
+}  // end CommonActivity
 
-
-
-
-}
