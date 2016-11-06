@@ -15,7 +15,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 /**
- * class for the win lose statistic screen
+ * Shows the win lose statistics of the game.
  */
 public class WinLoseActivity extends CommonActivity {
 
@@ -25,16 +25,8 @@ public class WinLoseActivity extends CommonActivity {
         setContentView(R.layout.activity_win_lose);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-
-//        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-//        fab.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-//                        .setAction("Action", null).show();
-//            }
-//        });
     }
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -42,6 +34,7 @@ public class WinLoseActivity extends CommonActivity {
         getMenuInflater().inflate(R.menu.menu_win_lose_screen, menu);
         return true;
     }
+
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
@@ -69,6 +62,6 @@ public class WinLoseActivity extends CommonActivity {
                 startActivity(intent);
                 return true;
         }
-        return false;  // nothing happened  no menu items has been selected
+        return false;  // nothing happened, no menu items has been selected
     }  // end onOptionsItemSelected
-}
+}  // end class WinLoseActivity
