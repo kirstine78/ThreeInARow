@@ -47,7 +47,6 @@ public class ThreeRow
 
     // declare a 2D array  String[rows][columns]
     private String[][] mBoard;
-//    private String[][] mBoard = getTwoDimensionalArray(mRows, mColumns);
 
     // flags
     private int mNoOfPositionsOccupied = 0;
@@ -72,10 +71,10 @@ public class ThreeRow
     }
 
 
-
     /**
-     * Clear the board of all GRID_CHARACTER_1's and GRID_CHARACTER_2's by setting all spots to GRID_CHARACTER_DEFAULT.
-     * reset flags
+     * Clear the board of all GRID_CHARACTER_1's and GRID_CHARACTER_2's by
+     * setting all spots to GRID_CHARACTER_DEFAULT.
+     * Reset flags.
      */
     public void clearBoard()
     {
@@ -297,12 +296,10 @@ public class ThreeRow
         if (mBoard[rowNumber][columNumber].equals(GRID_CHARACTER_1))
         {
             return mPlayColorList[0];
-//            return R.drawable.red;
         }
         else
         {
             return mPlayColorList[1];
-//            return R.drawable.white;
         }
     }
 
@@ -414,49 +411,4 @@ public class ThreeRow
         return str;
     }
 
-//    public void startTimer()
-//    {
-//        new CountDownTimer(5000, 1000) {
-//
-//            public void onTick(long millisUntilFinished) {
-//
-//                // update minutes
-//
-//                // calc min
-//                minutes  = millisUntilFinished / 60000;
-//
-//                // cal millisec left over
-//                long millisec = millisUntilFinished % 60000;
-//
-//                // calc sec
-//                seconds = millisec / 1000;
-//
-////                // make sure that 0-9 seconds appear 00-09
-////                if (sec < 10)
-////                {
-////                    tv.setText(min + ":0" + sec);
-////                }
-////                else
-////                {
-////                    tv.setText(min + ":" + sec);
-////                }
-//
-//            }
-//
-//            public void onFinish() {
-////                mTimerValue.setText("done!");
-//            }
-//        }.start();
-//    }
-//
-//    public long getMinutes()
-//    {
-//        return minutes;
-//    }
-//
-//    public long getSecondss()
-//    {
-//        return seconds;
-//    }
-
-}
+}  // end class ThreeRow
