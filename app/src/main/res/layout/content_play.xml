@@ -29,11 +29,20 @@ Version:         1.1
         android:paddingBottom="16dp">
 
         <TextView
-            android:id="@+id/game_difficulty"
+            android:id="@+id/game_difficulty_label"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentLeft="true"
-            android:text="@string/game_difficulty"
+            android:text="@string/game_difficulty_label"
+            android:textSize="16dp"
+            android:textStyle="bold"
+            android:textColor="@android:color/white"/>
+
+        <TextView
+            android:id="@+id/game_difficulty_value"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@id/game_difficulty_label"
             android:textSize="16dp"
             android:textStyle="bold"
             android:textColor="@android:color/white"/>
@@ -43,7 +52,6 @@ Version:         1.1
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
-            android:text="@string/game_timer_value"
             android:textSize="16dp"
             android:textStyle="bold"
             android:textColor="@android:color/white"/>

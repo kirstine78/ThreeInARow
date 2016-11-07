@@ -131,8 +131,9 @@ public class SettingsActivity extends CommonActivity {
                     Log.v(LOGGING_TAG, "colorIndexList 1: " + colorIndexList[1] );
 
                     // get difficulty chosen
-                    String textSpinnerDifficulty = spinnerDifficulty.getSelectedItem().toString();
-                    Log.v(LOGGING_TAG, "Difficulty: " + textSpinnerDifficulty);
+                    int spinnerDifficultySelectedItem = spinnerDifficulty.getSelectedItemPosition();
+//                    String textSpinnerDifficulty = spinnerDifficulty.getSelectedItem().toString();
+//                    Log.v(LOGGING_TAG, "Difficulty: " + textSpinnerDifficulty);
 
                     // get GRID SIZE spinner
                     int spinnerGridSizeSelectedItem = spinnerGridSize.getSelectedItemPosition();
@@ -140,7 +141,8 @@ public class SettingsActivity extends CommonActivity {
 //                    Log.v(LOGGING_TAG, "GridSize: " + textSpinnerGridSize);
 
                     // save the settings
-                    saveSettings(spinnerThemeSelectedItem, textSpinnerDifficulty, spinnerGridSizeSelectedItem, colorIndexList[0], colorIndexList[1]);
+                    saveSettings(spinnerThemeSelectedItem, spinnerDifficultySelectedItem,
+                            spinnerGridSizeSelectedItem, colorIndexList[0], colorIndexList[1]);
                 } else {
                     // not ok amount of checkbox colors chosen, so don't proceed with any saving
                     Toast.makeText(SettingsActivity.this, "Please choose exactly two colors", Toast.LENGTH_SHORT).show();
@@ -225,19 +227,19 @@ public class SettingsActivity extends CommonActivity {
 
 
     /**
-     * save the settings chosen
-     * @param textSpinnerDifficulty
+     * save the chosen settings
+     * @param spinnerDifficultySelectedItem
      * @param spinnerGridSizeSelectedItem
      * @param itemNumberColor1
      * @param itemNumberColor2
      */
-    public void saveSettings(int spinnerThemeSelectedItem, String textSpinnerDifficulty, int spinnerGridSizeSelectedItem,
+    public void saveSettings(int spinnerThemeSelectedItem, int spinnerDifficultySelectedItem, int spinnerGridSizeSelectedItem,
                                int itemNumberColor1, int itemNumberColor2) {
 
         Log.v(LOGGING_TAG, "SettingsActivity in saveSettings");
 
         updateThemeInSharedPreferences(spinnerThemeSelectedItem);
-//        updateDifficultyInSharedPreferences(textSpinnerDifficulty);  // not implemented yet
+        updateDifficultyInSharedPreferences(spinnerDifficultySelectedItem);
         updateGridSizeInSharedPreferences(spinnerGridSizeSelectedItem);
         updateColor1InSharedPreferences(itemNumberColor1);
         updateColor2InSharedPreferences(itemNumberColor2);
@@ -258,8 +260,8 @@ public class SettingsActivity extends CommonActivity {
         Log.v(LOGGING_TAG, "SettingsActivity in displaySavedValues");
 
         displaySavedValueTheme(getSavedValueTheme());
+        displaySavedValueDifficulty(getSavedValueDifficulty());
         displaySavedValueGridSize(getSavedValueGridSize());
-
         displaySavedValueColor1(getSavedValueColor1());
         displaySavedValueColor2(getSavedValueColor2());
     }
@@ -279,11 +281,24 @@ public class SettingsActivity extends CommonActivity {
 
 
     /**
+     * display saved value for difficulty
+     * @param difficulty
+     */
+    public void displaySavedValueDifficulty(int difficulty) {
+        // set the spinner to this difficulty
+        Log.v(LOGGING_TAG, "SettingsActivity in displaySavedValueDifficulty: " + difficulty);
+
+        // set correct spinner item to be the selected one (based on value in storage)
+        spinnerDifficulty.setSelection(difficulty);
+    }
+
+
+    /**
      * display saved value for grid size
      * @param gridsize
      */
     public void displaySavedValueGridSize(int gridsize) {
-        // set the spinner to this theme
+        // set the spinner to this gridsize
         Log.v(LOGGING_TAG, "SettingsActivity in displaySavedValueGridSize: " + gridsize);
 
         // convert the row/colum size (4, 5, or 6) to (0, 1, or 2)

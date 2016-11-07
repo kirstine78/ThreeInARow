@@ -384,6 +384,14 @@ public class ThreeRow
 
 
     /**
+     * Sets mGameOver to true
+     */
+    public void setGameOverToTrue() {
+        mGameOver = true;
+    }
+
+
+    /**
      * display grid
      * @param someTwoDimensionalArray which shall be a non-ragged array and minimum 4 x 4
      * @return grid values represented as a string

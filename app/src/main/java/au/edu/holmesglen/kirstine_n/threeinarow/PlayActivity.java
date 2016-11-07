@@ -44,12 +44,20 @@ public class PlayActivity extends CommonActivity {
     // array to hold all Item objects. these are our images
     private Item[] mGridArray;
 
+    // array to hold milliseconds from each grid size
+    int[][] listMillisecondsArray = {
+                                    { 25000, 20000, 15000 },  // 4x4 - easy, medium, hard
+                                    { 20000, 15000, 10000 },  // 5x5 - easy, medium, hard
+                                    { 15000, 10000, 5000 }    // 6x6 - easy, medium, hard
+                                } ;
+
     private ImageAdapter mImageAdapter;
 
     // Various text displayed
     private TextView mInfoTextView;
     private ImageView mInfoImageView;
-    private TextView mTimerValue;
+    private TextView mTimerValueTextView;
+    private TextView mDifficultyValueTextView;
 
 
     @Override
@@ -92,9 +100,15 @@ public class PlayActivity extends CommonActivity {
 
         mInfoTextView = (TextView) findViewById(R.id.information);
         mInfoImageView = (ImageView) findViewById(R.id.imageNextColor);
+        mTimerValueTextView = (TextView) findViewById(R.id.game_timer_value);
+
+        // process to show timer value in textview
+        final MyCount myCountDown = new MyCount(getMillisecondsAllowed(), 1000,
+                                                mTimerValueTextView, mInfoTextView,
+                                                mInfoImageView, mGame);
 
         // then start a game
-        startNewGame();
+        startNewGame(myCountDown);
 
         // give mGridview an item click listener
         mGridview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -123,7 +137,7 @@ public class PlayActivity extends CommonActivity {
                         {
                             Log.v(LOGGING_TAG, "losing");
                             // display appropriate msg to player
-                            mInfoTextView.setText(R.string.losing_msg);
+                            mInfoTextView.setText(R.string.losing_three_in_a_row_msg);
 
                             // hide image of color hint
                             mInfoImageView.setVisibility(View.GONE);
@@ -173,7 +187,7 @@ public class PlayActivity extends CommonActivity {
      * Reset fields to grey
      * Make sure to randomly pick 4 new fields.
      */
-    private void startNewGame()
+    private void startNewGame(MyCount aCountDown)
     {
         Log.v(LOGGING_TAG, "PlayActivity, in startNewGame");
 
@@ -195,14 +209,54 @@ public class PlayActivity extends CommonActivity {
         // show image hint
         mInfoImageView.setVisibility(View.VISIBLE);
 
-        // increment TOTAL GAMES played
+        // *************** increment TOTAL GAMES played ******************
+        // DON'T DELETE YET
 //        incrementTotalGames();
+        // ***************************************************************
 
-//        mTimerValue = (TextView) findViewById(R.id.game_timer_value);
+        // process to show difficulty value in textview (easy, medium, hard)
+        showDifficulty();
 
-//        mGame.startTimer();
+        // start the timer
+        startMyTimer(aCountDown);
+
 
     } // End of startNewGame
+
+
+    /**
+     * will set the text in textview for difficulty value to the current value for difficulty
+     */
+    private void showDifficulty() {
+        mDifficultyValueTextView = (TextView) findViewById(R.id.game_difficulty_value);
+
+        // get the saved value for difficulty (0, 1, 2)
+        int currentSavedDifficultyValue = getSavedValueDifficulty();
+
+        final String[] DIFFICULTY_VALUE_LIST = {"Easy", "Medium", "Hard"};
+        mDifficultyValueTextView.setText(DIFFICULTY_VALUE_LIST[currentSavedDifficultyValue]);
+    }
+
+
+    /**
+     * get the milliseconds allowed in a game
+     * @return
+     */
+    public int getMillisecondsAllowed() {
+        // depending on grid size AND difficulty we chose the time allowed
+        int gridsize = getSavedValueGridSize();  // 4, 5, or 6 -> you will user modulo 4
+        int difficulty = getSavedValueDifficulty();  // 0, 1, or 2
+
+        // get the correct time from array[][]
+        int millisecondsAllowed = listMillisecondsArray[gridsize % 4][difficulty];
+
+        return millisecondsAllowed;
+    }
+
+
+    public void startMyTimer(MyCount aCountDown) {
+        aCountDown.start();
+    }
 
 
     /**

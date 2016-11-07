@@ -29,7 +29,25 @@ public class CommonActivity extends AppCompatActivity {
     public static final String THEME = "themeKey";
     public static final String GRID_SIZE = "gridsizeKey";
 
-    public static final String TOTAL_GAMES = "totalgamesKey";
+    // will be 0, 1, or 2 (integers representing easy, medium, or hard)
+    public static final String DIFFICULTY = "difficultKey";
+//    public static final String DIFFICULTY_5X5 = "difficulty_5x5_Key";
+//    public static final String DIFFICULTY_6X6 = "difficulty_6x6_Key";
+
+    // ineger representing seconds
+    public static final String BEST_TIME_4X4_1 = "best_time_4x4_1_Key";
+    public static final String BEST_TIME_4X4_2 = "best_time_4x4_2_Key";
+    public static final String BEST_TIME_4X4_3 = "best_time_4x4_3_Key";
+
+    public static final String BEST_TIME_5X5_1 = "best_time_5x5_1_Key";
+    public static final String BEST_TIME_5X5_2 = "best_time_5x5_2_Key";
+    public static final String BEST_TIME_5X5_3 = "best_time_5x5_3_Key";
+
+    public static final String BEST_TIME_6X6_1 = "best_time_6x6_1_Key";
+    public static final String BEST_TIME_6X6_2 = "best_time_6x6_2_Key";
+    public static final String BEST_TIME_6X6_3 = "best_time_6x6_3_Key";
+
+//    public static final String TOTAL_GAMES = "totalgamesKey";
 
     // decl reference to SharedPreferences class
     private SharedPreferences sharedPreferences;
@@ -68,6 +86,28 @@ public class CommonActivity extends AppCompatActivity {
         }
 
         return savedTheme;
+    }
+
+
+    /**
+     * Gets the currently set value of the difficulty, or the default if not set.
+     * @return   integer representing the difficulty.
+     */
+    public int getSavedValueDifficulty() {
+        // To retrieve an already saved shared preference we use the contains() method
+        // to check that the key value is stored in the sharedpreferences collection
+
+        int savedDifficulty = 0;
+
+        if (sharedPreferences.contains(DIFFICULTY)) {
+            savedDifficulty = sharedPreferences.getInt(DIFFICULTY, 0);  // Default zero (Easy)
+        } else {
+            // if no difficulty was saved, then save default difficulty
+            updateThemeInSharedPreferences(0);  // Default zero (Easy)
+        }
+
+        Log.v(LOGGING_TAG, "in getSavedValueDifficulty and the saved value difficulty: " + savedDifficulty);
+        return savedDifficulty;
     }
 
 
@@ -145,55 +185,64 @@ public class CommonActivity extends AppCompatActivity {
     }
 
 
+//**************************************************************************************************
+//****************************** DON'T DELETE ******************************************************
+//**************************************************************************************************
     /**
      * Gets the currently set value of the total games, or the default if not set.
      * @return      integer representing the total games.
      */
-    public int getSavedValueTotalGames() {
-        // To retrieve an already saved shared preference we use the contains() method
-        // to check that the key value is stored in the sharedpreferences collection
+//    public int getSavedValueTotalGames() {
+//        // To retrieve an already saved shared preference we use the contains() method
+//        // to check that the key value is stored in the sharedpreferences collection
+//
+//        int savedTotalGames = 0;
+//
+//        if (sharedPreferences.contains(TOTAL_GAMES)) {
+//            savedTotalGames = sharedPreferences.getInt(TOTAL_GAMES, 0);
+//        } else {
+//            // if no TOTAL_GAMES was saved, then save default total games 0
+//            saveDefaultZeroTotalGames();
+//        }
+//
+//        return savedTotalGames;
+//    }
 
-        int savedTotalGames = 0;
 
-        if (sharedPreferences.contains(TOTAL_GAMES)) {
-            savedTotalGames = sharedPreferences.getInt(TOTAL_GAMES, 0);
-        } else {
-            // if no TOTAL_GAMES was saved, then save default total games 0
-            saveDefaultZeroTotalGames();
-        }
-
-        return savedTotalGames;
-    }
-
-
+//**************************************************************************************************
+//****************************** DON'T DELETE ******************************************************
+//**************************************************************************************************
     /**
      * Saves zero as value for total games.
      */
-    public void saveDefaultZeroTotalGames() {
-        // format is: editor.putInt("key", value);
-        // in our example the key/value is:
-        editor.putInt(TOTAL_GAMES, 0);
-        editor.commit();
+//    public void saveDefaultZeroTotalGames() {
+//        // format is: editor.putInt("key", value);
+//        // in our example the key/value is:
+//        editor.putInt(TOTAL_GAMES, 0);
+//        editor.commit();
+//
+//        Log.v(LOGGING_TAG, "Total games is default: 0");
+//    }
 
-        Log.v(LOGGING_TAG, "Total games is default: 0");
-    }
 
-
+//**************************************************************************************************
+//****************************** DON'T DELETE ******************************************************
+//**************************************************************************************************
     /**
      * Updates the set value of the total games.
      */
-    public void updateTotalGamesInSharedPreferences() {
-        // get what was saved and then add 1
-        int currentlyTotalGames = getSavedValueTotalGames();
-        Log.v(LOGGING_TAG, "currently Total games saved: " + currentlyTotalGames);
-
-        // format is: editor.putInt("key", value);
-        // in our example the key/value is:
-        editor.putInt(TOTAL_GAMES, (currentlyTotalGames + 1));
-        editor.commit();
-
-        Log.v(LOGGING_TAG, "Total games is saved: " + (currentlyTotalGames + 1));
-    }
+//    public void updateTotalGamesInSharedPreferences() {
+//        // get what was saved and then add 1
+//        int currentlyTotalGames = getSavedValueTotalGames();
+//        Log.v(LOGGING_TAG, "currently Total games saved: " + currentlyTotalGames);
+//
+//        // format is: editor.putInt("key", value);
+//        // in our example the key/value is:
+//        editor.putInt(TOTAL_GAMES, (currentlyTotalGames + 1));
+//        editor.commit();
+//
+//        Log.v(LOGGING_TAG, "Total games is saved: " + (currentlyTotalGames + 1));
+//    }
 
 
     /**
@@ -212,11 +261,17 @@ public class CommonActivity extends AppCompatActivity {
 
     /**
      * Updates the set value of the difficulty level.
-     * @param textSpinnerDifficulty representing the difficulty level to update to.
+     * @param spinnerDifficultySelectedItem representing the difficulty level to update to.
      */
-    public void updateDifficultyInSharedPreferences(String textSpinnerDifficulty) {
-        // TODO update the difficulty in shared preferences
+    public void updateDifficultyInSharedPreferences(int spinnerDifficultySelectedItem) {
         Log.v(LOGGING_TAG, "CommonActivity in updateDifficultyInSharedPreferences");
+
+        // format is: editor.putInt("key", value);
+        // in our example the key/value is:
+        editor.putInt(DIFFICULTY, spinnerDifficultySelectedItem);
+        editor.commit();
+
+        Log.v(LOGGING_TAG, "Difficulty is saved: " + spinnerDifficultySelectedItem);
     }
 
 
@@ -225,7 +280,6 @@ public class CommonActivity extends AppCompatActivity {
      * @param spinnerGridSizeSelectedItem representing the grid size to update to.
      */
     public void updateGridSizeInSharedPreferences(int spinnerGridSizeSelectedItem) {
-        // TODO update the gridsize in shared preferences
         Log.v(LOGGING_TAG, "CommonActivity in updateGridSizeInSharedPreferences: " + spinnerGridSizeSelectedItem);
 
         // convert to the actual row/colum size (4, 5, or 6)
@@ -265,7 +319,6 @@ public class CommonActivity extends AppCompatActivity {
      * @param color2 representing the color 2 to update to.
      */
     public void updateColor2InSharedPreferences(int color2) {
-        // TODO update the color 2 in shared preferences
         Log.v(LOGGING_TAG, "CommonActivity in updateColor2InSharedPreferences");
 
         // format is: editor.putInt("key", value);
