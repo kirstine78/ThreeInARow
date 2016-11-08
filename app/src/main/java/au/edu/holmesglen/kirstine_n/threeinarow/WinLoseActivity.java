@@ -50,8 +50,8 @@ public class WinLoseActivity extends CommonActivity {
                 Log.v(LOGGING_TAG, "for loop: " + i + " " + j);
 
                 int bestTime = getSavedValueBestTime(i, j);
-                Log.v(LOGGING_TAG, "best time: " + bestTime);
-                textViewsList[i][j].setText("" + bestTime);
+                Log.v(LOGGING_TAG, "best time: " + (bestTime/1000));
+                textViewsList[i][j].setText("" + (bestTime/1000));
             }
         }
     }

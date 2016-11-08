@@ -56,6 +56,8 @@ public class MyCount extends CountDownTimer {
     public void onFinish() {
         Log.v(LOGGING_TAG, "in onFinish");
 
+        // ******************* DON'T DELETE YET BEFORE THOROUGH TESTING *********************
+
 //        // check if game is won, or lost 3 in row case
 //        if (game.isTheGameOver()) {
 //            Log.v(LOGGING_TAG, "in onFinish, the game is over (won or 3 in a row)");
@@ -75,6 +77,7 @@ public class MyCount extends CountDownTimer {
 //            // hide image of color hint
 //            ivInfoImage.setVisibility(View.GONE);
 //        }
+        // ************** DON'T DELETE THE ABOVE YET BEFORE THOROUGH TESTING ****************
     }
 
 

@@ -185,6 +185,10 @@ public class PlayActivity extends CommonActivity {
             public void onClick(View view) {
                 Log.v(LOGGING_TAG, "PlayActivity, in onClick btnStartNewGame");
 
+                // stop the current count down timer
+                myCountDown.cancel();
+                Log.v(LOGGING_TAG, "PlayActivity, count down timer cancelled");
+
                 // declare an intent, the activity to start
                 Intent intent;
 
@@ -344,22 +348,32 @@ public class PlayActivity extends CommonActivity {
         switch (item.getItemId())  // which menu item has been selected
         {
             case R.id.main:
+                // stop the current count down timer
+                myCountDown.cancel();
                 intent = new Intent(this, MainActivity.class);
                 startActivity(intent);
                 return true;
             case R.id.new_game:
+                // stop the current count down timer
+                myCountDown.cancel();
                 intent = new Intent(this, PlayActivity.class);
                 startActivity(intent);
                 return true;
             case R.id.help:
+                // stop the current count down timer
+                myCountDown.cancel();
                 intent = new Intent(this, HelpActivity.class);
                 startActivity(intent);
                 return true;
             case R.id.win_lose_record:
+                // stop the current count down timer
+                myCountDown.cancel();
                 intent = new Intent(this, WinLoseActivity.class);
                 startActivity(intent);
                 return true;
             case R.id.settings:
+                // stop the current count down timer
+                myCountDown.cancel();
                 intent = new Intent(this, SettingsActivity.class);
                 startActivity(intent);
                 return true;
