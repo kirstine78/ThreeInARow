@@ -44,13 +44,6 @@ public class PlayActivity extends CommonActivity {
     // array to hold all Item objects. these are our images
     private Item[] mGridArray;
 
-//    // array to hold milliseconds from each grid size
-//    int[][] listMillisecondsArray = {
-//                                    { 25000, 20000, 15000 },  // 4x4 - easy, medium, hard
-//                                    { 20000, 15000, 10000 },  // 5x5 - easy, medium, hard
-//                                    { 15000, 10000, 5000 }    // 6x6 - easy, medium, hard
-//                                } ;
-
     private ImageAdapter mImageAdapter;
 
     // Various text displayed
@@ -147,6 +140,18 @@ public class PlayActivity extends CommonActivity {
                         {
                             if (mGame.isGridFull())  // WINNING
                             {
+                                int millisecondsSpent = getMillisecondsSpentOnGame();
+
+                                // check if time is better than the saved
+                                if ( isNewTimeBetterThanCurrentBestTime(millisecondsSpent) ){
+                                    Log.v(LOGGING_TAG, "new time better");
+                                    // update
+                                    updateBestTime(millisecondsSpent);
+                                }
+                                else {
+                                    Log.v(LOGGING_TAG, "new time not better");
+                                }
+
                                 Log.v(LOGGING_TAG, "winning");
                                 // display appropriate msg to player
                                 mInfoTextView.setText(R.string.winning_msg);
@@ -409,6 +414,27 @@ public class PlayActivity extends CommonActivity {
         }
     }
 
+
+    public int getMillisecondsSpentOnGame() {
+        int timeSpent = 0;
+
+        // what was the time allowed.
+        int timeAllowed = listMillisecondsArray[getSavedValueGridSize() % 4][getSavedValueDifficulty()];
+        Log.v(LOGGING_TAG, "in getMillisecondsSpentOnGame, time allowed were: " + (timeAllowed));
+
+//        String timeStoppedAt = mTimerValueTextView.getText().toString();
+//        Log.v(LOGGING_TAG, "in getMillisecondsSpentOnGame, timeStoppedAt: " + timeStoppedAt);
+
+        // get milliseconds
+
+        long timeStoppedAt = myCountDown.millisecondsLeft;
+        Log.v(LOGGING_TAG, "in getMillisecondsSpentOnGame, timeStoppedAt: " + timeStoppedAt);
+
+        timeSpent = timeAllowed - (int)timeStoppedAt;
+        Log.v(LOGGING_TAG, "in getMillisecondsSpentOnGame, timeSpent: " + timeSpent);
+
+        return timeSpent;
+    }
 
 //    public void incrementTotalGames()
 //    {

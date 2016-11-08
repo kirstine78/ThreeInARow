@@ -26,6 +26,7 @@ public class MyCount extends CountDownTimer {
     private TextView tvInfoText;    // will show the txt "Next:"
     private ImageView ivInfoImage;  // will show the next color
     private ThreeRow game;
+    public long millisecondsLeft;
 
     /**
      * constructor
@@ -43,6 +44,7 @@ public class MyCount extends CountDownTimer {
         this.tvInfoText = tvInfoText;
         this.ivInfoImage = ivInfoImage;
         this.game = aGame;
+        this.millisecondsLeft = millisInFuture;
     }
 
 
@@ -52,7 +54,7 @@ public class MyCount extends CountDownTimer {
 
         // check if game is won, or lost 3 in row case
         if (game.isTheGameOver()) {
-            Log.v(LOGGING_TAG, "on finish the game is over (3 in a row)");
+            Log.v(LOGGING_TAG, "on finish the game is over (won or 3 in a row)");
 
             // stop the counter
             cancel();
@@ -97,13 +99,17 @@ public class MyCount extends CountDownTimer {
 
         // check if game is won, or lost 3 in row case
         if (game.isTheGameOver()) {
-            Log.v(LOGGING_TAG, "the game is over (3 in a row)");
+            Log.v(LOGGING_TAG, "the game is over (won, or 3 in a row)");
 
             // stop the counter
             cancel();
         }
         else {
             Log.v(LOGGING_TAG, "the game is NOT over (neither win nor 3 in a row)");
+
+            // update milliseconds left
+            millisecondsLeft = millisUntilFinished;
+            Log.v(LOGGING_TAG, "millisecs left: " + millisecondsLeft);
 
             // calc min
             long min  = millisUntilFinished / 60000;

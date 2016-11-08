@@ -123,7 +123,7 @@ public class CommonActivity extends AppCompatActivity {
             savedDifficulty = sharedPreferences.getInt(DIFFICULTY, 0);  // Default zero (Easy)
         } else {
             // if no difficulty was saved, then save default difficulty
-            updateThemeInSharedPreferences(0);  // Default zero (Easy)
+            updateDifficultyInSharedPreferences(0);  // Default zero (Easy)
         }
 
         Log.v(LOGGING_TAG, "in getSavedValueDifficulty and the saved value difficulty: " + savedDifficulty);
@@ -352,19 +352,18 @@ public class CommonActivity extends AppCompatActivity {
 
 
     public void updateBestTime(int newTimeInMilliseconds) {
+        // replacement process
+        Log.v(LOGGING_TAG, "CommonActivity in updateBestTime");
 
-        // first check if the better
-        if (isNewTimeBetterThanCurrentBestTime(newTimeInMilliseconds)) {
-            // replacement process
-            Log.v(LOGGING_TAG, "CommonActivity in updateBestTime");
+        int savedGridSize = getSavedValueGridSize() % 4;    // 4, 5, or 6 - hence the % 4
+        int savedDifficulty = getSavedValueDifficulty();  // 0, 1, or 2
 
-            // format is: editor.putInt("key", value);
-            // in our example the key/value is:
-            editor.putInt(getCorrectKeyNameBestTime(), newTimeInMilliseconds);
-            editor.commit();
+        // format is: editor.putInt("key", value);
+        // in our example the key/value is:
+        editor.putInt(getCorrectKeyNameBestTime(savedGridSize, savedDifficulty), newTimeInMilliseconds);
+        editor.commit();
 
-            Log.v(LOGGING_TAG, "new best time is saved");
-        }
+        Log.v(LOGGING_TAG, "new best time is saved");
     }
 
 
@@ -381,25 +380,18 @@ public class CommonActivity extends AppCompatActivity {
 
     public int getSavedValueBestTime() {
 
-//        public static final String[][] BEST_TIME_KEY_LIST = {
-//                {BEST_TIME_4X4_EASY, BEST_TIME_4X4_MEDIUM, BEST_TIME_4X4_HARD},
-//                {BEST_TIME_5X5_EASY, BEST_TIME_5X5_MEDIUM, BEST_TIME_5X5_HARD},
-//                {BEST_TIME_6X6_EASY, BEST_TIME_6X6_MEDIUM, BEST_TIME_6X6_HARD}
-//        };
-
-//        { 25000, 20000, 15000 },  // 4x4 - easy, medium, hard
-//        { 20000, 15000, 10000 },  // 5x5 - easy, medium, hard
-//        { 15000, 10000, 5000 }    // 6x6 - easy, medium, hard
+        int savedGridSize = getSavedValueGridSize() % 4;    // 4, 5, or 6 - hence the % 4
+        int savedDifficulty = getSavedValueDifficulty();  // 0, 1, or 2
 
         // find out the grid size and difficultyso you can decide which best time to fetch
-        String keyNameToGetInSharedPreferences = getCorrectKeyNameBestTime();
+        String keyNameToGetInSharedPreferences = getCorrectKeyNameBestTime(savedGridSize, savedDifficulty);
 
         // To retrieve an already saved shared preference we use the contains() method
         // to check that the key value is stored in the sharedpreferences collection
 
         int i;
 
-        final int DEFAULT_TIME = listMillisecondsArray[getSavedValueGridSize() % 4][getSavedValueDifficulty()];
+        final int DEFAULT_TIME = listMillisecondsArray[savedGridSize][savedDifficulty];
 
         if (sharedPreferences.contains(keyNameToGetInSharedPreferences)) {
             i = sharedPreferences.getInt(keyNameToGetInSharedPreferences, DEFAULT_TIME);
@@ -408,15 +400,15 @@ public class CommonActivity extends AppCompatActivity {
             i = DEFAULT_TIME;
 
             // update to default
-            updateColor2InSharedPreferences(DEFAULT_TIME);
+            updateBestTime(DEFAULT_TIME);
         }
 
         return i;
     }
 
 
-    public String getCorrectKeyNameBestTime() {
-        String keyNameToGetInSharedPreferences = BEST_TIME_KEY_LIST[getSavedValueGridSize() % 4][getSavedValueDifficulty()];
+    public String getCorrectKeyNameBestTime(int gridSize, int difficulty) {
+        String keyNameToGetInSharedPreferences = BEST_TIME_KEY_LIST[gridSize][difficulty];
         Log.v(LOGGING_TAG, "in getCorrectKeyNameBestTime, keyNameToGetInSharedPreferences: " + keyNameToGetInSharedPreferences);
 
         return keyNameToGetInSharedPreferences;
