@@ -145,8 +145,12 @@ public class PlayActivity extends CommonActivity {
                                 // check if time is better than the saved
                                 if ( isNewTimeBetterThanCurrentBestTime(millisecondsSpent) ){
                                     Log.v(LOGGING_TAG, "new time better");
+
+                                    int savedGridSize = getSavedValueGridSize() % 4;    // 4, 5, or 6 - hence the % 4
+                                    int savedDifficulty = getSavedValueDifficulty();  // 0, 1, or 2
+
                                     // update
-                                    updateBestTime(millisecondsSpent);
+                                    updateBestTime(millisecondsSpent, savedGridSize, savedDifficulty);
                                 }
                                 else {
                                     Log.v(LOGGING_TAG, "new time not better");

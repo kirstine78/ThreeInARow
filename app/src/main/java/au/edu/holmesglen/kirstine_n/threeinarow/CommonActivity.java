@@ -66,7 +66,7 @@ public class CommonActivity extends AppCompatActivity {
     public int[][] listMillisecondsArray = {
             { 25000, 20000, 15000 },  // 4x4 - easy, medium, hard
             { 20000, 15000, 10000 },  // 5x5 - easy, medium, hard
-            { 15000, 10000, 5000 }    // 6x6 - easy, medium, hard
+            { 15000, 10000, 75000 }    // 6x6 - easy, medium, hard
     } ;
 
     // decl reference to SharedPreferences class
@@ -351,16 +351,13 @@ public class CommonActivity extends AppCompatActivity {
 
 
 
-    public void updateBestTime(int newTimeInMilliseconds) {
+    public void updateBestTime(int newTimeInMilliseconds, int whichGridsize, int whichDifficulty) {
         // replacement process
         Log.v(LOGGING_TAG, "CommonActivity in updateBestTime");
 
-        int savedGridSize = getSavedValueGridSize() % 4;    // 4, 5, or 6 - hence the % 4
-        int savedDifficulty = getSavedValueDifficulty();  // 0, 1, or 2
-
         // format is: editor.putInt("key", value);
         // in our example the key/value is:
-        editor.putInt(getCorrectKeyNameBestTime(savedGridSize, savedDifficulty), newTimeInMilliseconds);
+        editor.putInt(getCorrectKeyNameBestTime(whichGridsize, whichDifficulty), newTimeInMilliseconds);
         editor.commit();
 
         Log.v(LOGGING_TAG, "new best time is saved");
@@ -370,38 +367,45 @@ public class CommonActivity extends AppCompatActivity {
     public boolean isNewTimeBetterThanCurrentBestTime(int newTimeInMilliseconds) {
         boolean newTimeIsBetter = false;
 
+        int savedGridSize = getSavedValueGridSize() % 4;    // 4, 5, or 6 - hence the % 4
+        int savedDifficulty = getSavedValueDifficulty();  // 0, 1, or 2
+
         // if new time is better then replace
-        if (newTimeInMilliseconds < getSavedValueBestTime()) {
+        if (newTimeInMilliseconds < getSavedValueBestTime(savedGridSize, savedDifficulty)) {
             newTimeIsBetter = true;
         }
         return newTimeIsBetter;
     }
 
 
-    public int getSavedValueBestTime() {
-
-        int savedGridSize = getSavedValueGridSize() % 4;    // 4, 5, or 6 - hence the % 4
-        int savedDifficulty = getSavedValueDifficulty();  // 0, 1, or 2
+    public int getSavedValueBestTime(int gridsize, int difficulty) {
 
         // find out the grid size and difficultyso you can decide which best time to fetch
-        String keyNameToGetInSharedPreferences = getCorrectKeyNameBestTime(savedGridSize, savedDifficulty);
+        String keyNameToGetInSharedPreferences = getCorrectKeyNameBestTime(gridsize, difficulty);
+        Log.v(LOGGING_TAG, "THE keyNameToGetInSharedPreferences: " + keyNameToGetInSharedPreferences);
 
         // To retrieve an already saved shared preference we use the contains() method
         // to check that the key value is stored in the sharedpreferences collection
 
         int i;
 
-        final int DEFAULT_TIME = listMillisecondsArray[savedGridSize][savedDifficulty];
+        int defaultTime = listMillisecondsArray[gridsize][difficulty];
+
+        Log.v(LOGGING_TAG, "defaultTime: " + defaultTime);
 
         if (sharedPreferences.contains(keyNameToGetInSharedPreferences)) {
-            i = sharedPreferences.getInt(keyNameToGetInSharedPreferences, DEFAULT_TIME);
+            i = sharedPreferences.getInt(keyNameToGetInSharedPreferences, defaultTime);
+            Log.v(LOGGING_TAG, "contains, i: " + i);
         } else {
             // set i to the default time
-            i = DEFAULT_TIME;
+            i = defaultTime;
+            Log.v(LOGGING_TAG, "not contains i: " + i);
 
-            // update to default
-            updateBestTime(DEFAULT_TIME);
+            // update to default for the specific grid size and difficulty
+            updateBestTime(defaultTime, gridsize, difficulty);
         }
+
+        Log.v(LOGGING_TAG, "i: " + i);
 
         return i;
     }
