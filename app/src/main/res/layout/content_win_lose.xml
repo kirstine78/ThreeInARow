@@ -32,6 +32,9 @@ Version:         1.1
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:textSize="24dp"
+            android:textStyle="bold"
+            android:textColor="@color/colorAccent"
             android:text="@string/best_times_grid_4"/>
 
         <LinearLayout
@@ -42,11 +45,17 @@ Version:         1.1
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:textSize="16dp"
+                android:textStyle="bold"
+                android:textColor="@color/colorAccent"
                 android:text="@string/best_times_easy"/>
             <TextView
                 android:id="@+id/tv_bestTime4x4easy"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:textSize="16dp"
+                android:textColor="@color/colorAccent"
                 android:text="@string/best_times_number1"/>
             <!--<TextView-->
                 <!--android:layout_width="wrap_content"-->
@@ -67,11 +76,17 @@ Version:         1.1
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:textSize="16dp"
+                android:textStyle="bold"
+                android:textColor="@color/colorAccent"
                 android:text="@string/best_times_medium"/>
             <TextView
                 android:id="@+id/tv_bestTime4x4medium"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:textSize="16dp"
+                android:textColor="@color/colorAccent"
                 android:text="@string/best_times_number1"/>
             <!--<TextView-->
                 <!--android:layout_width="wrap_content"-->
@@ -92,11 +107,17 @@ Version:         1.1
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:textSize="16dp"
+                android:textStyle="bold"
+                android:textColor="@color/colorAccent"
                 android:text="@string/best_times_hard"/>
             <TextView
                 android:id="@+id/tv_bestTime4x4hard"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:textSize="16dp"
+                android:textColor="@color/colorAccent"
                 android:text="@string/best_times_number1"/>
             <!--<TextView-->
                 <!--android:layout_width="wrap_content"-->
@@ -120,6 +141,9 @@ Version:         1.1
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:textSize="24dp"
+            android:textStyle="bold"
+            android:textColor="@color/colorAccent"
             android:text="@string/best_times_grid_5"/>
 
         <LinearLayout
@@ -130,11 +154,17 @@ Version:         1.1
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:textSize="16dp"
+                android:textStyle="bold"
+                android:textColor="@color/colorAccent"
                 android:text="@string/best_times_easy"/>
             <TextView
                 android:id="@+id/tv_bestTime5x5easy"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:textSize="16dp"
+                android:textColor="@color/colorAccent"
                 android:text="@string/best_times_number1"/>
             <!--<TextView-->
                 <!--android:layout_width="wrap_content"-->
@@ -155,11 +185,17 @@ Version:         1.1
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:textSize="16dp"
+                android:textStyle="bold"
+                android:textColor="@color/colorAccent"
                 android:text="@string/best_times_medium"/>
             <TextView
                 android:id="@+id/tv_bestTime5x5medium"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:textSize="16dp"
+                android:textColor="@color/colorAccent"
                 android:text="@string/best_times_number1"/>
             <!--<TextView-->
                 <!--android:layout_width="wrap_content"-->
@@ -180,11 +216,17 @@ Version:         1.1
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:textSize="16dp"
+                android:textStyle="bold"
+                android:textColor="@color/colorAccent"
                 android:text="@string/best_times_hard"/>
             <TextView
                 android:id="@+id/tv_bestTime5x5hard"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:textSize="16dp"
+                android:textColor="@color/colorAccent"
                 android:text="@string/best_times_number1"/>
             <!--<TextView-->
                 <!--android:layout_width="wrap_content"-->
@@ -208,6 +250,9 @@ Version:         1.1
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:textSize="24dp"
+            android:textStyle="bold"
+            android:textColor="@color/colorAccent"
             android:text="@string/best_times_grid_6"/>
 
 
@@ -219,11 +264,17 @@ Version:         1.1
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:textSize="16dp"
+                android:textStyle="bold"
+                android:textColor="@color/colorAccent"
                 android:text="@string/best_times_easy"/>
             <TextView
                 android:id="@+id/tv_bestTime6x6easy"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:textSize="16dp"
+                android:textColor="@color/colorAccent"
                 android:text="@string/best_times_number1"/>
             <!--<TextView-->
                 <!--android:layout_width="wrap_content"-->
@@ -244,11 +295,17 @@ Version:         1.1
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:textSize="16dp"
+                android:textStyle="bold"
+                android:textColor="@color/colorAccent"
                 android:text="@string/best_times_medium"/>
             <TextView
                 android:id="@+id/tv_bestTime6x6medium"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:textSize="16dp"
+                android:textColor="@color/colorAccent"
                 android:text="@string/best_times_number1"/>
             <!--<TextView-->
                 <!--android:layout_width="wrap_content"-->
@@ -269,11 +326,17 @@ Version:         1.1
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:textSize="16dp"
+                android:textStyle="bold"
+                android:textColor="@color/colorAccent"
                 android:text="@string/best_times_hard"/>
             <TextView
                 android:id="@+id/tv_bestTime6x6hard"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:textSize="16dp"
+                android:textColor="@color/colorAccent"
                 android:text="@string/best_times_number1"/>
             <!--<TextView-->
                 <!--android:layout_width="wrap_content"-->

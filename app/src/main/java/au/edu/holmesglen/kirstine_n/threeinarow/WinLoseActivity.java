@@ -69,6 +69,7 @@ public class WinLoseActivity extends CommonActivity {
                 int bestTime = getSavedValueBestTime(i, j);
                 Log.v(LOGGING_TAG, "best time: " + bestTime);
                 textViewsList[i][j].setText("" + bestTime);
+//                textViewsList[i][j].setPadding(70,0,10,0);
             }
         }
     }
