@@ -56,26 +56,25 @@ public class MyCount extends CountDownTimer {
     public void onFinish() {
         Log.v(LOGGING_TAG, "in onFinish");
 
-        // check if game is won, or lost 3 in row case
-        if (game.isTheGameOver()) {
-            Log.v(LOGGING_TAG, "on finish the game is over (won or 3 in a row)");
-
-            // stop the counter
-            cancel();
-        }
-        else {
-            Log.v(LOGGING_TAG, "on finish the game is NOT over");
-//            tvTimerValue.setText("0:00");
-
-            // make sure to set the game to be over
-            game.setGameOverToTrue();
-
-            // set info text
-            tvInfoText.setText(R.string.losing_time_ran_out_msg);
-
-            // hide image of color hint
-            ivInfoImage.setVisibility(View.GONE);
-        }
+//        // check if game is won, or lost 3 in row case
+//        if (game.isTheGameOver()) {
+//            Log.v(LOGGING_TAG, "in onFinish, the game is over (won or 3 in a row)");
+//
+//            // stop the counter
+//            cancel();
+//        }
+//        else {
+//            Log.v(LOGGING_TAG, "in onFinish the game is NOT over");
+//
+//            // make sure to set the game to be over
+//            game.setGameOverToTrue();
+//
+//            // set info text
+//            tvInfoText.setText(R.string.losing_time_ran_out_msg);
+//
+//            // hide image of color hint
+//            ivInfoImage.setVisibility(View.GONE);
+//        }
     }
 
 
@@ -89,24 +88,21 @@ public class MyCount extends CountDownTimer {
 
         Log.v(LOGGING_TAG, "secondsTaken: " + secondsTaken);
 
-//        millisUntilFinished = millisUntilFinished - 1000;
-
-
         // check if game is won, or lost 3 in row case
         if (game.isTheGameOver()) {
-            Log.v(LOGGING_TAG, "the game is over (won, or 3 in a row)");
-
-//            secondsLeft = (millisecondsLeft/1000) + 1;
+            Log.v(LOGGING_TAG, "in onTick, the game is over (won, or 3 in a row)");
 
             // stop the counter
             cancel();
         }
         else if (millisecondsLeft < 0) {
+            Log.v(LOGGING_TAG, "in onTick, time ran out");
 
             // stop the counter
             cancel();
 
             tvTimerValue.setText("0:00");
+
             // make sure to set the game to be over
             game.setGameOverToTrue();
 
@@ -117,9 +113,7 @@ public class MyCount extends CountDownTimer {
             ivInfoImage.setVisibility(View.GONE);
 
         } else {
-
-            Log.v(LOGGING_TAG, "the game is NOT over (neither win nor 3 in a row)");
-
+            Log.v(LOGGING_TAG, "in onTick, the game is NOT over (neither win nor 3 in a row)");
 
             secondsTaken++;
 
