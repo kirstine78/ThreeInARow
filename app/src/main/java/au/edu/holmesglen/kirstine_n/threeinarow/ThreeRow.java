@@ -53,8 +53,8 @@ public class ThreeRow
     private boolean mGameOver = false;
 
     // timer
-    private long minutes;
-    private long seconds;
+//    private long minutes;
+//    private long seconds;
 
 
     /**

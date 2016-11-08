@@ -14,15 +14,17 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import static au.edu.holmesglen.kirstine_n.threeinarow.MainActivity.LOGGING_TAG;
+
 /**
  * Created by Kirsti on 2/11/2016.
  */
 
 public class MyCount extends CountDownTimer {
 
-    private TextView tvTimerValue;
-    private ImageView ivInfoImage;
-    private TextView tvInfoText;
+    private TextView tvTimerValue;  // will show the seconds remaining
+    private TextView tvInfoText;    // will show the txt "Next:"
+    private ImageView ivInfoImage;  // will show the next color
     private ThreeRow game;
 
     /**
@@ -46,39 +48,81 @@ public class MyCount extends CountDownTimer {
 
     @Override
     public void onFinish() {
-        tvTimerValue.setText("0:00");
+        Log.v(LOGGING_TAG, "reached zero");
 
-        // make sure to set the game to be over
-        game.setGameOverToTrue();
+        // check if game is won, or lost 3 in row case
+        if (game.isTheGameOver()) {
+            Log.v(LOGGING_TAG, "on finish the game is over (3 in a row)");
 
-        // set info text
-        tvInfoText.setText(R.string.losing_time_ran_out_msg);
+            // stop the counter
+            cancel();
+        }
+        else {
+            Log.v(LOGGING_TAG, "on finish the game is NOT over");
+            tvTimerValue.setText("0:00");
 
-        // hide image of color hint
-        ivInfoImage.setVisibility(View.GONE);
+            // make sure to set the game to be over
+            game.setGameOverToTrue();
+
+            // set info text
+            tvInfoText.setText(R.string.losing_time_ran_out_msg);
+
+            // hide image of color hint
+            ivInfoImage.setVisibility(View.GONE);
+        }
     }
 
 
     @Override
     public void onTick(long millisUntilFinished) {
 
-        // calc min
-        long min  = millisUntilFinished / 60000;
+//        // calc min
+//        long min  = millisUntilFinished / 60000;
+//
+//        // cal millisec left over
+//        long millisec = millisUntilFinished % 60000;
+//
+//        // calc sec
+//        long sec = millisec / 1000;
+//
+//        // make sure that 0-9 seconds appear 00-09
+//        if (sec < 10)
+//        {
+//            tvTimerValue.setText(min + ":0" + sec);
+//        }
+//        else
+//        {
+//            tvTimerValue.setText(min + ":" + sec);
+//        }
 
-        // cal millisec left over
-        long millisec = millisUntilFinished % 60000;
+        // check if game is won, or lost 3 in row case
+        if (game.isTheGameOver()) {
+            Log.v(LOGGING_TAG, "the game is over (3 in a row)");
 
-        // calc sec
-        long sec = millisec / 1000;
-
-        // make sure that 0-9 seconds appear 00-09
-        if (sec < 10)
-        {
-            tvTimerValue.setText(min + ":0" + sec);
+            // stop the counter
+            cancel();
         }
-        else
-        {
-            tvTimerValue.setText(min + ":" + sec);
+        else {
+            Log.v(LOGGING_TAG, "the game is NOT over (neither win nor 3 in a row)");
+
+            // calc min
+            long min  = millisUntilFinished / 60000;
+
+            // cal millisec left over
+            long millisec = millisUntilFinished % 60000;
+
+            // calc sec
+            long sec = millisec / 1000;
+
+            // make sure that 0-9 seconds appear 00-09
+            if (sec < 10)
+            {
+                tvTimerValue.setText(min + ":0" + sec);
+            }
+            else
+            {
+                tvTimerValue.setText(min + ":" + sec);
+            }
         }
     }
 }

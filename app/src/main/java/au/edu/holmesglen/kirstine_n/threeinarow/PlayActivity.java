@@ -135,7 +135,7 @@ public class PlayActivity extends CommonActivity {
                         // check if 3 in a row first
                         if (mGame.checkForThreeInARow())  //LOSING
                         {
-                            Log.v(LOGGING_TAG, "losing");
+                            Log.v(LOGGING_TAG, "losing because of three in a row");
                             // display appropriate msg to player
                             mInfoTextView.setText(R.string.losing_three_in_a_row_msg);
 
