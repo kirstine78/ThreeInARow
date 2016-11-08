@@ -30,7 +30,7 @@
     <string name="help_settings_statistic_explain">You can change the settings in \"Settings\" and see your game statistics in \"Win - Lose record\"</string>
     <string name="btn_text_start_game_help_screen">Got it - Start Game</string>
 
-    <string name="title_activity_win_lose">Best times</string>
+    <string name="title_activity_win_lose">Best Times</string>
     <string name="win_lose_body">Best times screen under construction</string>
     <string name="best_times_grid_4">4 x 4</string>
     <string name="best_times_grid_5">5 x 5</string>
