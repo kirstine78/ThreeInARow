@@ -141,7 +141,8 @@ public class PlayActivity extends CommonActivity {
                         {
                             if (mGame.isGridFull())  // WINNING
                             {
-                                int millisecondsSpent = getMillisecondsSpentOnGame();
+                                // get the second spent on the game and convert to milliseconds
+                                int millisecondsSpent = myCountDown.secondsTaken * 1000;
 
                                 // check if time is better than the saved
                                 if ( isNewTimeBetterThanCurrentBestTime(millisecondsSpent) ){
@@ -422,30 +423,21 @@ public class PlayActivity extends CommonActivity {
     }
 
 
-    public int getMillisecondsSpentOnGame() {
-        int timeSpent = 0;
-
-        // what was the time allowed.
-        int timeAllowed = listMillisecondsArray[getSavedValueGridSize() % 4][getSavedValueDifficulty()];
-        Log.v(LOGGING_TAG, "in getMillisecondsSpentOnGame, time allowed were: " + (timeAllowed));
-
-//        String timeStoppedAt = mTimerValueTextView.getText().toString();
+//    public int getMillisecondsSpentOnGame() {
+//        int timeSpent = 0;
+//
+//        // what was the time allowed.
+//        int timeAllowed = listMillisecondsArray[getSavedValueGridSize() % 4][getSavedValueDifficulty()];
+//        Log.v(LOGGING_TAG, "in getMillisecondsSpentOnGame, time allowed were: " + (timeAllowed));
+//
+//        // get milliseconds
+//        long timeStoppedAt = myCountDown.millisecondsLeft;
 //        Log.v(LOGGING_TAG, "in getMillisecondsSpentOnGame, timeStoppedAt: " + timeStoppedAt);
-
-        // get milliseconds
-
-        long timeStoppedAt = myCountDown.millisecondsLeft;
-        Log.v(LOGGING_TAG, "in getMillisecondsSpentOnGame, timeStoppedAt: " + timeStoppedAt);
-
-        timeSpent = timeAllowed - (int)timeStoppedAt;
-        Log.v(LOGGING_TAG, "in getMillisecondsSpentOnGame, timeSpent: " + timeSpent);
-
-        return timeSpent;
-    }
-
-//    public void incrementTotalGames()
-//    {
-//        updateTotalGamesInSharedPreferences();
+//
+//        timeSpent = timeAllowed - (int)timeStoppedAt;
+//        Log.v(LOGGING_TAG, "in getMillisecondsSpentOnGame, timeSpent: " + timeSpent);
+//
+//        return timeSpent;
 //    }
 
 }  // end class

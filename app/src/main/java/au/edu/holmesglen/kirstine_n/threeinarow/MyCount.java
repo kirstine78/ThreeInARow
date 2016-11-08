@@ -27,6 +27,9 @@ public class MyCount extends CountDownTimer {
     private ImageView ivInfoImage;  // will show the next color
     private ThreeRow game;
     public long millisecondsLeft;
+    public int secondsTaken;
+    private static final long TWEAK_MILLISECONDS = 3000;  // necessary because of bad CountDownTimer class
+
 
     /**
      * constructor
@@ -39,18 +42,19 @@ public class MyCount extends CountDownTimer {
                    TextView tvTimerValue, TextView tvInfoText,
                    ImageView ivInfoImage, ThreeRow aGame) {
 
-        super(millisInFuture, countDownInterval);
+        super(millisInFuture + TWEAK_MILLISECONDS, countDownInterval);
         this.tvTimerValue = tvTimerValue;
         this.tvInfoText = tvInfoText;
         this.ivInfoImage = ivInfoImage;
         this.game = aGame;
         this.millisecondsLeft = millisInFuture;
+        this.secondsTaken = -1;
     }
 
 
     @Override
     public void onFinish() {
-        Log.v(LOGGING_TAG, "reached zero");
+        Log.v(LOGGING_TAG, "in onFinish");
 
         // check if game is won, or lost 3 in row case
         if (game.isTheGameOver()) {
@@ -61,7 +65,7 @@ public class MyCount extends CountDownTimer {
         }
         else {
             Log.v(LOGGING_TAG, "on finish the game is NOT over");
-            tvTimerValue.setText("0:00");
+//            tvTimerValue.setText("0:00");
 
             // make sure to set the game to be over
             game.setGameOverToTrue();
@@ -78,44 +82,52 @@ public class MyCount extends CountDownTimer {
     @Override
     public void onTick(long millisUntilFinished) {
 
-//        // calc min
-//        long min  = millisUntilFinished / 60000;
-//
-//        // cal millisec left over
-//        long millisec = millisUntilFinished % 60000;
-//
-//        // calc sec
-//        long sec = millisec / 1000;
-//
-//        // make sure that 0-9 seconds appear 00-09
-//        if (sec < 10)
-//        {
-//            tvTimerValue.setText(min + ":0" + sec);
-//        }
-//        else
-//        {
-//            tvTimerValue.setText(min + ":" + sec);
-//        }
+        // update milliseconds left
+        millisecondsLeft = millisUntilFinished - TWEAK_MILLISECONDS;
+
+        Log.v(LOGGING_TAG, "millisecs left: " + millisecondsLeft);
+
+        Log.v(LOGGING_TAG, "secondsTaken: " + secondsTaken);
+
+//        millisUntilFinished = millisUntilFinished - 1000;
+
 
         // check if game is won, or lost 3 in row case
         if (game.isTheGameOver()) {
             Log.v(LOGGING_TAG, "the game is over (won, or 3 in a row)");
 
+//            secondsLeft = (millisecondsLeft/1000) + 1;
+
             // stop the counter
             cancel();
         }
-        else {
+        else if (millisecondsLeft < 0) {
+
+            // stop the counter
+            cancel();
+
+            tvTimerValue.setText("0:00");
+            // make sure to set the game to be over
+            game.setGameOverToTrue();
+
+            // set info text
+            tvInfoText.setText(R.string.losing_time_ran_out_msg);
+
+            // hide image of color hint
+            ivInfoImage.setVisibility(View.GONE);
+
+        } else {
+
             Log.v(LOGGING_TAG, "the game is NOT over (neither win nor 3 in a row)");
 
-            // update milliseconds left
-            millisecondsLeft = millisUntilFinished;
-            Log.v(LOGGING_TAG, "millisecs left: " + millisecondsLeft);
+
+            secondsTaken++;
 
             // calc min
-            long min  = millisUntilFinished / 60000;
+            long min  = (millisecondsLeft + 1000) / 60000;
 
             // cal millisec left over
-            long millisec = millisUntilFinished % 60000;
+            long millisec = (millisecondsLeft + 1000) % 60000;
 
             // calc sec
             long sec = millisec / 1000;
