@@ -31,23 +31,43 @@ public class CommonActivity extends AppCompatActivity {
 
     // will be 0, 1, or 2 (integers representing easy, medium, or hard)
     public static final String DIFFICULTY = "difficultKey";
-//    public static final String DIFFICULTY_5X5 = "difficulty_5x5_Key";
-//    public static final String DIFFICULTY_6X6 = "difficulty_6x6_Key";
 
-    // ineger representing seconds
-    public static final String BEST_TIME_4X4_1 = "best_time_4x4_1_Key";
-    public static final String BEST_TIME_4X4_2 = "best_time_4x4_2_Key";
-    public static final String BEST_TIME_4X4_3 = "best_time_4x4_3_Key";
+    // integer representing seconds
+    public static final String BEST_TIME_4X4_EASY =     "best_time_4x4_easy_Key";
+    public static final String BEST_TIME_4X4_MEDIUM =   "best_time_4x4_medium_Key";
+    public static final String BEST_TIME_4X4_HARD =     "best_time_4x4_hard_Key";
 
-    public static final String BEST_TIME_5X5_1 = "best_time_5x5_1_Key";
-    public static final String BEST_TIME_5X5_2 = "best_time_5x5_2_Key";
-    public static final String BEST_TIME_5X5_3 = "best_time_5x5_3_Key";
+    public static final String BEST_TIME_5X5_EASY =     "best_time_5x5_easy_Key";
+    public static final String BEST_TIME_5X5_MEDIUM =   "best_time_5x5_medium_Key";
+    public static final String BEST_TIME_5X5_HARD =     "best_time_5x5_hard_Key";
 
-    public static final String BEST_TIME_6X6_1 = "best_time_6x6_1_Key";
-    public static final String BEST_TIME_6X6_2 = "best_time_6x6_2_Key";
-    public static final String BEST_TIME_6X6_3 = "best_time_6x6_3_Key";
+    public static final String BEST_TIME_6X6_EASY =     "best_time_6x6_easy_Key";
+    public static final String BEST_TIME_6X6_MEDIUM =   "best_time_6x6_medium_Key";
+    public static final String BEST_TIME_6X6_HARD =     "best_time_6x6_hard_Key";
+
+    public static final String[][] BEST_TIME_KEY_LIST = {
+                                    {BEST_TIME_4X4_EASY, BEST_TIME_4X4_MEDIUM, BEST_TIME_4X4_HARD},
+                                    {BEST_TIME_5X5_EASY, BEST_TIME_5X5_MEDIUM, BEST_TIME_5X5_HARD},
+                                    {BEST_TIME_6X6_EASY, BEST_TIME_6X6_MEDIUM, BEST_TIME_6X6_HARD}
+                                };
+
+//
+//    public static final String BEST_TIME_5X5_1 = "best_time_5x5_1_Key";
+//    public static final String BEST_TIME_5X5_2 = "best_time_5x5_2_Key";
+//    public static final String BEST_TIME_5X5_3 = "best_time_5x5_3_Key";
+//
+//    public static final String BEST_TIME_6X6_1 = "best_time_6x6_1_Key";
+//    public static final String BEST_TIME_6X6_2 = "best_time_6x6_2_Key";
+//    public static final String BEST_TIME_6X6_3 = "best_time_6x6_3_Key";
 
 //    public static final String TOTAL_GAMES = "totalgamesKey";
+
+    // array to hold milliseconds from each grid size
+    public int[][] listMillisecondsArray = {
+            { 25000, 20000, 15000 },  // 4x4 - easy, medium, hard
+            { 20000, 15000, 10000 },  // 5x5 - easy, medium, hard
+            { 15000, 10000, 5000 }    // 6x6 - easy, medium, hard
+    } ;
 
     // decl reference to SharedPreferences class
     private SharedPreferences sharedPreferences;
@@ -328,5 +348,79 @@ public class CommonActivity extends AppCompatActivity {
 
         Log.v(LOGGING_TAG, "Color2 is saved");
     }
+
+
+
+    public void updateBestTime(int newTimeInMilliseconds) {
+
+        // first check if the better
+        if (isNewTimeBetterThanCurrentBestTime(newTimeInMilliseconds)) {
+            // replacement process
+            Log.v(LOGGING_TAG, "CommonActivity in updateBestTime");
+
+            // format is: editor.putInt("key", value);
+            // in our example the key/value is:
+            editor.putInt(getCorrectKeyNameBestTime(), newTimeInMilliseconds);
+            editor.commit();
+
+            Log.v(LOGGING_TAG, "new best time is saved");
+        }
+    }
+
+
+    public boolean isNewTimeBetterThanCurrentBestTime(int newTimeInMilliseconds) {
+        boolean newTimeIsBetter = false;
+
+        // if new time is better then replace
+        if (newTimeInMilliseconds < getSavedValueBestTime()) {
+            newTimeIsBetter = true;
+        }
+        return newTimeIsBetter;
+    }
+
+
+    public int getSavedValueBestTime() {
+
+//        public static final String[][] BEST_TIME_KEY_LIST = {
+//                {BEST_TIME_4X4_EASY, BEST_TIME_4X4_MEDIUM, BEST_TIME_4X4_HARD},
+//                {BEST_TIME_5X5_EASY, BEST_TIME_5X5_MEDIUM, BEST_TIME_5X5_HARD},
+//                {BEST_TIME_6X6_EASY, BEST_TIME_6X6_MEDIUM, BEST_TIME_6X6_HARD}
+//        };
+
+//        { 25000, 20000, 15000 },  // 4x4 - easy, medium, hard
+//        { 20000, 15000, 10000 },  // 5x5 - easy, medium, hard
+//        { 15000, 10000, 5000 }    // 6x6 - easy, medium, hard
+
+        // find out the grid size and difficultyso you can decide which best time to fetch
+        String keyNameToGetInSharedPreferences = getCorrectKeyNameBestTime();
+
+        // To retrieve an already saved shared preference we use the contains() method
+        // to check that the key value is stored in the sharedpreferences collection
+
+        int i;
+
+        final int DEFAULT_TIME = listMillisecondsArray[getSavedValueGridSize() % 4][getSavedValueDifficulty()];
+
+        if (sharedPreferences.contains(keyNameToGetInSharedPreferences)) {
+            i = sharedPreferences.getInt(keyNameToGetInSharedPreferences, DEFAULT_TIME);
+        } else {
+            // set i to the default time
+            i = DEFAULT_TIME;
+
+            // update to default
+            updateColor2InSharedPreferences(DEFAULT_TIME);
+        }
+
+        return i;
+    }
+
+
+    public String getCorrectKeyNameBestTime() {
+        String keyNameToGetInSharedPreferences = BEST_TIME_KEY_LIST[getSavedValueGridSize() % 4][getSavedValueDifficulty()];
+        Log.v(LOGGING_TAG, "in getCorrectKeyNameBestTime, keyNameToGetInSharedPreferences: " + keyNameToGetInSharedPreferences);
+
+        return keyNameToGetInSharedPreferences;
+    }
+
 }  // end CommonActivity
 

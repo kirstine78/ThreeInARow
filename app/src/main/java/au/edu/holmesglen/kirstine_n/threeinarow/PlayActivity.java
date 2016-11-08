@@ -44,12 +44,12 @@ public class PlayActivity extends CommonActivity {
     // array to hold all Item objects. these are our images
     private Item[] mGridArray;
 
-    // array to hold milliseconds from each grid size
-    int[][] listMillisecondsArray = {
-                                    { 25000, 20000, 15000 },  // 4x4 - easy, medium, hard
-                                    { 20000, 15000, 10000 },  // 5x5 - easy, medium, hard
-                                    { 15000, 10000, 5000 }    // 6x6 - easy, medium, hard
-                                } ;
+//    // array to hold milliseconds from each grid size
+//    int[][] listMillisecondsArray = {
+//                                    { 25000, 20000, 15000 },  // 4x4 - easy, medium, hard
+//                                    { 20000, 15000, 10000 },  // 5x5 - easy, medium, hard
+//                                    { 15000, 10000, 5000 }    // 6x6 - easy, medium, hard
+//                                } ;
 
     private ImageAdapter mImageAdapter;
 
@@ -58,6 +58,7 @@ public class PlayActivity extends CommonActivity {
     private ImageView mInfoImageView;
     private TextView mTimerValueTextView;
     private TextView mDifficultyValueTextView;
+    private MyCount myCountDown;
 
 
     @Override
@@ -103,9 +104,9 @@ public class PlayActivity extends CommonActivity {
         mTimerValueTextView = (TextView) findViewById(R.id.game_timer_value);
 
         // process to show timer value in textview
-        final MyCount myCountDown = new MyCount(getMillisecondsAllowed(), 1000,
-                                                mTimerValueTextView, mInfoTextView,
-                                                mInfoImageView, mGame);
+        myCountDown = new MyCount(getMillisecondsAllowed(), 1000,
+                                    mTimerValueTextView, mInfoTextView,
+                                    mInfoImageView, mGame);
 
         // then start a game
         startNewGame(myCountDown);
@@ -352,6 +353,8 @@ public class PlayActivity extends CommonActivity {
         }
         return false;  // nothing happened, no menu items has been selected
     }  // end onOptionsItemSelected
+
+
 
 
     /**
