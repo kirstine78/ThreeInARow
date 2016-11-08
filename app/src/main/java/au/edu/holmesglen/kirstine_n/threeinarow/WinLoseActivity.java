@@ -14,7 +14,6 @@ import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import static au.edu.holmesglen.kirstine_n.threeinarow.MainActivity.LOGGING_TAG;
@@ -34,7 +33,6 @@ public class WinLoseActivity extends CommonActivity {
     private TextView tvBestTime6x6Medium;
     private TextView tvBestTime6x6Hard;
 
-    private LinearLayout llBestTime4x4;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

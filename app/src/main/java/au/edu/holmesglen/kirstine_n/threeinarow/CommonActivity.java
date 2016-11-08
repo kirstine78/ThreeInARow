@@ -54,8 +54,8 @@ public class CommonActivity extends AppCompatActivity {
     // array to hold milliseconds from each grid size
     public int[][] listMillisecondsArray = {
             { 25000, 20000, 15000 },  // 4x4 - easy, medium, hard
-            { 20000, 15000, 10000 },  // 5x5 - easy, medium, hard
-            { 15000, 10000, 75000 }    // 6x6 - easy, medium, hard
+            { 40000, 30000, 20000 },  // 5x5 - easy, medium, hard
+            { 55000, 40000, 25000 }    // 6x6 - easy, medium, hard
     } ;
 
     // decl reference to SharedPreferences class

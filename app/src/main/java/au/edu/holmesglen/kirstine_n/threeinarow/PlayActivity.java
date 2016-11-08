@@ -21,6 +21,7 @@ import android.widget.Button;
 import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import static au.edu.holmesglen.kirstine_n.threeinarow.MainActivity.LOGGING_TAG;
 import static au.edu.holmesglen.kirstine_n.threeinarow.ThreeRow.COLOR_LIST;
@@ -145,6 +146,8 @@ public class PlayActivity extends CommonActivity {
                                 // check if time is better than the saved
                                 if ( isNewTimeBetterThanCurrentBestTime(millisecondsSpent) ){
                                     Log.v(LOGGING_TAG, "new time better");
+
+                                    Toast.makeText(PlayActivity.this, "New best time!", Toast.LENGTH_SHORT).show();
 
                                     int savedGridSize = getSavedValueGridSize() % 4;    // 4, 5, or 6 - hence the % 4
                                     int savedDifficulty = getSavedValueDifficulty();  // 0, 1, or 2
