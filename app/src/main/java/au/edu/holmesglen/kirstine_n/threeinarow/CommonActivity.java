@@ -51,17 +51,6 @@ public class CommonActivity extends AppCompatActivity {
                                     {BEST_TIME_6X6_EASY, BEST_TIME_6X6_MEDIUM, BEST_TIME_6X6_HARD}
                                 };
 
-//
-//    public static final String BEST_TIME_5X5_1 = "best_time_5x5_1_Key";
-//    public static final String BEST_TIME_5X5_2 = "best_time_5x5_2_Key";
-//    public static final String BEST_TIME_5X5_3 = "best_time_5x5_3_Key";
-//
-//    public static final String BEST_TIME_6X6_1 = "best_time_6x6_1_Key";
-//    public static final String BEST_TIME_6X6_2 = "best_time_6x6_2_Key";
-//    public static final String BEST_TIME_6X6_3 = "best_time_6x6_3_Key";
-
-//    public static final String TOTAL_GAMES = "totalgamesKey";
-
     // array to hold milliseconds from each grid size
     public int[][] listMillisecondsArray = {
             { 25000, 20000, 15000 },  // 4x4 - easy, medium, hard
@@ -72,6 +61,16 @@ public class CommonActivity extends AppCompatActivity {
     // decl reference to SharedPreferences class
     private SharedPreferences sharedPreferences;
     private SharedPreferences.Editor editor;
+
+//    public static final String BEST_TIME_5X5_1 = "best_time_5x5_1_Key";
+//    public static final String BEST_TIME_5X5_2 = "best_time_5x5_2_Key";
+//    public static final String BEST_TIME_5X5_3 = "best_time_5x5_3_Key";
+//
+//    public static final String BEST_TIME_6X6_1 = "best_time_6x6_1_Key";
+//    public static final String BEST_TIME_6X6_2 = "best_time_6x6_2_Key";
+//    public static final String BEST_TIME_6X6_3 = "best_time_6x6_3_Key";
+
+//    public static final String TOTAL_GAMES = "totalgamesKey";
 
 
     @Override
@@ -350,7 +349,6 @@ public class CommonActivity extends AppCompatActivity {
     }
 
 
-
     public void updateBestTime(int newTimeInMilliseconds, int whichGridsize, int whichDifficulty) {
         // replacement process
         Log.v(LOGGING_TAG, "CommonActivity in updateBestTime");
@@ -367,7 +365,7 @@ public class CommonActivity extends AppCompatActivity {
     public boolean isNewTimeBetterThanCurrentBestTime(int newTimeInMilliseconds) {
         boolean newTimeIsBetter = false;
 
-        int savedGridSize = getSavedValueGridSize() % 4;    // 4, 5, or 6 - hence the % 4
+        int savedGridSize = getSavedValueGridSize() % 4;    // returns 4, 5, or 6 - hence the % 4
         int savedDifficulty = getSavedValueDifficulty();  // 0, 1, or 2
 
         // if new time is better then replace

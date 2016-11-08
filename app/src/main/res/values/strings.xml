@@ -27,7 +27,7 @@
     <string name="help_rule">To win a game, the board must be full without having three in a row of any of your two colors (diagonally is accepted).</string>
     <string name="help_play_now">You can start a new game by clicking \"Start New Game\" in the menu in the top right corner or just press the \"Start New Game\" button below the board.</string>
     <string name="help_navigation_explain">Use the menu in the top right corner to navigate around.</string>
-    <string name="help_settings_statistic_explain">You can change the settings in \"Settings\" and see your game statistics in \"Win - Lose record\"</string>
+    <string name="help_settings_statistic_explain">You can change the settings in \"Settings\" and see your best times in \"Best Times\"</string>
     <string name="btn_text_start_game_help_screen">Got it - Start Game</string>
 
     <string name="title_activity_win_lose">Best Times</string>

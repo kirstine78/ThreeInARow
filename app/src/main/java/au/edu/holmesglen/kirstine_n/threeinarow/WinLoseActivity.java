@@ -43,10 +43,24 @@ public class WinLoseActivity extends CommonActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-
         // get the views
-//        llBestTime4x4 = (LinearLayout) findViewById(R.id.ll_bestTime4x4);
-//                .addView(rowTextView);
+        TextView[][] textViewsList = getTextViewArray();
+
+        // set the text on the text views
+        for (int i = 0; i < textViewsList.length; i++) {
+            for (int j = 0; j < textViewsList[i].length; j++) {
+                Log.v(LOGGING_TAG, "for loop: " + i + " " + j);
+
+                int bestTime = getSavedValueBestTime(i, j);
+                Log.v(LOGGING_TAG, "best time: " + bestTime);
+                textViewsList[i][j].setText("" + bestTime);
+            }
+        }
+    }
+
+
+    public TextView[][] getTextViewArray() {
+        // get the relevant views
         tvBestTime4x4Easy = (TextView) findViewById(R.id.tv_bestTime4x4easy);
         tvBestTime4x4Medium = (TextView) findViewById(R.id.tv_bestTime4x4medium);
         tvBestTime4x4Hard = (TextView) findViewById(R.id.tv_bestTime4x4hard);
@@ -57,21 +71,12 @@ public class WinLoseActivity extends CommonActivity {
         tvBestTime6x6Medium = (TextView) findViewById(R.id.tv_bestTime6x6medium);
         tvBestTime6x6Hard = (TextView) findViewById(R.id.tv_bestTime6x6hard);
 
+        // populata array
         TextView[][] textViewsList = {{tvBestTime4x4Easy, tvBestTime4x4Medium, tvBestTime4x4Hard},
-                                        {tvBestTime5x5Easy, tvBestTime5x5Medium, tvBestTime5x5Hard},
-                                        {tvBestTime6x6Easy, tvBestTime6x6Medium, tvBestTime6x6Hard}};
+                {tvBestTime5x5Easy, tvBestTime5x5Medium, tvBestTime5x5Hard},
+                {tvBestTime6x6Easy, tvBestTime6x6Medium, tvBestTime6x6Hard}};
 
-        // set the text on the text views
-        for (int i = 0; i < textViewsList.length; i++) {
-            for (int j = 0; j < textViewsList[i].length; j++) {
-                Log.v(LOGGING_TAG, "for loop: " + i + " " + j);
-
-                int bestTime = getSavedValueBestTime(i, j);
-                Log.v(LOGGING_TAG, "best time: " + bestTime);
-                textViewsList[i][j].setText("" + bestTime);
-//                textViewsList[i][j].setPadding(70,0,10,0);
-            }
-        }
+        return textViewsList;
     }
 
 
