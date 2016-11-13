@@ -50,8 +50,20 @@ public class WinLoseActivity extends CommonActivity {
                 Log.v(LOGGING_TAG, "for loop: " + i + " " + j);
 
                 int bestTime = getSavedValueBestTime(i, j);
-                Log.v(LOGGING_TAG, "best time: " + (bestTime/1000));
-                textViewsList[i][j].setText("" + (bestTime/1000));
+
+                // check if it is the default time or an actual best time yet
+                if (bestTime < 0)
+                {
+                    // default time
+                    Log.v(LOGGING_TAG, "default time: " + bestTime);
+                    textViewsList[i][j].setText("no score");
+                }
+                else
+                {
+                    // actual real best time by player
+                    Log.v(LOGGING_TAG, "best time: " + (bestTime/1000));
+                    textViewsList[i][j].setText((bestTime/1000) + " sec");
+                }
             }
         }
     }

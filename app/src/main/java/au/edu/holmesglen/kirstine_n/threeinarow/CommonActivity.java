@@ -58,6 +58,8 @@ public class CommonActivity extends AppCompatActivity {
             { 55000, 40000, 25000 }    // 6x6 - easy, medium, hard
     } ;
 
+    private final int NO_SCORE_YET_DEFAULT_TIME = -1000;
+
     // decl reference to SharedPreferences class
     private SharedPreferences sharedPreferences;
     private SharedPreferences.Editor editor;
@@ -199,6 +201,42 @@ public class CommonActivity extends AppCompatActivity {
             // update to default
             updateColor2InSharedPreferences(DEFAULT_WHITE);
         }
+
+        return i;
+    }
+
+
+    public int getSavedValueBestTime(int gridsize, int difficulty) {
+
+        // find out the grid size and difficultyso you can decide which best time to fetch
+        String keyNameToGetInSharedPreferences = getCorrectKeyNameBestTime(gridsize, difficulty);
+        Log.v(LOGGING_TAG, "THE keyNameToGetInSharedPreferences: " + keyNameToGetInSharedPreferences);
+
+        // To retrieve an already saved shared preference we use the contains() method
+        // to check that the key value is stored in the sharedpreferences collection
+
+        int i;
+
+//        int defaultTime = listMillisecondsArray[gridsize][difficulty];
+
+        // this to make sure to be able to differentiate between showing a time or not
+        int defaultTime = NO_SCORE_YET_DEFAULT_TIME;
+
+        Log.v(LOGGING_TAG, "defaultTime: " + defaultTime);
+
+        if (sharedPreferences.contains(keyNameToGetInSharedPreferences)) {
+            i = sharedPreferences.getInt(keyNameToGetInSharedPreferences, defaultTime);
+            Log.v(LOGGING_TAG, "contains, i: " + i);
+        } else {
+            // set i to the default time
+            i = defaultTime;
+            Log.v(LOGGING_TAG, "not contains i: " + i);
+
+            // update to default for the specific grid size and difficulty
+            updateBestTime(defaultTime, gridsize, difficulty);
+        }
+
+        Log.v(LOGGING_TAG, "i: " + i);
 
         return i;
     }
@@ -368,45 +406,17 @@ public class CommonActivity extends AppCompatActivity {
         int savedGridSize = getSavedValueGridSize() % 4;    // returns 4, 5, or 6 - hence the % 4
         int savedDifficulty = getSavedValueDifficulty();  // 0, 1, or 2
 
-        // if new time is better then replace
-        if (newTimeInMilliseconds < getSavedValueBestTime(savedGridSize, savedDifficulty)) {
+        // check if it is default time (-1000) which means player has never produced a best time and
+        // also check if new time is better then replace
+        if (getSavedValueBestTime(savedGridSize, savedDifficulty) < 0 ||
+                newTimeInMilliseconds < getSavedValueBestTime(savedGridSize, savedDifficulty)) {
             newTimeIsBetter = true;
         }
         return newTimeIsBetter;
     }
 
 
-    public int getSavedValueBestTime(int gridsize, int difficulty) {
 
-        // find out the grid size and difficultyso you can decide which best time to fetch
-        String keyNameToGetInSharedPreferences = getCorrectKeyNameBestTime(gridsize, difficulty);
-        Log.v(LOGGING_TAG, "THE keyNameToGetInSharedPreferences: " + keyNameToGetInSharedPreferences);
-
-        // To retrieve an already saved shared preference we use the contains() method
-        // to check that the key value is stored in the sharedpreferences collection
-
-        int i;
-
-        int defaultTime = listMillisecondsArray[gridsize][difficulty];
-
-        Log.v(LOGGING_TAG, "defaultTime: " + defaultTime);
-
-        if (sharedPreferences.contains(keyNameToGetInSharedPreferences)) {
-            i = sharedPreferences.getInt(keyNameToGetInSharedPreferences, defaultTime);
-            Log.v(LOGGING_TAG, "contains, i: " + i);
-        } else {
-            // set i to the default time
-            i = defaultTime;
-            Log.v(LOGGING_TAG, "not contains i: " + i);
-
-            // update to default for the specific grid size and difficulty
-            updateBestTime(defaultTime, gridsize, difficulty);
-        }
-
-        Log.v(LOGGING_TAG, "i: " + i);
-
-        return i;
-    }
 
 
     public String getCorrectKeyNameBestTime(int gridSize, int difficulty) {
