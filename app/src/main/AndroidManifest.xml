@@ -27,7 +27,7 @@
             android:name=".HelpActivity"
             android:label="@string/title_activity_help" />
         <activity
-            android:name=".WinLoseActivity"
+            android:name=".BestTimesActivity"
             android:label="@string/title_activity_win_lose"></activity>
     </application>
 

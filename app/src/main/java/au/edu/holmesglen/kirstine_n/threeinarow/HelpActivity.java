@@ -74,8 +74,8 @@ public class HelpActivity extends CommonActivity {
                 intent = new Intent(this, PlayActivity.class);
                 startActivity(intent);
                 return true;
-            case R.id.win_lose_record:
-                intent = new Intent(this, WinLoseActivity.class);
+            case R.id.best_times:
+                intent = new Intent(this, BestTimesActivity.class);
                 startActivity(intent);
                 return true;
             case R.id.settings:

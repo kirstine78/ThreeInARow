@@ -15,7 +15,7 @@
         app:showAsAction="never" />
 
     <item
-        android:id="@+id/win_lose_record"
+        android:id="@+id/best_times"
         android:orderInCategory="20"
         android:title="@string/action_win_lose"
         app:showAsAction="never" />

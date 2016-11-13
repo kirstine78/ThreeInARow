@@ -365,10 +365,10 @@ public class PlayActivity extends CommonActivity {
                 intent = new Intent(this, HelpActivity.class);
                 startActivity(intent);
                 return true;
-            case R.id.win_lose_record:
+            case R.id.best_times:
                 // stop the current count down timer
                 myCountDown.cancel();
-                intent = new Intent(this, WinLoseActivity.class);
+                intent = new Intent(this, BestTimesActivity.class);
                 startActivity(intent);
                 return true;
             case R.id.settings:

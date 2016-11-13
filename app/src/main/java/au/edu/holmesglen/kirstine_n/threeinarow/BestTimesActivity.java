@@ -21,7 +21,7 @@ import static au.edu.holmesglen.kirstine_n.threeinarow.MainActivity.LOGGING_TAG;
 /**
  * Shows the best times of the game.
  */
-public class WinLoseActivity extends CommonActivity {
+public class BestTimesActivity extends CommonActivity {
 
     private TextView tvBestTime4x4Easy;
     private TextView tvBestTime4x4Medium;
@@ -37,7 +37,7 @@ public class WinLoseActivity extends CommonActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_win_lose);
+        setContentView(R.layout.activity_best_times);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
@@ -93,7 +93,7 @@ public class WinLoseActivity extends CommonActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_win_lose_screen, menu);
+        getMenuInflater().inflate(R.menu.menu_best_times_screen, menu);
         return true;
     }
 
@@ -126,4 +126,4 @@ public class WinLoseActivity extends CommonActivity {
         }
         return false;  // nothing happened, no menu items has been selected
     }  // end onOptionsItemSelected
-}  // end class WinLoseActivity
+}  // end class BestTimesActivity

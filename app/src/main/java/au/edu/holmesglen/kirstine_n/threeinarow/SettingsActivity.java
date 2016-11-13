@@ -202,8 +202,8 @@ public class SettingsActivity extends CommonActivity {
                 intent = new Intent(this, HelpActivity.class);
                 startActivity(intent);
                 return true;
-            case R.id.win_lose_record:
-                intent = new Intent(this, WinLoseActivity.class);
+            case R.id.best_times:
+                intent = new Intent(this, BestTimesActivity.class);
                 startActivity(intent);
                 return true;
         }
