@@ -1,6 +1,11 @@
 package au.edu.holmesglen.kirstine_n.threeinarow;
 
 /**
+ * Student name:    Kirstine B. Nielsen
+ * Student id:      100527988
+ * Date:            13/10/2016
+ * Project:         Three in a row
+ * Version:         1.1
  * Code taken from: http://stackoverflow.com/questions/18301554/android-change-app-theme-on-onclick
  */
 
@@ -48,4 +53,4 @@ public class Utils
                 break;
         }
     }
-}
+}  // end class Utils

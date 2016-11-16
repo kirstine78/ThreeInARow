@@ -60,7 +60,7 @@ Version:         1.1
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
-        android:text="@string/main_help_axplain"
+        android:text="@string/main_help_explain"
         android:textSize="20dp"
         android:textColor="@android:color/white"/>
 

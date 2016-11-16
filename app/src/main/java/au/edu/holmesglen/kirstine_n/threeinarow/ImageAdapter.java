@@ -92,4 +92,4 @@ public class ImageAdapter extends BaseAdapter {
         imageView.setImageResource(mGridArray[position].getColor());
         return imageView;
     }
-}
+}  // end class

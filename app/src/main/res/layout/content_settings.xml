@@ -22,16 +22,6 @@ Version:         1.1
     tools:showIn="@layout/activity_settings"
     android:orientation="vertical">
 
-    <!--<TextView-->
-        <!--android:id="@+id/textView"-->
-        <!--android:layout_width="wrap_content"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:text="@string/settings_body"-->
-        <!--android:textSize="20dp"-->
-        <!--android:textStyle="bold"-->
-        <!--android:textColor="@android:color/white"-->
-        <!--android:paddingBottom="24dp"/>-->
-
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -52,6 +42,7 @@ Version:         1.1
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
             android:spinnerMode="dropdown" />
+
     </RelativeLayout>
 
     <RelativeLayout
@@ -74,6 +65,7 @@ Version:         1.1
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
             android:spinnerMode="dropdown"/>
+
     </RelativeLayout>
 
     <RelativeLayout
@@ -96,6 +88,7 @@ Version:         1.1
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
             android:spinnerMode="dropdown" />
+
     </RelativeLayout>
 
     <TextView
@@ -128,6 +121,7 @@ Version:         1.1
             android:layout_weight="1"
             android:orientation="vertical">
         </LinearLayout>
+
     </LinearLayout>
 
     <Button

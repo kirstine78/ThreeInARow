@@ -69,6 +69,10 @@ public class BestTimesActivity extends CommonActivity {
     }
 
 
+    /**
+     * populates TextView[][] with views and return the TextView[][]
+     * @return TextView[][] representing the views for best times
+     */
     public TextView[][] getTextViewArray() {
         // get the relevant views
         tvBestTime4x4Easy = (TextView) findViewById(R.id.tv_bestTime4x4easy);
@@ -81,7 +85,7 @@ public class BestTimesActivity extends CommonActivity {
         tvBestTime6x6Medium = (TextView) findViewById(R.id.tv_bestTime6x6medium);
         tvBestTime6x6Hard = (TextView) findViewById(R.id.tv_bestTime6x6hard);
 
-        // populata array
+        // populate array
         TextView[][] textViewsList = {{tvBestTime4x4Easy, tvBestTime4x4Medium, tvBestTime4x4Hard},
                 {tvBestTime5x5Easy, tvBestTime5x5Medium, tvBestTime5x5Hard},
                 {tvBestTime6x6Easy, tvBestTime6x6Medium, tvBestTime6x6Hard}};

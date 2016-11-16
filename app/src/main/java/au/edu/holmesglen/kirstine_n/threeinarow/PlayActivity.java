@@ -237,8 +237,6 @@ public class PlayActivity extends CommonActivity {
 
         // start the timer
         startMyTimer(aCountDown);
-
-
     } // End of startNewGame
 
 
@@ -272,6 +270,10 @@ public class PlayActivity extends CommonActivity {
     }
 
 
+    /**
+     * Starts a count down timer
+     * @param aCountDown   the count down timer to start
+     */
     public void startMyTimer(MyCount aCountDown) {
         aCountDown.start();
     }
@@ -382,8 +384,6 @@ public class PlayActivity extends CommonActivity {
     }  // end onOptionsItemSelected
 
 
-
-
     /**
      * get position in grid represented as index in a one dimensional array
      * @param xCoord  position x in grid
@@ -454,4 +454,4 @@ public class PlayActivity extends CommonActivity {
 //        return timeSpent;
 //    }
 
-}  // end class
+}  // end class PlayActivity

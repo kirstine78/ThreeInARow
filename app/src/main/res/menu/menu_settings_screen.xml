@@ -23,7 +23,6 @@
     <item
         android:id="@+id/best_times"
         android:orderInCategory="30"
-        android:title="@string/action_win_lose"
+        android:title="@string/action_best_times"
         app:showAsAction="never" />
-
 </menu>

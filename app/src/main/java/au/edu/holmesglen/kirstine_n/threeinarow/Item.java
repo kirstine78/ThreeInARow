@@ -69,4 +69,4 @@ public class Item {
         mClick = 0;
     }
 
-}
+}  // end class Item

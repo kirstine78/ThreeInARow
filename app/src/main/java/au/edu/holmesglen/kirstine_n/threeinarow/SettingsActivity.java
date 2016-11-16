@@ -132,13 +132,9 @@ public class SettingsActivity extends CommonActivity {
 
                     // get difficulty chosen
                     int spinnerDifficultySelectedItem = spinnerDifficulty.getSelectedItemPosition();
-//                    String textSpinnerDifficulty = spinnerDifficulty.getSelectedItem().toString();
-//                    Log.v(LOGGING_TAG, "Difficulty: " + textSpinnerDifficulty);
 
                     // get GRID SIZE spinner
                     int spinnerGridSizeSelectedItem = spinnerGridSize.getSelectedItemPosition();
-//                    String textSpinnerGridSize = spinnerGridSize.getSelectedItem().toString();
-//                    Log.v(LOGGING_TAG, "GridSize: " + textSpinnerGridSize);
 
                     // save the settings
                     saveSettings(spinnerThemeSelectedItem, spinnerDifficultySelectedItem,

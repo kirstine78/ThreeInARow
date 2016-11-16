@@ -206,9 +206,15 @@ public class CommonActivity extends AppCompatActivity {
     }
 
 
+    /**
+     * Gets the currently set value of the best time for a specific gridsize and specific difficulty
+     * @param gridsize   the specific gridsize relevant to the best time
+     * @param difficulty   the specific difficulty relevant to the best time
+     * @return   int representing currently save time in milliseconds
+     */
     public int getSavedValueBestTime(int gridsize, int difficulty) {
 
-        // find out the grid size and difficultyso you can decide which best time to fetch
+        // find out the grid size and difficulty so you can decide which best time to fetch
         String keyNameToGetInSharedPreferences = getCorrectKeyNameBestTime(gridsize, difficulty);
         Log.v(LOGGING_TAG, "THE keyNameToGetInSharedPreferences: " + keyNameToGetInSharedPreferences);
 
@@ -387,6 +393,12 @@ public class CommonActivity extends AppCompatActivity {
     }
 
 
+    /**
+     * Updates the set value of the best time for a specific gridsize and specific difficulty.
+     * @param newTimeInMilliseconds   new time
+     * @param whichGridsize   specific gridsize
+     * @param whichDifficulty   specific difficulty
+     */
     public void updateBestTime(int newTimeInMilliseconds, int whichGridsize, int whichDifficulty) {
         // replacement process
         Log.v(LOGGING_TAG, "CommonActivity in updateBestTime");
@@ -400,6 +412,11 @@ public class CommonActivity extends AppCompatActivity {
     }
 
 
+    /**
+     * Checks if the new winner time is better than the currently set value of the best time
+     * @param newTimeInMilliseconds   new time
+     * @return   boolean representing whether new time is better or not.
+     */
     public boolean isNewTimeBetterThanCurrentBestTime(int newTimeInMilliseconds) {
         boolean newTimeIsBetter = false;
 
@@ -416,9 +433,13 @@ public class CommonActivity extends AppCompatActivity {
     }
 
 
-
-
-
+    /**
+     * Gets the key name for shared preferences regarding best time.
+     * The key name depends of which gridsize and difficulty the game is currently dealing with
+     * @param gridSize   specific gridsize
+     * @param difficulty   specific difficulty
+     * @return   String representing the key name
+     */
     public String getCorrectKeyNameBestTime(int gridSize, int difficulty) {
         String keyNameToGetInSharedPreferences = BEST_TIME_KEY_LIST[gridSize][difficulty];
         Log.v(LOGGING_TAG, "in getCorrectKeyNameBestTime, keyNameToGetInSharedPreferences: " + keyNameToGetInSharedPreferences);

@@ -79,7 +79,6 @@ Version:         1.1
         android:gravity="fill">
     </GridView>
 
-
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -97,6 +96,7 @@ Version:         1.1
             android:id="@+id/imageNextColor"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
+
     </LinearLayout>
 
     <Button

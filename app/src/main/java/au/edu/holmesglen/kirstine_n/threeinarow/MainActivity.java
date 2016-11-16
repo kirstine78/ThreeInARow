@@ -24,6 +24,7 @@ public class MainActivity extends CommonActivity {
 
     public static final String LOGGING_TAG = "KIRSTI ";
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 

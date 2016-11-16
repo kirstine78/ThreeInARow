@@ -86,4 +86,4 @@ public class HelpActivity extends CommonActivity {
         return false;  // nothing happened, no menu items has been selected
     }  // end onOptionsItemSelected
 
-}
+}  // end class HelpActivity
