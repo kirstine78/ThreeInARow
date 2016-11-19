@@ -9,7 +9,6 @@ package au.edu.holmesglen.kirstine_n.threeinarow;
  */
 
 import android.graphics.Point;
-import android.util.Log;
 
 import java.util.Random;
 
@@ -333,12 +332,12 @@ public class ThreeRow
         // decide which character
         if (mNoOfPositionsOccupied % 2 == 0)  // even
         {
-            Log.v("Kirsti", "next color: " + GRID_CHARACTER_1);
+            // Log.v("Kirsti", "next color: " + GRID_CHARACTER_1);
             return GRID_CHARACTER_1;
         }
         else  // odd
         {
-            Log.v("Kirsti", "next color: " + GRID_CHARACTER_2);
+            // Log.v("Kirsti", "next color: " + GRID_CHARACTER_2);
             return GRID_CHARACTER_2;
         }
     }

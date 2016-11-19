@@ -11,12 +11,9 @@ package au.edu.holmesglen.kirstine_n.threeinarow;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.TextView;
-
-import static au.edu.holmesglen.kirstine_n.threeinarow.MainActivity.LOGGING_TAG;
 
 /**
  * Shows the best times of the game.
@@ -47,7 +44,7 @@ public class BestTimesActivity extends CommonActivity {
         // set the text on the text views
         for (int i = 0; i < textViewsList.length; i++) {
             for (int j = 0; j < textViewsList[i].length; j++) {
-                Log.v(LOGGING_TAG, "for loop: " + i + " " + j);
+                // Log.v(LOGGING_TAG, "for loop: " + i + " " + j);
 
                 int bestTime = getSavedValueBestTime(i, j);
 
@@ -55,13 +52,13 @@ public class BestTimesActivity extends CommonActivity {
                 if (bestTime < 0)
                 {
                     // default time
-                    Log.v(LOGGING_TAG, "default time: " + bestTime);
+                    // Log.v(LOGGING_TAG, "default time: " + bestTime);
                     textViewsList[i][j].setText("no score");
                 }
                 else
                 {
                     // actual real best time by player
-                    Log.v(LOGGING_TAG, "best time: " + (bestTime/1000));
+                    // Log.v(LOGGING_TAG, "best time: " + (bestTime/1000));
                     textViewsList[i][j].setText((bestTime/1000) + " sec");
                 }
             }

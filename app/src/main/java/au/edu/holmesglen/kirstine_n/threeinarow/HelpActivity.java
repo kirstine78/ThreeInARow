@@ -11,13 +11,10 @@ package au.edu.holmesglen.kirstine_n.threeinarow;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
-
-import static au.edu.holmesglen.kirstine_n.threeinarow.MainActivity.LOGGING_TAG;
 
 /**
  * HelpActivity shows help instructions to user
@@ -36,7 +33,7 @@ public class HelpActivity extends CommonActivity {
         btnStartGame.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Log.v(LOGGING_TAG, "HelpActivity, in onClick btnStartGame");
+                // Log.v(LOGGING_TAG, "HelpActivity, in onClick btnStartGame");
                 // declare an intent, the activity to start
                 Intent intent;
 

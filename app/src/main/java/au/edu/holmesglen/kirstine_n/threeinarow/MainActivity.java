@@ -11,7 +11,6 @@ package au.edu.holmesglen.kirstine_n.threeinarow;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -33,16 +32,16 @@ public class MainActivity extends CommonActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        Log.v(LOGGING_TAG, "MainActivity, in onCreate");
+        // Log.v(LOGGING_TAG, "MainActivity, in onCreate");
 
         final Button btnStartGame = (Button) findViewById(R.id.btn_home_screen_start_game);
 
         btnStartGame.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Log.v(LOGGING_TAG, "MainActivity, in onClick btnStartGame");
+                // Log.v(LOGGING_TAG, "MainActivity, in onClick btnStartGame");
                 // declare an intent, the activity to start
-                Intent intent;
+//                Intent intent;
 
                 // start game
                 startGame(view);

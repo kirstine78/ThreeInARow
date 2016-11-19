@@ -9,12 +9,9 @@ package au.edu.holmesglen.kirstine_n.threeinarow;
  */
 
 import android.os.CountDownTimer;
-import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
-
-import static au.edu.holmesglen.kirstine_n.threeinarow.MainActivity.LOGGING_TAG;
 
 /**
  * Created by Kirsti on 2/11/2016.
@@ -54,7 +51,7 @@ public class MyCount extends CountDownTimer {
 
     @Override
     public void onFinish() {
-        Log.v(LOGGING_TAG, "in onFinish");
+        // Log.v(LOGGING_TAG, "in onFinish");
 
         // ******************* DON'T DELETE YET BEFORE THOROUGH TESTING *********************
 
@@ -87,19 +84,19 @@ public class MyCount extends CountDownTimer {
         // update milliseconds left
         millisecondsLeft = millisUntilFinished - TWEAK_MILLISECONDS;
 
-        Log.v(LOGGING_TAG, "millisecs left: " + millisecondsLeft);
+        // Log.v(LOGGING_TAG, "millisecs left: " + millisecondsLeft);
 
-        Log.v(LOGGING_TAG, "secondsTaken: " + secondsTaken);
+        // Log.v(LOGGING_TAG, "secondsTaken: " + secondsTaken);
 
         // check if game is won, or lost 3 in row case
         if (game.isTheGameOver()) {
-            Log.v(LOGGING_TAG, "in onTick, the game is over (won, or 3 in a row)");
+            // Log.v(LOGGING_TAG, "in onTick, the game is over (won, or 3 in a row)");
 
             // stop the counter
             cancel();
         }
         else if (millisecondsLeft < 0) {
-            Log.v(LOGGING_TAG, "in onTick, time ran out");
+            // Log.v(LOGGING_TAG, "in onTick, time ran out");
 
             // stop the counter
             cancel();
@@ -116,7 +113,7 @@ public class MyCount extends CountDownTimer {
             ivInfoImage.setVisibility(View.GONE);
 
         } else {
-            Log.v(LOGGING_TAG, "in onTick, the game is NOT over (neither win nor 3 in a row)");
+            // Log.v(LOGGING_TAG, "in onTick, the game is NOT over (neither win nor 3 in a row)");
 
             secondsTaken++;
 

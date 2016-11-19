@@ -57,7 +57,7 @@ public class PlayActivity extends CommonActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        Log.v(LOGGING_TAG, "PlayActivity, in onCreate");
+        // Log.v(LOGGING_TAG, "PlayActivity, in onCreate");
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_play);
@@ -130,7 +130,7 @@ public class PlayActivity extends CommonActivity {
                         // check if 3 in a row first
                         if (mGame.checkForThreeInARow())  //LOSING
                         {
-                            Log.v(LOGGING_TAG, "losing because of three in a row");
+                            // Log.v(LOGGING_TAG, "losing because of three in a row");
                             // display appropriate msg to player
                             mInfoTextView.setText(R.string.losing_three_in_a_row_msg);
 
@@ -146,7 +146,7 @@ public class PlayActivity extends CommonActivity {
 
                                 // check if time is better than the saved
                                 if ( isNewTimeBetterThanCurrentBestTime(millisecondsSpent) ){
-                                    Log.v(LOGGING_TAG, "new time better");
+                                    // Log.v(LOGGING_TAG, "new time better");
 
                                     Toast.makeText(PlayActivity.this, "New best time!", Toast.LENGTH_SHORT).show();
 
@@ -157,10 +157,10 @@ public class PlayActivity extends CommonActivity {
                                     updateBestTime(millisecondsSpent, savedGridSize, savedDifficulty);
                                 }
                                 else {
-                                    Log.v(LOGGING_TAG, "new time not better");
+                                    // Log.v(LOGGING_TAG, "new time not better");
                                 }
 
-                                Log.v(LOGGING_TAG, "winning");
+                                // Log.v(LOGGING_TAG, "winning");
                                 // display appropriate msg to player
                                 mInfoTextView.setText(R.string.winning_msg);
 
@@ -183,11 +183,11 @@ public class PlayActivity extends CommonActivity {
         btnStartNewGame.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Log.v(LOGGING_TAG, "PlayActivity, in onClick btnStartNewGame");
+                // Log.v(LOGGING_TAG, "PlayActivity, in onClick btnStartNewGame");
 
                 // stop the current count down timer
                 myCountDown.cancel();
-                Log.v(LOGGING_TAG, "PlayActivity, count down timer cancelled");
+                // Log.v(LOGGING_TAG, "PlayActivity, count down timer cancelled");
 
                 // declare an intent, the activity to start
                 Intent intent;
@@ -207,7 +207,7 @@ public class PlayActivity extends CommonActivity {
      */
     private void startNewGame(MyCount aCountDown)
     {
-        Log.v(LOGGING_TAG, "PlayActivity, in startNewGame");
+        // Log.v(LOGGING_TAG, "PlayActivity, in startNewGame");
 
         mGame.clearBoard();
 
@@ -285,7 +285,7 @@ public class PlayActivity extends CommonActivity {
      */
     private void preOccupyPositions()
     {
-        Log.v("Kirsti", "into preOccupyPositions");
+        // Log.v("Kirsti", "into preOccupyPositions");
         // generate 4 different positions on grid randomly
         for (int i = 0; i < POSITIONS_RANDOMLY_OCCUPIED; i++)
         {
@@ -306,7 +306,7 @@ public class PlayActivity extends CommonActivity {
      */
     private void updateGridUI(int x, int y, int colorImg)
     {
-        Log.v("Kirsti", "inside updateGridUI x, y: " + x + ", " + y);
+        // Log.v("Kirsti", "inside updateGridUI x, y: " + x + ", " + y);
 
         // ui
         int aPosition = get1DArrayIndexFromXYCoord(x, y, ThreeRow.mRows);
@@ -449,7 +449,7 @@ public class PlayActivity extends CommonActivity {
 //        Log.v(LOGGING_TAG, "in getMillisecondsSpentOnGame, timeStoppedAt: " + timeStoppedAt);
 //
 //        timeSpent = timeAllowed - (int)timeStoppedAt;
-//        Log.v(LOGGING_TAG, "in getMillisecondsSpentOnGame, timeSpent: " + timeSpent);
+//        // Log.v(LOGGING_TAG, "in getMillisecondsSpentOnGame, timeSpent: " + timeSpent);
 //
 //        return timeSpent;
 //    }

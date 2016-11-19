@@ -49,7 +49,7 @@ public class SettingsActivity extends CommonActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        Log.v(LOGGING_TAG, "SettingsActivity in onCreate");
+        // Log.v(LOGGING_TAG, "SettingsActivity in onCreate");
 
         LinearLayout llChkBoxContainerLeft = (LinearLayout)findViewById(R.id.checkboxLinearLayoutContainerLeft);
         LinearLayout llChkBoxContainerRight = (LinearLayout)findViewById(R.id.checkboxLinearLayoutContainerRight);
@@ -66,12 +66,12 @@ public class SettingsActivity extends CommonActivity {
             // check which container to add checkbox to? left or right
             if (i < ThreeRow.COLOR_LIST.length/2)
             {
-                Log.v(LOGGING_TAG, "chk box i: " + i + " left");
+                // Log.v(LOGGING_TAG, "chk box i: " + i + " left");
                 llChkBoxContainerLeft.addView(cb);
             }
             else
             {
-                Log.v(LOGGING_TAG, "chk box i: " + i + " right");
+                // Log.v(LOGGING_TAG, "chk box i: " + i + " right");
                 llChkBoxContainerRight.addView(cb);
             }
 
@@ -109,12 +109,12 @@ public class SettingsActivity extends CommonActivity {
                 // find out how many check boxes for colors were checked
                 for (int i = 0; i < ThreeRow.COLOR_LIST.length; i++) {
                     if (checkBoxList[i].isChecked()) {
-                        Log.v(LOGGING_TAG, "chk checked: " + i);
+                        // Log.v(LOGGING_TAG, "chk checked: " + i);
                         amountChkBoxChecked++;
                     }
                 }
 
-                Log.v(LOGGING_TAG, "amount checked: " + amountChkBoxChecked);
+                // Log.v(LOGGING_TAG, "amount checked: " + amountChkBoxChecked);
 
                 // check if amount of colors chosen is exactly 2
                 if (amountChkBoxChecked == DESIRED_CHECKBOXES_CHECKED) {
@@ -127,8 +127,8 @@ public class SettingsActivity extends CommonActivity {
                     // put the correct indexes chosen from checkBoxList array into the colorIndexList array
                     populateColorIndexList();
 
-                    Log.v(LOGGING_TAG, "colorIndexList 0: " + colorIndexList[0] );
-                    Log.v(LOGGING_TAG, "colorIndexList 1: " + colorIndexList[1] );
+                    // Log.v(LOGGING_TAG, "colorIndexList 0: " + colorIndexList[0] );
+                    // Log.v(LOGGING_TAG, "colorIndexList 1: " + colorIndexList[1] );
 
                     // get difficulty chosen
                     int spinnerDifficultySelectedItem = spinnerDifficulty.getSelectedItemPosition();
@@ -160,7 +160,7 @@ public class SettingsActivity extends CommonActivity {
         {
             // if checked, then assign i to colorIndexList[index]
             if (checkBoxList[i].isChecked()) {
-                Log.v(LOGGING_TAG, "chk checked: " + i);
+                // Log.v(LOGGING_TAG, "chk checked: " + i);
                 // add to list
                 colorIndexList[index] = i;
                 index++;
@@ -232,7 +232,7 @@ public class SettingsActivity extends CommonActivity {
     public void saveSettings(int spinnerThemeSelectedItem, int spinnerDifficultySelectedItem, int spinnerGridSizeSelectedItem,
                                int itemNumberColor1, int itemNumberColor2) {
 
-        Log.v(LOGGING_TAG, "SettingsActivity in saveSettings");
+        // Log.v(LOGGING_TAG, "SettingsActivity in saveSettings");
 
         updateThemeInSharedPreferences(spinnerThemeSelectedItem);
         updateDifficultyInSharedPreferences(spinnerDifficultySelectedItem);
@@ -242,6 +242,8 @@ public class SettingsActivity extends CommonActivity {
 
         // change the theme GUI
         Utils.changeToTheme(this, spinnerThemeSelectedItem);
+//        Intent intent = new Intent(SettingsActivity.this, MainActivity.class);
+//        startActivity(intent);
 
         // msg to user
         Toast.makeText(this, "Settings are saved", Toast.LENGTH_SHORT).show();
@@ -253,7 +255,7 @@ public class SettingsActivity extends CommonActivity {
      * the storage)
      */
     public void displaySavedValues() {
-        Log.v(LOGGING_TAG, "SettingsActivity in displaySavedValues");
+        // Log.v(LOGGING_TAG, "SettingsActivity in displaySavedValues");
 
         displaySavedValueTheme(getSavedValueTheme());
         displaySavedValueDifficulty(getSavedValueDifficulty());
@@ -269,7 +271,7 @@ public class SettingsActivity extends CommonActivity {
      */
     public void displaySavedValueTheme(int theme) {
         // set the spinner to this theme
-        Log.v(LOGGING_TAG, "SettingsActivity in displaySavedValueTheme: " + theme);
+        // Log.v(LOGGING_TAG, "SettingsActivity in displaySavedValueTheme: " + theme);
 
         // set correct spinner item to be the selected one (based on value in storage)
         spinnerTheme.setSelection(theme);
@@ -282,7 +284,7 @@ public class SettingsActivity extends CommonActivity {
      */
     public void displaySavedValueDifficulty(int difficulty) {
         // set the spinner to this difficulty
-        Log.v(LOGGING_TAG, "SettingsActivity in displaySavedValueDifficulty: " + difficulty);
+        // Log.v(LOGGING_TAG, "SettingsActivity in displaySavedValueDifficulty: " + difficulty);
 
         // set correct spinner item to be the selected one (based on value in storage)
         spinnerDifficulty.setSelection(difficulty);
@@ -295,7 +297,7 @@ public class SettingsActivity extends CommonActivity {
      */
     public void displaySavedValueGridSize(int gridsize) {
         // set the spinner to this gridsize
-        Log.v(LOGGING_TAG, "SettingsActivity in displaySavedValueGridSize: " + gridsize);
+        // Log.v(LOGGING_TAG, "SettingsActivity in displaySavedValueGridSize: " + gridsize);
 
         // convert the row/colum size (4, 5, or 6) to (0, 1, or 2)
         if (gridsize == 4) {

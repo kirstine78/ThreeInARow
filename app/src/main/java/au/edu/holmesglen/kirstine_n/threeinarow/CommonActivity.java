@@ -12,9 +12,6 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
-
-import static au.edu.holmesglen.kirstine_n.threeinarow.MainActivity.LOGGING_TAG;
 
 /**
  * Class contains functions that are common to all activities in Three in a row, for example
@@ -53,9 +50,9 @@ public class CommonActivity extends AppCompatActivity {
 
     // array to hold milliseconds from each grid size
     public int[][] listMillisecondsArray = {
-            { 25000, 20000, 15000 },  // 4x4 - easy, medium, hard
-            { 40000, 30000, 20000 },  // 5x5 - easy, medium, hard
-            { 55000, 40000, 25000 }    // 6x6 - easy, medium, hard
+            { 25000, 20000, 15000 },    // 4x4 - easy, medium, hard
+            { 40000, 30000, 20000 },    // 5x5 - easy, medium, hard
+            { 55000, 40000, 25000 }     // 6x6 - easy, medium, hard
     } ;
 
     private final int NO_SCORE_YET_DEFAULT_TIME = -1000;
@@ -127,7 +124,7 @@ public class CommonActivity extends AppCompatActivity {
             updateDifficultyInSharedPreferences(0);  // Default zero (Easy)
         }
 
-        Log.v(LOGGING_TAG, "in getSavedValueDifficulty and the saved value difficulty: " + savedDifficulty);
+        // Log.v(LOGGING_TAG, "in getSavedValueDifficulty and the saved value difficulty: " + savedDifficulty);
         return savedDifficulty;
     }
 
@@ -216,7 +213,7 @@ public class CommonActivity extends AppCompatActivity {
 
         // find out the grid size and difficulty so you can decide which best time to fetch
         String keyNameToGetInSharedPreferences = getCorrectKeyNameBestTime(gridsize, difficulty);
-        Log.v(LOGGING_TAG, "THE keyNameToGetInSharedPreferences: " + keyNameToGetInSharedPreferences);
+        // Log.v(LOGGING_TAG, "THE keyNameToGetInSharedPreferences: " + keyNameToGetInSharedPreferences);
 
         // To retrieve an already saved shared preference we use the contains() method
         // to check that the key value is stored in the sharedpreferences collection
@@ -228,21 +225,21 @@ public class CommonActivity extends AppCompatActivity {
         // this to make sure to be able to differentiate between showing a time or not
         int defaultTime = NO_SCORE_YET_DEFAULT_TIME;
 
-        Log.v(LOGGING_TAG, "defaultTime: " + defaultTime);
+        // Log.v(LOGGING_TAG, "defaultTime: " + defaultTime);
 
         if (sharedPreferences.contains(keyNameToGetInSharedPreferences)) {
             i = sharedPreferences.getInt(keyNameToGetInSharedPreferences, defaultTime);
-            Log.v(LOGGING_TAG, "contains, i: " + i);
+            // Log.v(LOGGING_TAG, "contains, i: " + i);
         } else {
             // set i to the default time
             i = defaultTime;
-            Log.v(LOGGING_TAG, "not contains i: " + i);
+            // Log.v(LOGGING_TAG, "not contains i: " + i);
 
             // update to default for the specific grid size and difficulty
             updateBestTime(defaultTime, gridsize, difficulty);
         }
 
-        Log.v(LOGGING_TAG, "i: " + i);
+        // Log.v(LOGGING_TAG, "i: " + i);
 
         return i;
     }
@@ -284,7 +281,7 @@ public class CommonActivity extends AppCompatActivity {
 //        editor.putInt(TOTAL_GAMES, 0);
 //        editor.commit();
 //
-//        Log.v(LOGGING_TAG, "Total games is default: 0");
+//        // Log.v(LOGGING_TAG, "Total games is default: 0");
 //    }
 
 
@@ -318,7 +315,7 @@ public class CommonActivity extends AppCompatActivity {
         editor.putInt(THEME, spinnerThemeSelectedItem);
         editor.commit();
 
-        Log.v(LOGGING_TAG, "Theme is saved: " + spinnerThemeSelectedItem);
+        // Log.v(LOGGING_TAG, "Theme is saved: " + spinnerThemeSelectedItem);
     }
 
 
@@ -327,14 +324,14 @@ public class CommonActivity extends AppCompatActivity {
      * @param spinnerDifficultySelectedItem representing the difficulty level to update to.
      */
     public void updateDifficultyInSharedPreferences(int spinnerDifficultySelectedItem) {
-        Log.v(LOGGING_TAG, "CommonActivity in updateDifficultyInSharedPreferences");
+        // Log.v(LOGGING_TAG, "CommonActivity in updateDifficultyInSharedPreferences");
 
         // format is: editor.putInt("key", value);
         // in our example the key/value is:
         editor.putInt(DIFFICULTY, spinnerDifficultySelectedItem);
         editor.commit();
 
-        Log.v(LOGGING_TAG, "Difficulty is saved: " + spinnerDifficultySelectedItem);
+        // Log.v(LOGGING_TAG, "Difficulty is saved: " + spinnerDifficultySelectedItem);
     }
 
 
@@ -343,7 +340,7 @@ public class CommonActivity extends AppCompatActivity {
      * @param spinnerGridSizeSelectedItem representing the grid size to update to.
      */
     public void updateGridSizeInSharedPreferences(int spinnerGridSizeSelectedItem) {
-        Log.v(LOGGING_TAG, "CommonActivity in updateGridSizeInSharedPreferences: " + spinnerGridSizeSelectedItem);
+        // Log.v(LOGGING_TAG, "CommonActivity in updateGridSizeInSharedPreferences: " + spinnerGridSizeSelectedItem);
 
         // convert to the actual row/colum size (4, 5, or 6)
         if (spinnerGridSizeSelectedItem == 0) {
@@ -359,7 +356,7 @@ public class CommonActivity extends AppCompatActivity {
         editor.putInt(GRID_SIZE, spinnerGridSizeSelectedItem);
         editor.commit();
 
-        Log.v(LOGGING_TAG, "Gridsize is saved: " + spinnerGridSizeSelectedItem);
+        // Log.v(LOGGING_TAG, "Gridsize is saved: " + spinnerGridSizeSelectedItem);
     }
 
 
@@ -373,7 +370,7 @@ public class CommonActivity extends AppCompatActivity {
         editor.putInt(COLOR_1, color1);
         editor.commit();
 
-        Log.v(LOGGING_TAG, "Color1 is saved");
+        // Log.v(LOGGING_TAG, "Color1 is saved");
     }
 
 
@@ -382,14 +379,14 @@ public class CommonActivity extends AppCompatActivity {
      * @param color2 representing the color 2 to update to.
      */
     public void updateColor2InSharedPreferences(int color2) {
-        Log.v(LOGGING_TAG, "CommonActivity in updateColor2InSharedPreferences");
+        // Log.v(LOGGING_TAG, "CommonActivity in updateColor2InSharedPreferences");
 
         // format is: editor.putInt("key", value);
         // in our example the key/value is:
         editor.putInt(COLOR_2, color2);
         editor.commit();
 
-        Log.v(LOGGING_TAG, "Color2 is saved");
+        // Log.v(LOGGING_TAG, "Color2 is saved");
     }
 
 
@@ -401,14 +398,14 @@ public class CommonActivity extends AppCompatActivity {
      */
     public void updateBestTime(int newTimeInMilliseconds, int whichGridsize, int whichDifficulty) {
         // replacement process
-        Log.v(LOGGING_TAG, "CommonActivity in updateBestTime");
+        // Log.v(LOGGING_TAG, "CommonActivity in updateBestTime");
 
         // format is: editor.putInt("key", value);
         // in our example the key/value is:
         editor.putInt(getCorrectKeyNameBestTime(whichGridsize, whichDifficulty), newTimeInMilliseconds);
         editor.commit();
 
-        Log.v(LOGGING_TAG, "new best time is saved");
+        // Log.v(LOGGING_TAG, "new best time is saved");
     }
 
 
@@ -442,7 +439,7 @@ public class CommonActivity extends AppCompatActivity {
      */
     public String getCorrectKeyNameBestTime(int gridSize, int difficulty) {
         String keyNameToGetInSharedPreferences = BEST_TIME_KEY_LIST[gridSize][difficulty];
-        Log.v(LOGGING_TAG, "in getCorrectKeyNameBestTime, keyNameToGetInSharedPreferences: " + keyNameToGetInSharedPreferences);
+        // Log.v(LOGGING_TAG, "in getCorrectKeyNameBestTime, keyNameToGetInSharedPreferences: " + keyNameToGetInSharedPreferences);
 
         return keyNameToGetInSharedPreferences;
     }
