@@ -1,4 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!--
+Student name:    Kirstine B. Nielsen
+Student id:      100527988
+Date:            13/10/2016
+Project:         Three in a row
+Version:         1.3
+-->
 <resources>
     <color name="colorPrimary">#103B9F</color>
     <color name="colorPrimaryDark">#2D57B9</color>
