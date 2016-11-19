@@ -5,7 +5,7 @@ package au.edu.holmesglen.kirstine_n.threeinarow;
  * Student id:      100527988
  * Date:            13/10/2016
  * Project:         Three in a row
- * Version:         1.1
+ * Version:         1.3
  */
 
 import android.content.Intent;
@@ -49,7 +49,7 @@ public class HelpActivity extends CommonActivity {
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_help_screen, menu);
-//        menu.add("New Game");
+
         return true;
     }
 

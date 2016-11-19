@@ -5,7 +5,7 @@ package au.edu.holmesglen.kirstine_n.threeinarow;
  * Student id:      100527988
  * Date:            13/10/2016
  * Project:         Three in a row
- * Version:         1.1
+ * Version:         1.3
  */
 
 import android.content.Intent;
@@ -40,8 +40,6 @@ public class MainActivity extends CommonActivity {
             @Override
             public void onClick(View view) {
                 // Log.v(LOGGING_TAG, "MainActivity, in onClick btnStartGame");
-                // declare an intent, the activity to start
-//                Intent intent;
 
                 // start game
                 startGame(view);

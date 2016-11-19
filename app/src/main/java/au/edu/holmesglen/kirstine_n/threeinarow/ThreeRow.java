@@ -5,7 +5,7 @@ package au.edu.holmesglen.kirstine_n.threeinarow;
  * Student id:      100527988
  * Date:            13/10/2016
  * Project:         Three in a row
- * Version:         1.1
+ * Version:         1.3
  */
 
 import android.graphics.Point;
@@ -50,10 +50,6 @@ public class ThreeRow
     // flags
     private int mNoOfPositionsOccupied = 0;
     private boolean mGameOver = false;
-
-    // timer
-//    private long minutes;
-//    private long seconds;
 
 
     /**

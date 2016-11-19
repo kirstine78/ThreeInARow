@@ -5,7 +5,7 @@ package au.edu.holmesglen.kirstine_n.threeinarow;
  * Student id:      100527988
  * Date:            02/11/2016
  * Project:         Three in a row
- * Version:         1.1
+ * Version:         1.3
  */
 
 import android.os.CountDownTimer;
@@ -14,7 +14,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 /**
- * Created by Kirsti on 2/11/2016.
+ * MyCount to be used as the count down object
+ * Holds for example method to model a tick for every count down interval
  */
 
 public class MyCount extends CountDownTimer {
@@ -52,29 +53,6 @@ public class MyCount extends CountDownTimer {
     @Override
     public void onFinish() {
         // Log.v(LOGGING_TAG, "in onFinish");
-
-        // ******************* DON'T DELETE YET BEFORE THOROUGH TESTING *********************
-
-//        // check if game is won, or lost 3 in row case
-//        if (game.isTheGameOver()) {
-//            Log.v(LOGGING_TAG, "in onFinish, the game is over (won or 3 in a row)");
-//
-//            // stop the counter
-//            cancel();
-//        }
-//        else {
-//            Log.v(LOGGING_TAG, "in onFinish the game is NOT over");
-//
-//            // make sure to set the game to be over
-//            game.setGameOverToTrue();
-//
-//            // set info text
-//            tvInfoText.setText(R.string.losing_time_ran_out_msg);
-//
-//            // hide image of color hint
-//            ivInfoImage.setVisibility(View.GONE);
-//        }
-        // ************** DON'T DELETE THE ABOVE YET BEFORE THOROUGH TESTING ****************
     }
 
 

@@ -5,14 +5,13 @@ package au.edu.holmesglen.kirstine_n.threeinarow;
  * Student id:      100527988
  * Date:            13/10/2016
  * Project:         Three in a row
- * Version:         1.1
+ * Version:         1.3
  */
 
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -22,8 +21,6 @@ import android.widget.CheckBox;
 import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.Toast;
-
-import static au.edu.holmesglen.kirstine_n.threeinarow.MainActivity.LOGGING_TAG;
 
 /**
  * SettingsActivity is used for storing preferences in phones local storage
@@ -242,8 +239,6 @@ public class SettingsActivity extends CommonActivity {
 
         // change the theme GUI
         Utils.changeToTheme(this, spinnerThemeSelectedItem);
-//        Intent intent = new Intent(SettingsActivity.this, MainActivity.class);
-//        startActivity(intent);
 
         // msg to user
         Toast.makeText(this, "Settings are saved", Toast.LENGTH_SHORT).show();

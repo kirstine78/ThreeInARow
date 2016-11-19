@@ -3,9 +3,9 @@ package au.edu.holmesglen.kirstine_n.threeinarow;
 /**
  * Student name:    Kirstine B. Nielsen
  * Student id:      100527988
- * Date:            01/11/2016
+ * Date:            01.11.2016
  * Project:         Three in a row
- * Version:         1.1
+ * Version:         1.3
  */
 
 import android.content.Context;
@@ -60,16 +60,6 @@ public class CommonActivity extends AppCompatActivity {
     // decl reference to SharedPreferences class
     private SharedPreferences sharedPreferences;
     private SharedPreferences.Editor editor;
-
-//    public static final String BEST_TIME_5X5_1 = "best_time_5x5_1_Key";
-//    public static final String BEST_TIME_5X5_2 = "best_time_5x5_2_Key";
-//    public static final String BEST_TIME_5X5_3 = "best_time_5x5_3_Key";
-//
-//    public static final String BEST_TIME_6X6_1 = "best_time_6x6_1_Key";
-//    public static final String BEST_TIME_6X6_2 = "best_time_6x6_2_Key";
-//    public static final String BEST_TIME_6X6_3 = "best_time_6x6_3_Key";
-
-//    public static final String TOTAL_GAMES = "totalgamesKey";
 
 
     @Override
@@ -220,8 +210,6 @@ public class CommonActivity extends AppCompatActivity {
 
         int i;
 
-//        int defaultTime = listMillisecondsArray[gridsize][difficulty];
-
         // this to make sure to be able to differentiate between showing a time or not
         int defaultTime = NO_SCORE_YET_DEFAULT_TIME;
 
@@ -243,66 +231,6 @@ public class CommonActivity extends AppCompatActivity {
 
         return i;
     }
-
-
-//**************************************************************************************************
-//****************************** DON'T DELETE ******************************************************
-//**************************************************************************************************
-    /**
-     * Gets the currently set value of the total games, or the default if not set.
-     * @return      integer representing the total games.
-     */
-//    public int getSavedValueTotalGames() {
-//        // To retrieve an already saved shared preference we use the contains() method
-//        // to check that the key value is stored in the sharedpreferences collection
-//
-//        int savedTotalGames = 0;
-//
-//        if (sharedPreferences.contains(TOTAL_GAMES)) {
-//            savedTotalGames = sharedPreferences.getInt(TOTAL_GAMES, 0);
-//        } else {
-//            // if no TOTAL_GAMES was saved, then save default total games 0
-//            saveDefaultZeroTotalGames();
-//        }
-//
-//        return savedTotalGames;
-//    }
-
-
-//**************************************************************************************************
-//****************************** DON'T DELETE ******************************************************
-//**************************************************************************************************
-    /**
-     * Saves zero as value for total games.
-     */
-//    public void saveDefaultZeroTotalGames() {
-//        // format is: editor.putInt("key", value);
-//        // in our example the key/value is:
-//        editor.putInt(TOTAL_GAMES, 0);
-//        editor.commit();
-//
-//        // Log.v(LOGGING_TAG, "Total games is default: 0");
-//    }
-
-
-//**************************************************************************************************
-//****************************** DON'T DELETE ******************************************************
-//**************************************************************************************************
-    /**
-     * Updates the set value of the total games.
-     */
-//    public void updateTotalGamesInSharedPreferences() {
-//        // get what was saved and then add 1
-//        int currentlyTotalGames = getSavedValueTotalGames();
-//        Log.v(LOGGING_TAG, "currently Total games saved: " + currentlyTotalGames);
-//
-//        // format is: editor.putInt("key", value);
-//        // in our example the key/value is:
-//        editor.putInt(TOTAL_GAMES, (currentlyTotalGames + 1));
-//        editor.commit();
-//
-//        Log.v(LOGGING_TAG, "Total games is saved: " + (currentlyTotalGames + 1));
-//    }
 
 
     /**

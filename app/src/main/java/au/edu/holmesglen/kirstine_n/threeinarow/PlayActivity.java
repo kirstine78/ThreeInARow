@@ -5,14 +5,13 @@ package au.edu.holmesglen.kirstine_n.threeinarow;
  * Student id:      100527988
  * Date:            13/10/2016
  * Project:         Three in a row
- * Version:         1.1
+ * Version:         1.3
  */
 
 import android.content.Intent;
 import android.graphics.Point;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -23,7 +22,6 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import static au.edu.holmesglen.kirstine_n.threeinarow.MainActivity.LOGGING_TAG;
 import static au.edu.holmesglen.kirstine_n.threeinarow.ThreeRow.COLOR_LIST;
 import static au.edu.holmesglen.kirstine_n.threeinarow.ThreeRow.POSITIONS_RANDOMLY_OCCUPIED;
 
@@ -226,11 +224,6 @@ public class PlayActivity extends CommonActivity {
 
         // show image hint
         mInfoImageView.setVisibility(View.VISIBLE);
-
-        // *************** increment TOTAL GAMES played ******************
-        // DON'T DELETE YET
-//        incrementTotalGames();
-        // ***************************************************************
 
         // process to show difficulty value in textview (easy, medium, hard)
         showDifficulty();
@@ -435,23 +428,5 @@ public class PlayActivity extends CommonActivity {
             img.setImageResource(imageResource);
         }
     }
-
-
-//    public int getMillisecondsSpentOnGame() {
-//        int timeSpent = 0;
-//
-//        // what was the time allowed.
-//        int timeAllowed = listMillisecondsArray[getSavedValueGridSize() % 4][getSavedValueDifficulty()];
-//        Log.v(LOGGING_TAG, "in getMillisecondsSpentOnGame, time allowed were: " + (timeAllowed));
-//
-//        // get milliseconds
-//        long timeStoppedAt = myCountDown.millisecondsLeft;
-//        Log.v(LOGGING_TAG, "in getMillisecondsSpentOnGame, timeStoppedAt: " + timeStoppedAt);
-//
-//        timeSpent = timeAllowed - (int)timeStoppedAt;
-//        // Log.v(LOGGING_TAG, "in getMillisecondsSpentOnGame, timeSpent: " + timeSpent);
-//
-//        return timeSpent;
-//    }
 
 }  // end class PlayActivity
