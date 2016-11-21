@@ -13,6 +13,8 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 
+import static au.edu.holmesglen.kirstine_n.threeinarow.Utils.changeToTheme;
+
 /**
  * Class contains functions that are common to all activities in Three in a row, for example
  * accessing shared preferences.
@@ -73,6 +75,18 @@ public class CommonActivity extends AppCompatActivity {
         // set theme of this activity to the globally chosen theme
         Utils.sTheme = getSavedValueTheme();  // get saved theme, if nothing there, then default 0
         Utils.onActivityCreateSetTheme(this);
+    }
+
+
+
+    @Override
+    protected void onRestart() {
+        super.onRestart();  // Always call the superclass method first
+        // make sure to get the correct theme
+
+        // set theme of this activity to the globally chosen theme
+        Utils.sTheme = getSavedValueTheme();  // get saved theme, if nothing there, then default 0
+        changeToTheme(this, Utils.sTheme);  // make sure theme is correct on restart (using backbutton in other activity)
     }
 
 
