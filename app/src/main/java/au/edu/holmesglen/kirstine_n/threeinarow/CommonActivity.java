@@ -77,8 +77,7 @@ public class CommonActivity extends AppCompatActivity {
         Utils.onActivityCreateSetTheme(this);
     }
 
-
-
+    
     @Override
     protected void onRestart() {
         super.onRestart();  // Always call the superclass method first
